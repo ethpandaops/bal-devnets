@@ -151,6 +151,10 @@ jobs:
   test:
     timeout-minutes: 2160
     needs: prepare
+    env:
+      # BAL-specific environment variables
+      HIVE_PARALLEL_TX_PROCESSING_DISABLED: "true"
+      HIVE_AMSTERDAM_TIMESTAMP: "1759250952"
     runs-on: >-
       ${{
         matrix.simulator == 'ethereum/rpc-compat' && 'ubuntu-latest' ||
