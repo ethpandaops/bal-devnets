@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 variable "digitalocean_project_name" {
   type    = string
-  default = "bal-devnets"
+  default = "glamsterdam-devnets"
 }
 
 variable "digitalocean_ssh_key_name" {
