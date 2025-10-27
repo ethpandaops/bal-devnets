@@ -27,7 +27,7 @@ terraform {
     skip_s3_checksum            = true
     region                      = "us-east-1"
     bucket                      = "merge-testnets"
-    key                         = "infrastructure/devnet-0/terraform.tfstate"
+    key                         = "infrastructure/bal-devnet-0/terraform.tfstate"
   }
 }
 
@@ -50,7 +50,7 @@ variable "cloudflare_api_token" {
 
 variable "ethereum_network" {
   type    = string
-  default = "template-devnet-0"
+  default = "bal-devnet-0"
 }
 
 variable "base_cidr_block" {

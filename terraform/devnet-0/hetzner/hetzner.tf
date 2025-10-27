@@ -20,11 +20,11 @@ variable "hcloud_ssh_key_fingerprint" {
 
 variable "hetzner_supernode_size" {
   type    = string
-  default = "cax41"
+  default = "cax31"
 }
 variable "hetzner_fullnode_size" {
   type    = string
-  default = "cax31"
+  default = "cax21"
 }
 
 variable "hetzner_regions" {
@@ -195,4 +195,53 @@ resource "local_file" "ansible_inventory" {
     }
   )
   filename = "../../../ansible/inventories/devnet-0/hetzner_inventory.ini"
+}
+
+locals {
+  ssh_config_path = pathexpand("~/.ssh/config.d/ssh_config.${var.ethereum_network}.hetzner")
+}
+
+resource "local_file" "ssh_config" {
+  content = templatefile("${path.module}/../ssh_config.tmpl",
+    {
+      ethereum_network = var.ethereum_network
+      hosts = merge(
+        {
+          for key, server in hcloud_server.main : "${var.ethereum_network}-${key}" => {
+            hostname   = coalesce(server.ipv4_address, (try(server.ipv6_address, "")))
+            private_ip = try(hcloud_server_network.main[key].ip, "")
+            name       = key
+            user       = "devops"
+          }
+        }
+      )
+    }
+  )
+  filename = local.ssh_config_path
+
+  depends_on = [hcloud_server.main]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# Ensure cleanup on destroy
+resource "null_resource" "ssh_config_cleanup" {
+  triggers = {
+    ssh_config_path = local.ssh_config_path
+  }
+
+  # This provisioner runs on destroy
+  provisioner "local-exec" {
+    when    = destroy
+    command = "rm -f ${self.triggers.ssh_config_path} || true"
+  }
+
+  depends_on = [local_file.ssh_config]
+}
+
+output "ssh_config_file" {
+  value       = "SSH config generated at: ${local.ssh_config_path}"
+  description = "Path to the generated SSH config file"
 }

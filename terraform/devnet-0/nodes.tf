@@ -2,7 +2,7 @@
 variable "bootnode" {
   default = {
     name            = "bootnode"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
@@ -13,9 +13,9 @@ variable "bootnode" {
 variable "lighthouse_geth_super" {
   default = {
     name            = "lighthouse-geth-super"
-    count           = 1
+    count           = 0
     validator_start = 0
-    validator_end   = 100
+    validator_end   = 0
   }
 }
 
@@ -345,9 +345,9 @@ variable "grandine_nimbusel_super" {
 variable "lighthouse_geth_full" {
   default = {
     name            = "lighthouse-geth-full"
-    count           = 1
-    validator_start = 100
-    validator_end   = 200
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
