@@ -123,27 +123,27 @@ variable "prysm_nimbusel_super" {
 variable "lodestar_geth_super" {
   default = {
     name            = "lodestar-geth-super"
-    count           = 1
+    count           = 0
     validator_start = 0
-    validator_end   = 200
+    validator_end   = 0
   }
 }
 
 variable "lodestar_nethermind_super" {
   default = {
     name            = "lodestar-nethermind-super"
-    count           = 1
-    validator_start = 200
-    validator_end   = 400
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
 variable "lodestar_besu_super" {
   default = {
     name            = "lodestar-besu-super"
-    count           = 1
-    validator_start = 400
-    validator_end   = 600
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -159,9 +159,9 @@ variable "lodestar_erigon_super" {
 variable "lodestar_reth_super" {
   default = {
     name            = "lodestar-reth-super"
-    count           = 1
-    validator_start = 600
-    validator_end   = 800
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
