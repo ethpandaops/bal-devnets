@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 variable "digitalocean_project_name" {
   type    = string
-  default = "Template"
+  default = "bal-devnets"
 }
 
 variable "digitalocean_ssh_key_name" {
@@ -13,12 +13,12 @@ variable "digitalocean_ssh_key_name" {
 
 variable "digitalocean_supernode_size" {
   type    = string
-  default = "s-8vcpu-32gb-640gb-intel"
+  default = "s-8vcpu-16gb"
 }
 
 variable "digitalocean_fullnode_size" {
   type    = string
-  default = "s-8vcpu-16gb"
+  default = "s-4vcpu-8gb"
 }
 
 variable "digitalocean_regions" {
@@ -192,7 +192,7 @@ resource "local_file" "ansible_inventory" {
 }
 
 locals {
-  ssh_config_path = pathexpand("~/.ssh/config.d/ssh_config.${var.ethereum_network}")
+  ssh_config_path = pathexpand("~/.ssh/config.d/ssh_config.${var.ethereum_network}.digitalocean")
 }
 
 resource "local_file" "ssh_config" {
