@@ -12,7 +12,7 @@ default_ethereum_client_images:
   geth: ethpandaops/geth:bal-devnet-0
   erigon: erigontech/erigon:main-latest
   nethermind: ethpandaops/nethermind:bal-devnet-0
-  reth: ethpandaops/bal-devnet-0
+  reth: ethpandaops/reth:bal-devnet-0
   nimbusel: ethpandaops/nimbus-eth1:master
 
 default_tooling_images:

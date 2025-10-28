@@ -23,7 +23,7 @@ ethereum_node_beacon_prefix: "bn-" # prefix for beacon URLs
 ethereum_node_rcp_hostname: "{{ ethereum_node_rpc_prefix }}{{ server_fqdn }}"
 ethereum_node_beacon_hostname: "{{ ethereum_node_beacon_prefix }}{{ server_fqdn }}"
 
-primary_bootnode: bootnode-1
+primary_bootnode: bootnode-1-arm
 
 ### Checkpoint sync specific for Ansible & Kubernetes
 checkpoint_sync_node: "{{ primary_bootnode }}"
@@ -61,7 +61,7 @@ ethereum_genesis_generator_config_files:
   values.env: |-
     export CHAIN_ID="{{ ethereum_genesis_chain_id }}"
     export EL_AND_CL_MNEMONIC="{{ ethereum_genesis_mnemonic }}"
-    export NUMBER_OF_VALIDATORS=400
+    export NUMBER_OF_VALIDATORS=800
     export GENESIS_FORK_VERSION="0x10{{ ethereum_genesis_fork_version_suffix }}"
     export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"

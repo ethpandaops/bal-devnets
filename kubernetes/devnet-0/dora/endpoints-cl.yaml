@@ -1,0 +1,29 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-cl.yaml.j2
+# Consensus layer endpoints
+
+- url: http://prysm-geth-001:5052
+  name: rpc-prysm-geth-001
+  authGroup: pandaops
+  archive: true
+  priority: 1
+- url: https://bn-bootnode-1-arm.srv.bal-devnet-0.ethpandaops.io
+  name: bootnode-1-arm
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-besu-super-1-arm.srv.bal-devnet-0.ethpandaops.io
+  name: lodestar-besu-super-1-arm
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-geth-super-1-arm.srv.bal-devnet-0.ethpandaops.io
+  name: lodestar-geth-super-1-arm
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-nethermind-super-1-arm.srv.bal-devnet-0.ethpandaops.io
+  name: lodestar-nethermind-super-1-arm
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-reth-super-1-arm.srv.bal-devnet-0.ethpandaops.io
+  name: lodestar-reth-super-1-arm
+  authGroup: pandaops
+  priority: -1
+
