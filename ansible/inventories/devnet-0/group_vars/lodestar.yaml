@@ -42,8 +42,8 @@ lodestar_container_command_extra_args:
   - --genesisStateFile=/network-config/genesis.ssz
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
   - --rest.namespace="*"
-  - --network.connectToDiscv5Bootnodes
   - --nat=true
+  #- --network.connectToDiscv5Bootnodes
 lodestar_validator_container_volumes:
   - "{{ lodestar_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
@@ -52,3 +52,5 @@ lodestar_validator_container_command_extra_args:
   - --graffiti={{ ansible_hostname }}
 lodestar_validator_datadir: /data/lodestar-validator
 lodestar_container_pull: true
+
+lodestar_mev_boost_enabled: false

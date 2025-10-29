@@ -2,7 +2,7 @@
 variable "bootnode" {
   default = {
     name            = "bootnode"
-    count           = 1
+    count           = 0
     validator_start = 0
     validator_end   = 0
   }
