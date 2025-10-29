@@ -68,7 +68,7 @@
     "eip7934TransitionTimestamp": "0x0",
     "eip7939TransitionTimestamp": "0x0",
     "eip7951TransitionTimestamp": "0x0",
-    "eip7928TransitionTimestamp": "0x6900c021",
+    "eip7928TransitionTimestamp": "0x690224e7",
     "blobSchedule": [
       {
         "timestamp": "0x0",
@@ -87,7 +87,7 @@
     },
     "difficulty": "0x0",
     "author": "0x0000000000000000000000000000000000000000",
-    "timestamp": "0x6900be65",
+    "timestamp": "0x69022303",
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
     "extraData": "",
     "gasLimit": "0x2aea540"

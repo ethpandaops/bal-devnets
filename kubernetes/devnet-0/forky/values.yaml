@@ -65,5 +65,10 @@ forky:
           spec:
             seconds_per_slot: 12
             slots_per_epoch: 32
-            genesis_time: 1761656481
+            genesis_time: 1761747815
       sources:
+        - name: bootnode-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-bootnode-1.srv.bal-devnet-0.ethpandaops.io
+            polling_interval: "12s"

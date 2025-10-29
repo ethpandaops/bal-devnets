@@ -19,8 +19,8 @@ forkmon:
   # Rpc
   - addr: http://geth-prysm-001:8545
     name: rpc-prysm-geth-001
-  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1-arm.srv.bal-devnet-0.ethpandaops.io
-    name: bootnode-1-arm
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.bal-devnet-0.ethpandaops.io
+    name: bootnode-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-besu-super-1-arm.srv.bal-devnet-0.ethpandaops.io
     name: lodestar-besu-super-1-arm
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-geth-super-1-arm.srv.bal-devnet-0.ethpandaops.io

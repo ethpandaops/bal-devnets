@@ -93,7 +93,7 @@ xatu-cannon:
     tracing:
       enabled: false
     ethereum:
-      beaconNodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-bootnode-1-arm.srv.bal-devnet-0.ethpandaops.io
+      beaconNodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-bootnode-1.srv.bal-devnet-0.ethpandaops.io
       overrideNetworkName: bal-devnet-0
       beaconNodeHeaders: {}
       blockCacheSize: 300

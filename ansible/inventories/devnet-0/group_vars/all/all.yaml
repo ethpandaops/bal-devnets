@@ -23,7 +23,7 @@ ethereum_node_beacon_prefix: "bn-" # prefix for beacon URLs
 ethereum_node_rcp_hostname: "{{ ethereum_node_rpc_prefix }}{{ server_fqdn }}"
 ethereum_node_beacon_hostname: "{{ ethereum_node_beacon_prefix }}{{ server_fqdn }}"
 
-primary_bootnode: bootnode-1-arm
+primary_bootnode: bootnode-1
 
 ### Checkpoint sync specific for Ansible & Kubernetes
 checkpoint_sync_node: "{{ primary_bootnode }}"
@@ -48,7 +48,7 @@ ethereum_genesis_chain_id: "70{{ 99999999 | random(start=10000000, seed=ethereum
 ethereum_genesis_fork_version_suffix: "{{ 999999 | random(start=100000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_generator_output_dir: "../network-configs/{{ network_iteration }}"
 ethereum_genesis_timestamp: "{{ lookup('ansible.builtin.pipe', '{{ ethereum_genesis_timestamp_relative_cmd[ansible_system] }}') }}"
-ethereum_genesis_timedelay: 60
+ethereum_genesis_timedelay: 100 #28800
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
   Darwin: "date -v +45M +%s"

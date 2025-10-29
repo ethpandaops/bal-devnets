@@ -6,8 +6,8 @@
   authGroup: pandaops
   archive: true
   priority: 1
-- url: https://bn-bootnode-1-arm.srv.bal-devnet-0.ethpandaops.io
-  name: bootnode-1-arm
+- url: https://bn-bootnode-1.srv.bal-devnet-0.ethpandaops.io
+  name: bootnode-1
   authGroup: pandaops
   priority: -1
 - url: https://bn-lodestar-besu-super-1-arm.srv.bal-devnet-0.ethpandaops.io

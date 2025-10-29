@@ -85,3 +85,13 @@ tracoor-single:
             fork: electra
 
     agents:
+      - name: bootnode-1
+        ethereum:
+          overrideNetworkName: bal-devnet-0
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-bootnode-1.srv.bal-devnet-0.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.bal-devnet-0.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
