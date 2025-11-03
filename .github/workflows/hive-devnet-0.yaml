@@ -42,10 +42,7 @@ on:
             "geth": "ethereum/go-ethereum@master",
             "besu": "hyperledger/besu@main",
             "reth": "paradigmxyz/reth@main",
-            "nethermind": "NethermindEth/nethermind@master",
-            "erigon": "erigontech/erigon@main",
-            "nimbusel": "status-im/nimbus-eth1@master",
-            "ethrex": "lambdaclass/ethrex@main"
+            "nethermind": "NethermindEth/nethermind@master",  
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
@@ -170,12 +167,9 @@ jobs:
         client: >-
           ${{ fromJSON(format('[{0}]', inputs.client || '
             "besu",
-            "erigon",
             "go-ethereum",
             "nethermind",
-            "nimbus-el",
             "reth",
-            "ethrex"
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
