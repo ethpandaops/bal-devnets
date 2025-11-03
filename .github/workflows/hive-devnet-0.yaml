@@ -42,7 +42,7 @@ on:
             "geth": "ethereum/go-ethereum@master",
             "besu": "hyperledger/besu@main",
             "reth": "paradigmxyz/reth@main",
-            "nethermind": "NethermindEth/nethermind@master",  
+            "nethermind": "NethermindEth/nethermind@master"  
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
@@ -52,10 +52,7 @@ on:
               "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
               "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
               "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
-              "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master",
-              "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:main",
-              "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:master",
-              "ethrex": "ghcr.io/lambdaclass/ethrex:main"
+              "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master"
             }
           description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
