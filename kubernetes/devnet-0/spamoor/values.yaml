@@ -23,7 +23,7 @@ spamoor:
             pathType: Prefix
 
   customArgs:
-    - --fulu-activation=1761747815
+    - --fulu-activation=1762275864
 
   persistence:
     enabled: true
@@ -32,7 +32,7 @@ spamoor:
   rpcEndpoints:
   # Rpc
   - "http://geth-prysm-001:8545"
-  - "name(bootnode-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.bal-devnet-0.ethpandaops.io"
+  - "name(bootnode-1-arm)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1-arm.srv.bal-devnet-0.ethpandaops.io"
   - "name(lodestar-besu-super-1-arm)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-besu-super-1-arm.srv.bal-devnet-0.ethpandaops.io"
   - "name(lodestar-geth-super-1-arm)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-geth-super-1-arm.srv.bal-devnet-0.ethpandaops.io"
   - "name(lodestar-nethermind-super-1-arm)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-nethermind-super-1-arm.srv.bal-devnet-0.ethpandaops.io"

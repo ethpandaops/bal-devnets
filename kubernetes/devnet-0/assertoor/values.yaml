@@ -41,9 +41,9 @@ assertoor:
     enabled: true
 
   endpoints:
-    - name:  bootnode-1
-      executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.bal-devnet-0.ethpandaops.io
-      consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-bootnode-1.srv.bal-devnet-0.ethpandaops.io
+    - name:  bootnode-1-arm
+      executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1-arm.srv.bal-devnet-0.ethpandaops.io
+      consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-bootnode-1-arm.srv.bal-devnet-0.ethpandaops.io
     - name:  lodestar-besu-super-1-arm
       executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-besu-super-1-arm.srv.bal-devnet-0.ethpandaops.io
       consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-besu-super-1-arm.srv.bal-devnet-0.ethpandaops.io
@@ -61,7 +61,7 @@ assertoor:
   globalVariables:
     walletPrivkey: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.assertoor_private_key}>"
     clientPairNames:
-      - bootnode-1
+      - bootnode-1-arm
       - lodestar-besu-super-1-arm
       - lodestar-geth-super-1-arm
       - lodestar-nethermind-super-1-arm
