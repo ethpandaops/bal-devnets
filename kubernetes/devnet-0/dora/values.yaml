@@ -46,10 +46,6 @@ dora:
       value: "true"
   postgresql:
     name: "dora-postgresql"
-    image:
-      registry: docker.io
-      repository: bitnamilegacy/postgresql
-      tag: 15.3.0-debian-11-r9
     fullnameOverride: "dora-postgresql"
 
   mevRelays:
