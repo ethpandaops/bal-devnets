@@ -55,13 +55,13 @@ prysm-geth-001:
             lodestar:
               - --paramsFile=/data/network-config/config.yaml
               - --genesisStateFile=/data/network-config/genesis.ssz
-              - --bootnodes=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy,enr:-Pi4QJ5yEiabJmnQ3BUr7-nhDDdiGMNdvUSQpxRpRBbGmcv4estR04USgScXJo5SxTRslPPWPMS_u0q8UkDu00ehn0sGh2F0dG5ldHOIgAEAAAAAAACDY2djgYCEZXRoMpAUbrTmgGYkMQEAAAAAAAAAgmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhNAGT5aJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
+              - --bootnodes=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy,enr:-Pi4QFRE1vmX6A9FofDFqznJ5ux6pKVsphEeLg6VQsjkrHIJclHkFu8I10pG8APf1X7q4CL7qMNSSQZMESWMexRcxwIJh2F0dG5ldHOIAAAAAAAAAwCDY2djgYCEZXRoMpDQBk-WgGYkMf__________gmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhAAAAACJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
               - --rest.namespace="*"
               - --nat=true
             teku:
               - --network=/data/network-config/config.yaml
               - --genesis-state=/data/network-config/genesis.ssz
-              - --p2p-discovery-bootnodes=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy,enr:-Pi4QJ5yEiabJmnQ3BUr7-nhDDdiGMNdvUSQpxRpRBbGmcv4estR04USgScXJo5SxTRslPPWPMS_u0q8UkDu00ehn0sGh2F0dG5ldHOIgAEAAAAAAACDY2djgYCEZXRoMpAUbrTmgGYkMQEAAAAAAAAAgmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhNAGT5aJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
+              - --p2p-discovery-bootnodes=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy,enr:-Pi4QFRE1vmX6A9FofDFqznJ5ux6pKVsphEeLg6VQsjkrHIJclHkFu8I10pG8APf1X7q4CL7qMNSSQZMESWMexRcxwIJh2F0dG5ldHOIAAAAAAAAAwCDY2djgYCEZXRoMpDQBk-WgGYkMf__________gmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhAAAAACJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
               - --p2p-peer-upper-bound=100
               - --data-storage-non-canonical-blocks-enabled=true
               - --data-storage-mode=PRUNE
@@ -80,10 +80,10 @@ prysm-geth-001:
               - --verbosity=debug
               - --subscribe-all-subnets
               - --bootstrap-node=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy
-              - --bootstrap-node=enr:-Pi4QJ5yEiabJmnQ3BUr7-nhDDdiGMNdvUSQpxRpRBbGmcv4estR04USgScXJo5SxTRslPPWPMS_u0q8UkDu00ehn0sGh2F0dG5ldHOIgAEAAAAAAACDY2djgYCEZXRoMpAUbrTmgGYkMQEAAAAAAAAAgmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhNAGT5aJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
+              - --bootstrap-node=enr:-Pi4QFRE1vmX6A9FofDFqznJ5ux6pKVsphEeLg6VQsjkrHIJclHkFu8I10pG8APf1X7q4CL7qMNSSQZMESWMexRcxwIJh2F0dG5ldHOIAAAAAAAAAwCDY2djgYCEZXRoMpDQBk-WgGYkMf__________gmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhAAAAACJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
             lighthouse:
               - --testnet-dir=/data/network-config
-              - --boot-nodes=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy,enr:-Pi4QJ5yEiabJmnQ3BUr7-nhDDdiGMNdvUSQpxRpRBbGmcv4estR04USgScXJo5SxTRslPPWPMS_u0q8UkDu00ehn0sGh2F0dG5ldHOIgAEAAAAAAACDY2djgYCEZXRoMpAUbrTmgGYkMQEAAAAAAAAAgmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhNAGT5aJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
+              - --boot-nodes=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy,enr:-Pi4QFRE1vmX6A9FofDFqznJ5ux6pKVsphEeLg6VQsjkrHIJclHkFu8I10pG8APf1X7q4CL7qMNSSQZMESWMexRcxwIJh2F0dG5ldHOIAAAAAAAAAwCDY2djgYCEZXRoMpDQBk-WgGYkMf__________gmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhAAAAACJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
             nimbus:
               - --network=/data/network-config
               - --validator-monitor-auto=false
@@ -91,7 +91,7 @@ prysm-geth-001:
               - --log-level=INFO
               - --light-client-data-serve=false
               - --bootstrap-node=enr:-Jq4QEZKSe9k8_zJyhitwftAouuwzye3s3hOTuN9MGs4RPfza38B_VdjbdPEJ8C9lOzW-EPk5SPBTRAXf6mJ78Qa5tQBhGV0aDKQFG605v_______________4JpZIJ2NIJpcIRbYorxiXNlY3AyNTZrMaECSd4fGlDtxiR7_m3bx7bEGdjhIrLrXpWHxo1zuJUoPAWDdWRwgiMy
-              - --bootstrap-node=enr:-Pi4QJ5yEiabJmnQ3BUr7-nhDDdiGMNdvUSQpxRpRBbGmcv4estR04USgScXJo5SxTRslPPWPMS_u0q8UkDu00ehn0sGh2F0dG5ldHOIgAEAAAAAAACDY2djgYCEZXRoMpAUbrTmgGYkMQEAAAAAAAAAgmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhNAGT5aJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
+              - --bootstrap-node=enr:-Pi4QFRE1vmX6A9FofDFqznJ5ux6pKVsphEeLg6VQsjkrHIJclHkFu8I10pG8APf1X7q4CL7qMNSSQZMESWMexRcxwIJh2F0dG5ldHOIAAAAAAAAAwCDY2djgYCEZXRoMpDQBk-WgGYkMf__________gmlkgnY0gmlwhFtiivGDaXA2kCoBBPgcHtNMAAAAAAAAAAGDbmZkhAAAAACJc2VjcDI1NmsxoQMSKGlccDBAgKCmXNJZzkl0Z-XbMvXIHe-gkRfndLeKd4hzeW5jbmV0c4gAAAAAAAAAAIN0Y3CCIyiEdGNwNoIjKoN1ZHCCIyiEdWRwNoIjKg
 
 
   geth:
