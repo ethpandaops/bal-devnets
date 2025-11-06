@@ -44,6 +44,7 @@ resource "hcloud_firewall" "machine_firewall" {
     source_ips  = ["0.0.0.0/0", "::/0"]
   }
 
+
   # Execution layer p2p Port
   rule {
     description = "Allow execution p2p port TCP"
@@ -132,6 +133,13 @@ resource "hcloud_firewall" "bootnode_firewall" {
     direction   = "in"
     protocol    = "tcp"
     port        = "53"
+    source_ips  = ["0.0.0.0/0", "::/0"]
+  }
+  rule {
+    description = "Allow bootnode p2p port UDP"
+    direction   = "in"
+    protocol    = "udp"
+    port        = "9010"
     source_ips  = ["0.0.0.0/0", "::/0"]
   }
 }
