@@ -46,6 +46,10 @@ dora:
       value: "true"
   postgresql:
     name: "dora-postgresql"
+    image:
+      registry: docker.io
+      repository: postgres
+      tag: 15
     fullnameOverride: "dora-postgresql"
 
   mevRelays:
