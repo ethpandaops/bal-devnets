@@ -181,7 +181,7 @@ jobs:
         with:
           username: ethpandaops
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: ethpandaops/hive-github-action@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
+      - uses: ethpandaops/hive-github-action@df5df24cd956aa0e973418192f907c000bcf5578 # unreleased
         with:
           hive_repository: ${{ needs.prepare.outputs.hive_repo }}
           hive_version: ${{ needs.prepare.outputs.hive_tag }}
