@@ -1,7 +1,7 @@
 name: Hive - BAL
 on:
   schedule:
-    - cron: '45 12 * * *'
+    - cron: "45 12 * * *"
   workflow_dispatch:
     # Note: We're limited to 10 inputs
     inputs:
@@ -34,7 +34,7 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-        default: 'bal-devnet-0'
+        default: "bal-devnet-0"
       client_repos:
         type: string
         default: |
@@ -46,15 +46,15 @@ on:
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
-          type: string
-          default: |
-            { 
-              "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
-              "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
-              "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
-              "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master"
-            }
-          description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
+        type: string
+        default: |
+          { 
+            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
+            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
+            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
+            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master"
+          }
+        description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
 env:
   # Proxy
@@ -70,7 +70,6 @@ env:
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
     --docker.buildoutput
-    --sim.timelimit=300s
   # Docker-specific flags (only used when client_source is 'docker')
   DOCKER_AUTH_FLAGS: >-
     --docker.auth
@@ -123,17 +122,17 @@ jobs:
     steps:
       - uses: ethpandaops/hive-github-action/helpers/client-config@ef42b1df92b6984a473db62f5a76c32136eda6ce # v0.6.0
         if: github.event_name == 'schedule'
-        name: 'Client config: schedule'
+        name: "Client config: schedule"
         id: client_config_schedule
         with:
-          common_client_tag: 'bal-devnet-0'
-          client_source: 'git'
-          hive_version: 'ethereum/hive@master'
+          common_client_tag: "bal-devnet-0"
+          client_source: "git"
+          hive_version: "ethereum/hive@master"
           goproxy: ${{ env.GOPROXY }}
 
       - uses: ethpandaops/hive-github-action/helpers/client-config@ef42b1df92b6984a473db62f5a76c32136eda6ce # v0.6.0
         if: github.event_name == 'workflow_dispatch'
-        name: 'Client config: workflow_dispatch'
+        name: "Client config: workflow_dispatch"
         id: client_config_dispatch
         with:
           client_repos: ${{ inputs.client_repos }}
