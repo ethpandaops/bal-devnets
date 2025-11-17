@@ -70,6 +70,7 @@ env:
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
     --docker.buildoutput
+    --sim.timelimit=300s
   # Docker-specific flags (only used when client_source is 'docker')
   DOCKER_AUTH_FLAGS: >-
     --docker.auth
@@ -143,7 +144,7 @@ jobs:
           goproxy: ${{ env.GOPROXY }}
 
   test:
-    timeout-minutes: 2160
+    timeout-minutes: 720
     needs: prepare
     env:
       # BAL-specific environment variables
