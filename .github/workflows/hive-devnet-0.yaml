@@ -64,12 +64,13 @@ env:
   S3_PATH: bal
   S3_PUBLIC_URL: https://hive.ethpandaops.io/#/test/bal/
   INSTALL_RCLONE_VERSION: v1.68.2
-  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v1.5.0/fixtures_bal.tar.gz
-  EELS_BUILD_ARG_BRANCH: forks/osaka
+  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v1.6.0/fixtures_bal.tar.gz
+  EELS_BUILD_ARG_BRANCH: tests-bal@v1.6.0
   # Flags used for all simulators
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
     --docker.buildoutput
+    --sim.timelimit=300s
   # Docker-specific flags (only used when client_source is 'docker')
   DOCKER_AUTH_FLAGS: >-
     --docker.auth
@@ -143,7 +144,7 @@ jobs:
           goproxy: ${{ env.GOPROXY }}
 
   test:
-    timeout-minutes: 2160
+    timeout-minutes: 720
     needs: prepare
     env:
       # BAL-specific environment variables
