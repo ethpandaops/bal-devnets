@@ -39,20 +39,20 @@ on:
         type: string
         default: |
           {
-            "geth": "ethereum/go-ethereum@master",
-            "besu": "hyperledger/besu@main",
-            "reth": "paradigmxyz/reth@main",
-            "nethermind": "NethermindEth/nethermind@master"  
+            "geth": "ethereum/go-ethereum@bal-devnet-0",
+            "besu": "hyperledger/besu@bal-devnet-0",
+            "reth": "paradigmxyz/reth@bal-devnet-0",
+            "nethermind": "NethermindEth/nethermind@bal-devnet-0"
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
         type: string
         default: |
-          { 
-            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
-            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
-            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
-            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master"
+          {
+            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:bal-devnet-0",
+            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:bal-devnet-0",
+            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-0",
+            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-0"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
