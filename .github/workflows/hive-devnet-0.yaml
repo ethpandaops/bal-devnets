@@ -64,8 +64,8 @@ env:
   S3_PATH: bal
   S3_PUBLIC_URL: https://hive.ethpandaops.io/#/test/bal/
   INSTALL_RCLONE_VERSION: v1.68.2
-  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v1.7.0/fixtures_bal.tar.gz
-  EELS_BUILD_ARG_BRANCH: tests-bal@v1.7.0
+  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v1.8.0/fixtures_bal.tar.gz
+  EELS_BUILD_ARG_BRANCH: tests-bal@v1.8.0
   # Flags used for all simulators
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
