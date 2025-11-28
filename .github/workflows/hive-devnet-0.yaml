@@ -43,6 +43,7 @@ on:
             "besu": "hyperledger/besu@bal-devnet-0",
             "reth": "paradigmxyz/reth@bal-devnet-0",
             "nethermind": "NethermindEth/nethermind@bal-devnet-0"
+            "nimbusel": "status-im/nimbus-eth1@bal-devnet-0"
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
@@ -53,6 +54,7 @@ on:
             "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:bal-devnet-0",
             "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-0",
             "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-0"
+            "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:bal-devnet-0"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
