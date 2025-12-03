@@ -7,8 +7,8 @@ on:
     inputs:
       client:
         type: string
-        default: '"go-ethereum","reth","nethermind","besu"'
-        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
+        default: '"go-ethereum","reth","nethermind","besu","nimbusel"'
+        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbusel
       simulator:
         type: string
         default: >-
@@ -169,6 +169,7 @@ jobs:
             "go-ethereum",
             "nethermind",
             "reth",
+            "nimbusel",
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
