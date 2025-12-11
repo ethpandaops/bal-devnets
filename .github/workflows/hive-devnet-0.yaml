@@ -7,7 +7,7 @@ on:
     inputs:
       client:
         type: string
-        default: '"go-ethereum","reth","nethermind","besu","nimbus-el"'
+        default: '"go-ethereum","reth","nethermind","besu","nimbus-el","erigon"'
         description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
       simulator:
         type: string
@@ -44,6 +44,7 @@ on:
             "reth": "paradigmxyz/reth@bal-devnet-0",
             "nethermind": "NethermindEth/nethermind@bal-devnet-0",
             "nimbus-el": "status-im/nimbus-eth1@bal-devnet-0"
+            "erigon": "erigontech/erigon@bal-devnet-0"
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
@@ -55,6 +56,7 @@ on:
             "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-0",
             "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-0",
             "nimbus-el": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:bal-devnet-0"
+            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:bal-devnet-0"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
@@ -170,6 +172,7 @@ jobs:
             "nethermind",
             "reth",
             "nimbus-el",
+            "erigon"
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
