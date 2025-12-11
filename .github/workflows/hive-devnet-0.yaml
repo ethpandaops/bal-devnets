@@ -172,6 +172,7 @@ jobs:
             "nethermind",
             "reth",
             "nimbus-el",
+            "erigon"
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
