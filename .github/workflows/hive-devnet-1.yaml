@@ -34,29 +34,29 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-        default: "bal-devnet-0"
+        default: "bal-devnet-1"
       client_repos:
         type: string
         default: |
           {
-            "geth": "ethereum/go-ethereum@bal-devnet-0",
-            "besu": "hyperledger/besu@bal-devnet-0",
-            "reth": "paradigmxyz/reth@bal-devnet-0",
-            "nethermind": "NethermindEth/nethermind@bal-devnet-0",
-            "nimbus-el": "status-im/nimbus-eth1@bal-devnet-0"
-            "erigon": "erigontech/erigon@bal-devnet-0"
+            "geth": "ethereum/go-ethereum@bal-devnet-1",
+            "besu": "hyperledger/besu@bal-devnet-1",
+            "reth": "paradigmxyz/reth@bal-devnet-1",
+            "nethermind": "NethermindEth/nethermind@bal-devnet-1",
+            "nimbus-el": "status-im/nimbus-eth1@bal-devnet-1"
+            "erigon": "erigontech/erigon@bal-devnet-1"
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
         type: string
         default: |
           {
-            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:bal-devnet-0",
-            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:bal-devnet-0",
-            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-0",
-            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-0",
-            "nimbus-el": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:bal-devnet-0",
-            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:bal-devnet-0"
+            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:bal-devnet-1",
+            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:bal-devnet-1",
+            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-1",
+            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-1",
+            "nimbus-el": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:bal-devnet-1",
+            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:bal-devnet-1"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
@@ -129,7 +129,7 @@ jobs:
         name: "Client config: schedule"
         id: client_config_schedule
         with:
-          common_client_tag: "bal-devnet-0"
+          common_client_tag: "bal-devnet-1"
           client_source: "git"
           hive_version: "ethereum/hive@master"
           goproxy: ${{ env.GOPROXY }}
