@@ -44,7 +44,7 @@ on:
             "reth": "paradigmxyz/reth@bal-devnet-1",
             "nethermind": "NethermindEth/nethermind@bal-devnet-1",
             "nimbus-el": "status-im/nimbus-eth1@bal-devnet-1"
-            "erigon": "erigontech/erigon@bal-devnet-1"
+            "erigon": "erigontech/erigon@bal-devnet-0"
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
@@ -56,7 +56,7 @@ on:
             "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-1",
             "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-1",
             "nimbus-el": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:bal-devnet-1",
-            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:bal-devnet-1"
+            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:bal-devnet-0"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
