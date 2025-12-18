@@ -73,14 +73,14 @@ blockscout-stack:
           runAsNonRoot: false
           runAsUser: 0
         command:
-        - sh
-        - -ace
-        - >
-          CHAINSPEC=https://config.bal-devnet-1.ethpandaops.io/el/chainspec.json;
-          mkdir -p /config-update;
-          wget -O /config-update/chainspec.json $CHAINSPEC;
-          echo "got genesis";
-          /bin/blockscout eval "Elixir.Explorer.ReleaseTasks.create_and_migrate()"
+          - sh
+          - -ace
+          - >
+            CHAINSPEC=https://config.bal-devnet-1.ethpandaops.io/el/chainspec.json;
+            mkdir -p /config-update;
+            wget -O /config-update/chainspec.json $CHAINSPEC;
+            echo "got genesis";
+            /bin/blockscout eval "Elixir.Explorer.ReleaseTasks.create_and_migrate()"
         volumeMounts:
           - name: config-update
             mountPath: /config-update
@@ -121,7 +121,7 @@ postgresql:
   enabled: true
   image:
     registry: docker.io
-    repository: bitnami/postgresql
+    repository: bitnamilegacy/postgresql
     tag: 15.3.0-debian-11-r7
   auth:
     enablePostgresUser: true
