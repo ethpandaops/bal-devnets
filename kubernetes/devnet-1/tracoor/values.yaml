@@ -1,0 +1,147 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/tracoor.yaml.j2
+tracoor-single:
+  fullnameOverride: "tracoor"
+  image:
+    repository: ethpandaops/tracoor
+    tag: latest
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+  ingress:
+    http:
+      enabled: true
+      className: ingress-nginx-public
+      hosts:
+        - host: tracoor.bal-devnet-1.ethpandaops.io
+          paths:
+            - path: /
+              pathType: Prefix
+
+  postgresql:
+    enabled: true
+    fullnameOverride: "tracoor-postgresql"
+    auth:
+      username: <path:/secrets/services/services.enc.yaml#tracoor | jsonPath {.postgres.devnets.username}>
+      password: <path:/secrets/services/services.enc.yaml#tracoor | jsonPath {.postgres.devnets.password}>
+    primary:
+      persistence:
+        enabled: true
+        size: 20Gi
+      resources:
+        requests:
+          cpu: 1000m
+          memory: 2Gi
+        limits:
+          cpu: 2000m
+          memory: 4Gi
+
+  config:
+    shared:
+      metricsAddr: ":9091"
+      logging: "debug"
+      indexer:
+        address: localhost:8081
+      store:
+        type: s3
+        config:
+          region: us-east-1
+          bucket_name: bal-devnet-1/tracoor
+          endpoint: https://<path:/secrets/services/services.enc.yaml#cloudflare | jsonPath {.account_ids.ethdevops}>.r2.cloudflarestorage.com/ethpandaops-devnet-dumpster
+          prefer_urls: true
+          access_key: <path:/secrets/services/services.enc.yaml#cloudflare | jsonPath {.r2.devnets.access_key_id}>
+          access_secret: <path:/secrets/services/services.enc.yaml#cloudflare | jsonPath {.r2.devnets.secret_access_key}>
+
+    server:
+      addr: ":8081"
+      gatewayAddr: ":8080"
+      pprofAddr: ":6060"
+      preStopSleepSeconds: 1
+      ntpServer: time.google.com
+      persistence: {}
+      services:
+        indexer:
+          retention:
+            beaconStates: 100h
+            executionBlockTraces: 100h
+            beaconBlocks: 100h
+      ethereum:
+        config:
+          repository: ethpandaops/bal-devnets
+          branch: master
+          path: network-configs/devnet-1/metadata
+        tools:
+          ncli:
+            repository: status-im/nimbus-eth2
+            branch: unstable
+          lcli:
+            repository: ethpandaops/lighthouse
+            branch: unstable
+          zcli:
+            fork: electra
+
+    agents:
+      - name: hc-bootnode-1
+        ethereum:
+          overrideNetworkName: bal-devnet-1
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lodestar-besu-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-1
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lodestar-geth-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-1
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lodestar-nethermind-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-1
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lodestar-nimbusel-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-1
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lodestar-reth-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-1
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true

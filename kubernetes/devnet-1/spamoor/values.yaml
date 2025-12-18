@@ -1,0 +1,40 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/spamoor.yaml.j2
+
+spamoor:
+  fullnameOverride: spamoor
+  image:
+    repository: ethpandaops/spamoor
+    tag: master-latest
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 250m
+      memory: 500Mi
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    hosts:
+      - host: spamoor.bal-devnet-1.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  customArgs:
+    - --fulu-activation=1766062830
+
+  persistence:
+    enabled: true
+
+  privateKey: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.spamoor_private_key}>"
+  rpcEndpoints:
+  # Rpc
+  - "http://geth-prysm-001:8545"
+  - "group(hc-bootnode-1)name(hc-bootnode-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io"
+  - "group(hc,lodestar,besu,super,hc-lodestar-besu-super-1)name(hc-lodestar-besu-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io"
+  - "group(hc,lodestar,geth,super,hc-lodestar-geth-super-1)name(hc-lodestar-geth-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io"
+  - "group(hc,lodestar,nethermind,super,hc-lodestar-nethermind-super-1)name(hc-lodestar-nethermind-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io"
+  - "group(hc,lodestar,nimbusel,super,hc-lodestar-nimbusel-super-1)name(hc-lodestar-nimbusel-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io"
+  - "group(hc,lodestar,reth,super,hc-lodestar-reth-super-1)name(hc-lodestar-reth-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io"

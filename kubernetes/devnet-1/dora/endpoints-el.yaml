@@ -1,0 +1,44 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-el.yaml.j2
+# Execution layer endpoints
+
+- url: http://geth-prysm-001:8545
+  name: rpc-prysm-geth-001
+  authGroup: pandaops
+  archive: true
+  priority: 1
+- url: https://rpc-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-bootnode-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io:8961
+- url: https://rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-besu-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io:8961
+- url: https://rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-geth-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io:8961
+- url: https://rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-nethermind-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io:8961
+- url: https://rpc-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-nimbusel-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io:8961
+- url: https://rpc-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-reth-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io:8961
