@@ -21,4 +21,3 @@ collections:
     type: git
   - name: kubernetes.core
   - name: ansible.utils
-  - name: community.docker
