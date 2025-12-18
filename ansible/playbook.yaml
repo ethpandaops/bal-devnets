@@ -21,6 +21,21 @@
         - name: docker
           extra_args: --break-system-packages
       tags: [init-server, pip]
+  tasks:
+    - name: Login to Docker registry
+      community.docker.docker_login:
+        username: "{{ docker_registry_username }}"
+        password: "{{ docker_registry_password }}"
+      when:
+        - docker_registry_username is defined
+        - docker_registry_password is defined
+      no_log: true
+      tags: [init-server, docker_login]
+
+- hosts: all:!localhost
+  serial: "{{ batch_count | default('100%') }}"
+  become: true
+  roles:
     - role: ethpandaops.general.docker_cleanup
       tags: [init-server, docker_cleanup]
     - role: ethpandaops.general.docker_network
