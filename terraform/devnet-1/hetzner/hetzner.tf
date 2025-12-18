@@ -59,7 +59,7 @@ locals {
     [
       for i in range(0, vm_group.count) : {
         group_name = "${vm_group.name}"
-        id         = "${vm_group.name}-${i + 1}"
+        id         = "hc-${vm_group.name}-${i + 1}"
         vms = {
           "${i + 1}" = {
             labels = join(",", compact([
@@ -140,7 +140,7 @@ resource "hcloud_server" "main" {
   for_each = {
     for vm in local.hcloud_vms : "${vm.id}" => vm
   }
-  name        = "${var.ethereum_network}-hc-${each.value.name}"
+  name        = "${var.ethereum_network}-${each.value.name}"
   image       = each.value.image
   server_type = each.value.server_type
   location    = each.value.location
