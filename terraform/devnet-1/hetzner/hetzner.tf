@@ -152,6 +152,9 @@ resource "hcloud_server" "main" {
     ipv6_enabled = try(each.value.ipv6_enabled, true)
   }
   firewall_ids = [hcloud_firewall.machine_firewall.id]
+  lifecycle {
+    ignore_changes = [firewall_ids]
+  }
 }
 
 resource "hcloud_server_network" "main" {
@@ -207,7 +210,7 @@ resource "local_file" "ssh_config" {
       ethereum_network = var.ethereum_network
       hosts = merge(
         {
-          for key, server in hcloud_server.main : "${var.ethereum_network}-hc-${key}" => {
+          for key, server in hcloud_server.main : "${var.ethereum_network}-${key}" => {
             hostname   = coalesce(server.ipv4_address, (try(server.ipv6_address, "")))
             private_ip = try(hcloud_server_network.main[key].ip, "")
             name       = key
