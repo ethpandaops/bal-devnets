@@ -45,8 +45,8 @@ checkpointz:
 
     beacon:
       upstreams:
-        - name: rpc-prysm-geth-001
-          address: http://prysm-geth-001:5052
+        - name: rpc-lodestar-geth-001
+          address: http://lodestar-geth-001:5052
           dataProvider: true
         - name: hc-lodestar-besu-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
