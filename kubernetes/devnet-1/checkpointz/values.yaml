@@ -6,7 +6,7 @@ checkpointz:
 
   image:
     repository: ethpandaops/checkpointz
-    tag: gloas-debian-latest
+    tag: 0.0.5-gloas-debian
     pullPolicy: Always
   resources:
     requests:
@@ -40,7 +40,7 @@ checkpointz:
         blocks:
           max_items: 100
         states:
-          max_items: 5
+          max_items: 4
       historical_epoch_count: 3
 
     beacon:
