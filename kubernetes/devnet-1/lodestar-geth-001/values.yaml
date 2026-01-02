@@ -63,7 +63,7 @@ lodestar-geth-001:
               - --nat=true
               - --disablePeerScoring
               - --serveHistoricalState
-              - --checkpointSyncUrl=https://checkpointz.bal-devnet-1.ethpandaops.io
+              - --checkpointSyncUrl=https://checkpoint-sync.bal-devnet-1.ethpandaops.io/
               - --forceCheckpointSync
             teku:
               - --network=/data/network-config/config.yaml
