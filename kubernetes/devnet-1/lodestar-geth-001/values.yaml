@@ -38,7 +38,7 @@ lodestar-geth-001:
               - --http.vhosts=*
               - --networkid=7029915638
               - --syncmode=full
-              - --bootnodes=enode://d5c0bd49166a920cc6bf408b39adcd4b88778eef21199bd9543f63cefd60f84680ae56afb3df81a2336f6c1b52e8e3961d0f72fdb4a5f378dbb2e5d5f24794bf@91.98.138.241:9010,enode://0324fe8b992adebbd8c5d286f7ec9540e5cb9606d4365bcf5a0ac6cfd6b78ad0fcc38fb1e934d73f0147a49eef03297e1bb57a6ff2d9642857e5a25f8889ecf7@91.98.138.241:30303?discport=30303
+              - --bootnodes=enode://a760c0682cf57e139ae9041ecb6c561089a60a4bd4cc878e9e926234e54740918fdc1399bbc29c6d4998f84ec8527657e11b96d7b9bb6c7762629d1eea277b17@116.203.224.134:30303,enode://b6ea0654360d2f380c3a138e7a0b2a773bdac6c7f591e34ca2ed0c092cbe9a1eb5b49662c75c45bb43047db6eef8c34d02805c3562106c8c8722cdf48ee9c1a8@167.235.68.172:30303
               - --history.state=0
               - --gcmode=archive
               - --syncmode=full
