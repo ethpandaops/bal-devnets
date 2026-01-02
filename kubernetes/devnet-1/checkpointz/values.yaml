@@ -45,21 +45,9 @@ checkpointz:
 
     beacon:
       upstreams:
-        - name: rpc-lodestar-geth-001
-          address: http://lodestar-geth-001:5052
-          dataProvider: false
         - name: hc-lodestar-besu-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
           dataProvider: true
-        - name: hc-lodestar-geth-super-1
-          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
-          dataProvider: false
-        - name: hc-lodestar-nethermind-super-1
-          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
-          dataProvider: false
         - name: hc-lodestar-nimbusel-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io
           dataProvider: true
-        - name: hc-lodestar-reth-super-1
-          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io
-          dataProvider: false
