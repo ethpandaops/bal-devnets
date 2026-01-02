@@ -41,7 +41,7 @@ checkpointz:
           max_items: 100
         states:
           max_items: 5
-      historical_epoch_count: 20
+      historical_epoch_count: 3
 
     beacon:
       upstreams:
