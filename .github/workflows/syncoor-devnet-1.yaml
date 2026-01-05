@@ -1,4 +1,4 @@
-name: Syncoor - Devnet 0
+name: Syncoor - Devnet 1
 
 on:
   #schedule:
@@ -97,7 +97,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        network: ["bal-devnet-0"]
+        network: ["bal-devnet-1"]
         el-client: >-
           ${{
             fromJSON(format('[{0}]', inputs.el-client || '
