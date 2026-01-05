@@ -14,7 +14,7 @@ on:
       cl-client:
         description: 'Comma-separated list of consensus layer clients (lighthouse,teku,prysm,nimbus,lodestar,grandine)'
         required: false
-        default: '"lighthouse","teku","prysm","nimbus","lodestar","grandine"'
+        default: '"lodestar"'
         type: string
       runconfig:
         description: >
@@ -110,12 +110,7 @@ jobs:
         cl-client: >-
           ${{
             fromJSON(format('[{0}]', inputs.cl-client || '
-              "lighthouse",
-              "teku",
-              "prysm",
-              "nimbus",
-              "lodestar",
-              "grandine"
+              "lodestar"
           '))}}
         cl-nodetype: >-
           ${{
