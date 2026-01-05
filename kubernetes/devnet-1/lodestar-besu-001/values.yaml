@@ -21,7 +21,9 @@ lodestar-besu-001:
               - --sync-mode=FULL
               - --data-storage-format=BONSAI
               - --bonsai-limit-trie-logs-enabled=false
-              - --bootnodes=enode://b6ea0654360d2f380c3a138e7a0b2a773bdac6c7f591e34ca2ed0c092cbe9a1eb5b49662c75c45bb43047db6eef8c34d02805c3562106c8c8722cdf48ee9c1a8@167.235.68.172:30303
+              - --bonsai-historical-block-limit=0
+              - --bootnodes=enode://e452c1d148d86f48c38acd7561e3a3518e41b8141a604d2a332e9350ed4bea3c685c9dbd4c3fac242906479ad9eb2373cb7501a9c37637d9e42262d1f6128910@91.98.138.241:30303
+              - --logging DEBUG
             nethermind:
               - --Init.ChainSpecPath=/data/network-config/chainspec.json
               - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
