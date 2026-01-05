@@ -21,9 +21,9 @@ lodestar-besu-001:
               - --sync-mode=FULL
               - --data-storage-format=BONSAI
               - --bonsai-limit-trie-logs-enabled=false
-              - --bonsai-historical-block-limit=10000000
-              - --bootnodes=enode://e452c1d148d86f48c38acd7561e3a3518e41b8141a604d2a332e9350ed4bea3c685c9dbd4c3fac242906479ad9eb2373cb7501a9c37637d9e42262d1f6128910@91.98.138.241:30303
-              - --logging DEBUG
+              - --bonsai-historical-block-limit=100000000
+              - --bootnodes=enode://b6ea0654360d2f380c3a138e7a0b2a773bdac6c7f591e34ca2ed0c092cbe9a1eb5b49662c75c45bb43047db6eef8c34d02805c3562106c8c8722cdf48ee9c1a8@167.235.68.172:30303
+              - --logging=INFO
             nethermind:
               - --Init.ChainSpecPath=/data/network-config/chainspec.json
               - --JsonRpc.EnabledModules=Eth,Subscribe,Trace,TxPool,Web3,Personal,Proof,Net,Parity,Health,Rpc,Debug,Admin
@@ -102,6 +102,7 @@ lodestar-besu-001:
               - --light-client-data-serve=false
               - --bootstrap-node=enr:-LG4QO5ezbzcEfHnxLSUwCZuLbN6sY7xp3VCTirRZRIoPK_hZmuHp8ziS6lO8ERk-GeJEu-0vQeJgKfoQIuliznvTicDg2V0aMvKhJ1SoMeEaUQq7oRldGgykKilwl________________-CaWSCdjSCaXCEW2KK8YlzZWNwMjU2azGhA9XAvUkWapIMxr9AizmtzUuId47vIRmb2VQ_Y879YPhGg3RjcIIjMoN1ZHCCIzI
               - --bootstrap-node=enr:-Pm4QOYEe9_wz-CqsVBWk_DvwddeZlsfLMqMoqCVk7RSycClE_qUor-tMvf5QoG57hc9Q5ifqD49Yv6dpdz7zU9S-9iBl4dhdHRuZXRziAAAAAAAwAAAg2NnY4GAhGV0aDKQqKXCX4AlVZD__________4JpZIJ2NIJpcIRbYorxg2lwNpAqAQT4HB7TTAAAAAAAAAABg25mZIQAAAAAiXNlY3AyNTZrMaED3b_9xNMXdFxy4j6gKGMxDtPWoj-bZole6Fg2JLnAN3-Ic3luY25ldHOIAAAAAAAAAACDdGNwgiMohHRjcDaCIyqDdWRwgiMohHVkcDaCIyo
+
 
   besu:
     enabled: true
@@ -199,38 +200,38 @@ lodestar-besu-001:
       enabled: true
       size: 200Gi
     initContainers:
-      - name: init-genesis
-        image: alpine:latest
-        imagePullPolicy: IfNotPresent
-        securityContext:
-          runAsNonRoot: false
-          runAsUser: 0
-        command:
-          - sh
-          - -ace
-          - >
-            apk add jq curl sed;
-            DEPOSIT_CONTRACT_URI=https://config.bal-devnet-1.ethpandaops.io/cl/deposit_contract.txt;
-            DEPOSIT_CONTRACT_BLOCK_URI=https://config.bal-devnet-1.ethpandaops.io/cl/deposit_contract_block.txt;
-            DEPOSIT_CONTRACT_BLOCK_HASH_URI=https://config.bal-devnet-1.ethpandaops.io/cl/deposit_contract_block_hash.txt;
-            GENESIS_CONFIG_URI=https://config.bal-devnet-1.ethpandaops.io/cl/config.yaml;
-            GENESIS_SSZ_URI=https://config.bal-devnet-1.ethpandaops.io/cl/genesis.ssz;
-            mkdir -p /data/network-config;
-            curl -s https://config.bal-devnet-1.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootstrap_nodes.txt;
-            if ! [ -f /data/network-config/genesis.ssz ];
-            then
-              wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
-              wget -O /data/network-config/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
-              wget -O /data/network-config/deposit_contract_block_hash.txt $DEPOSIT_CONTRACT_BLOCK_HASH_URI;
-              wget -O /data/network-config/config.yaml $GENESIS_CONFIG_URI;
-              wget -O /data/network-config/genesis.ssz $GENESIS_SSZ_URI;
-              echo "genesis init done";
-            else
-              echo "genesis exists. skipping...";
-            fi;
-            (tr '\n' ',' < /data/network-config/bootstrap_nodes.txt | sed 's/[^,]*/"&"/g') > /data/network-config/bootstrap_nodes2.txt;
-            mv /data/network-config/bootstrap_nodes2.txt /data/network-config/bootstrap_nodes.txt;
-            echo "bootnode init done: $(cat /data/network-config/bootstrap_nodes.txt)";
-        volumeMounts:
-          - name: storage
-            mountPath: "/data"
+    - name: init-genesis
+      image: alpine:latest
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+      command:
+        - sh
+        - -ace
+        - >
+          apk add jq curl sed;
+          DEPOSIT_CONTRACT_URI=https://config.bal-devnet-1.ethpandaops.io/cl/deposit_contract.txt;
+          DEPOSIT_CONTRACT_BLOCK_URI=https://config.bal-devnet-1.ethpandaops.io/cl/deposit_contract_block.txt;
+          DEPOSIT_CONTRACT_BLOCK_HASH_URI=https://config.bal-devnet-1.ethpandaops.io/cl/deposit_contract_block_hash.txt;
+          GENESIS_CONFIG_URI=https://config.bal-devnet-1.ethpandaops.io/cl/config.yaml;
+          GENESIS_SSZ_URI=https://config.bal-devnet-1.ethpandaops.io/cl/genesis.ssz;
+          mkdir -p /data/network-config;
+          curl -s https://config.bal-devnet-1.ethpandaops.io/api/v1/nodes/inventory | jq -r '.ethereum_pairs[] | .consensus.enr' > /data/network-config/bootstrap_nodes.txt;
+          if ! [ -f /data/network-config/genesis.ssz ];
+          then
+            wget -O /data/network-config/deposit_contract.txt $DEPOSIT_CONTRACT_URI;
+            wget -O /data/network-config/deposit_contract_block.txt $DEPOSIT_CONTRACT_BLOCK_URI;
+            wget -O /data/network-config/deposit_contract_block_hash.txt $DEPOSIT_CONTRACT_BLOCK_HASH_URI;
+            wget -O /data/network-config/config.yaml $GENESIS_CONFIG_URI;
+            wget -O /data/network-config/genesis.ssz $GENESIS_SSZ_URI;
+            echo "genesis init done";
+          else
+            echo "genesis exists. skipping...";
+          fi;
+          (tr '\n' ',' < /data/network-config/bootstrap_nodes.txt | sed 's/[^,]*/"&"/g') > /data/network-config/bootstrap_nodes2.txt;
+          mv /data/network-config/bootstrap_nodes2.txt /data/network-config/bootstrap_nodes.txt;
+          echo "bootnode init done: $(cat /data/network-config/bootstrap_nodes.txt)";
+      volumeMounts:
+        - name: storage
+          mountPath: "/data"
