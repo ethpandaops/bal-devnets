@@ -21,7 +21,7 @@ lodestar-besu-001:
               - --sync-mode=FULL
               - --data-storage-format=BONSAI
               - --bonsai-limit-trie-logs-enabled=false
-              - --bonsai-historical-block-limit=0
+              - --bonsai-historical-block-limit=10000000
               - --bootnodes=enode://e452c1d148d86f48c38acd7561e3a3518e41b8141a604d2a332e9350ed4bea3c685c9dbd4c3fac242906479ad9eb2373cb7501a9c37637d9e42262d1f6128910@91.98.138.241:30303
               - --logging DEBUG
             nethermind:
