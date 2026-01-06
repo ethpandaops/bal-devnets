@@ -1,8 +1,8 @@
 # Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-el.yaml.j2
 # Execution layer endpoints
 
-- url: http://besu-lodestar-001:8545
-  name: rpc-lodestar-besu-001
+- url: http://geth-lodestar-001:8545
+  name: rpc-lodestar-geth-001
   authGroup: pandaops
   archive: true
   priority: 1

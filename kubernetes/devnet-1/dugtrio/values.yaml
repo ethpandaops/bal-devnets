@@ -29,8 +29,8 @@ dugtrio:
 
   endpoints:
   # Rpc
-  - url: http://lodestar-besu-001:5052
-    name: rpc-lodestar-besu-001
+  - url: http://lodestar-geth-001:5052
+    name: rpc-lodestar-geth-001
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io
     name: hc-bootnode-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io

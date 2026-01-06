@@ -31,10 +31,10 @@ blockscout-stack:
       tag: latest
       pullPolicy: Always
     env:
-      ETHEREUM_JSONRPC_VARIANT: "besu"
-      ETHEREUM_JSONRPC_HTTP_URL: http://besu-lodestar-001:8545
-      ETHEREUM_JSONRPC_WS_URL: ws://besu-lodestar-001:8546
-      ETHEREUM_JSONRPC_TRACE_URL: http://besu-lodestar-001:8545
+      ETHEREUM_JSONRPC_VARIANT: "geth"
+      ETHEREUM_JSONRPC_HTTP_URL: http://geth-lodestar-001:8545
+      ETHEREUM_JSONRPC_WS_URL: ws://geth-lodestar-001:8546
+      ETHEREUM_JSONRPC_TRACE_URL: http://geth-lodestar-001:8545
       COIN: ETH
       DATABASE_URL: postgres://postgres:postgres@blockscout-postgresql:5432/blockscout?ssl=false
       DISABLE_EXCHANGE_RATES: "true"
