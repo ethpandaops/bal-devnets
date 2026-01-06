@@ -3,6 +3,7 @@ bootstrap_default_user_authorized_keys_github_team_el:
   - mariusVanDerWijden
   - lightclient
   - rjl493456442
+  - jwasinger
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: geth
@@ -19,10 +20,10 @@ geth_container_command_extra_args:
   - --http.vhosts=*
   - --networkid={{ ethereum_network_id }}
   - --syncmode=full
-  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --history.state=0
   - --gcmode=archive
   - --syncmode=full
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
 geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_init_custom_network_container_command:
