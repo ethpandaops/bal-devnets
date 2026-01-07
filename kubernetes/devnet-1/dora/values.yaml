@@ -16,6 +16,11 @@ dora:
   ingress:
     enabled: true
     className: ingress-nginx-public
+    annotations:
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        sub_filter '</head>' '<script src="//raw.githubusercontent.com/pk910/panda-menu/refs/heads/main/inject.js"></script></head>';
+        sub_filter_once off;
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
     hosts:
       - host: dora.bal-devnet-1.ethpandaops.io
         paths:
