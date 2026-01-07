@@ -4,8 +4,8 @@ dora:
   fullnameOverride: dora
   image:
     repository: ethpandaops/dora
-    tag: eip7928-support
-    pullPolicy: IfNotPresent
+    tag: eip7928-support-latest
+    pullPolicy: Always
   resources:
     requests:
       cpu: 500m
