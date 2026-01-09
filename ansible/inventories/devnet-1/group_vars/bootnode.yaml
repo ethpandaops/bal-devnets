@@ -63,7 +63,7 @@ besu_container_command_extra_args:
   - --data-storage-format=BONSAI
   - --bonsai-limit-trie-logs-enabled=false
   - --bonsai-historical-block-limit=100000000
-  - --bootnodes=enode://b6ea0654360d2f380c3a138e7a0b2a773bdac6c7f591e34ca2ed0c092cbe9a1eb5b49662c75c45bb43047db6eef8c34d02805c3562106c8c8722cdf48ee9c1a8@167.235.68.172:30303
+  - --bootnodes=enode://b6ea0654360d2f380c3a138e7a0b2a773bdac6c7f591e34ca2ed0c092cbe9a1eb5b49662c75c45bb43047db6eef8c34d02805c3562106c8c8722cdf48ee9c1a8@167.235.68.172:30303,enr:-PC4QGQ8SfUObY9phUZQBMn4B0JxzEZsy6cErdBjBpZul5rjOvXn3p__YyyNy3soVH_yumd3sr70rQUrIrW-MG-JB0USh2F0dG5ldHOIDAAAAAAAAACDY2djgYCEZXRoMpCopcJfgCVVkP__________gmlkgnY0gmlwhHTL4IaDaXA2kCoBBPgcGjAwAAAAAAAAAAGDbmZkhAAAAACJc2VjcDI1NmsxoQK7dJgHcZtwC1D5-mZV0G89uFQWmpykiCv77On2F0sY-IhzeW5jbmV0cw-DdGNwgiMohHRjcDaCIyqDdWRwgiMohHVkcDaCIyo
   - --logging=INFO
 besu_container_pull: true
 
@@ -89,6 +89,8 @@ lodestar_container_command_extra_args:
   - --disablePeerScoring
   - --serveHistoricalState
   - --checkpointSyncUrl=https://checkpoint-sync.bal-devnet-1.ethpandaops.io/
+  - --network.connectToDiscv5Bootnodes
+  - --forceCheckpointSync
   - --network.connectToDiscv5Bootnodes
   - >-
     --bootnodes={{

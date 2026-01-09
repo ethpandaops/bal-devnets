@@ -46,8 +46,8 @@ lodestar_container_command_extra_args:
   - --serveHistoricalState
   - --checkpointSyncUrl=https://checkpoint-sync.bal-devnet-1.ethpandaops.io/
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
-  - --forceCheckpointSync
   - --network.connectToDiscv5Bootnodes
+  #- --forceCheckpointSync
 lodestar_validator_container_volumes:
   - "{{ lodestar_validator_datadir }}:/validator-data"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
@@ -58,4 +58,4 @@ lodestar_validator_datadir: /data/lodestar-validator
 lodestar_container_pull: true
 
 lodestar_mev_boost_enabled: false
-ethereum_node_cl_validator_enabled: false
+ethereum_node_cl_validator_enabled: true
