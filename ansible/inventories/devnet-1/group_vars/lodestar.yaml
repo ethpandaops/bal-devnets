@@ -58,4 +58,4 @@ lodestar_validator_datadir: /data/lodestar-validator
 lodestar_container_pull: true
 
 lodestar_mev_boost_enabled: false
-ethereum_node_cl_validator_enabled: true
+ethereum_node_cl_validator_enabled: false

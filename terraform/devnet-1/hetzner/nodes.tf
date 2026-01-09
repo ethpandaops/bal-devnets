@@ -161,7 +161,7 @@ variable "lodestar_besu_super" {
 variable "lodestar_erigon_super" {
   default = {
     name            = "lodestar-erigon-super"
-    count           = 0
+    count           = 1
     validator_start = 0
     validator_end   = 0
   }

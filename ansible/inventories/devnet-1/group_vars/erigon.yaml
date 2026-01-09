@@ -2,7 +2,6 @@
 bootstrap_default_user_authorized_keys_github_team_el:
   - Giulio2002
   - yperbasis
-  - somnathb1
   - taratorio
 
 # role: ethpandaops.general.ethereum_node
@@ -20,7 +19,7 @@ erigon_container_command_extra_args:
   - --http.api=eth,erigon,engine,web3,net,debug,trace,txpool,admin
   - --http.vhosts=*
   - --ws
-  - --prune=htc
+  - --prune.mode=archive
   - --networkid={{ ethereum_network_id }}
   - --db.size.limit=500GB
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
