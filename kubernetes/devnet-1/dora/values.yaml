@@ -18,7 +18,7 @@ dora:
     className: ingress-nginx-public
     annotations:
       nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu-0.0.1.js" integrity="sha384-NcF49pcq9L67YJ0TpKxpXlyHLBkcsp+5nDFrl5QG56Oh5gOClE+sbAqsrOKcBw2o" crossorigin="anonymous"></script></head>';
+        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu-0.0.2.js" integrity="sha384-ztRqRfDqAX+tbJLVrTPYssSz5k8agkfNEPhJzraxngGdXH/TqjENDhFikhbPbvBD" crossorigin="anonymous"></script></head>';
         sub_filter_types text/html;
         sub_filter_once off;
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
