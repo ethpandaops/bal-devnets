@@ -18,7 +18,7 @@ checkpointz:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-production
       nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu-0.0.3.js" integrity="sha384-Wqeg0AqyV1IWk3Do/+Kmg38MwovKLrSuCWzagBML4hkUxXt0A9tS3A0yo2qHLpuw" crossorigin="anonymous"></script></head>';
+        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
         sub_filter_types text/html;
         sub_filter_once off;
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
