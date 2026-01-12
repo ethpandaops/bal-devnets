@@ -27,7 +27,7 @@ on:
         required: false
         default: >-
           {
-            "run-timeout": "1800",
+            "run-timeout": "600",
             "cl-synctype": ["checkpoint"],
             "cl-nodetype": ["fullnode"],
             "runs-on": "self-hosted-ghr-size-ccx33-x64"
