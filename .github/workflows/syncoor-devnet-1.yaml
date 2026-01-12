@@ -53,12 +53,12 @@ on:
         required: false
         default: >-
           {
-            "besu": "hyperledger/besu:latest",
-            "geth": "ethereum/client-go:stable",
-            "erigon": "erigontech/erigon:latest",
-            "nethermind": "nethermind/nethermind:latest",
-            "reth": "ghcr.io/paradigmxyz/reth",
-            "nimbusel": "ethpandaops/nimbus-eth1:master"
+            "besu": "ethpandaops/besu:bal-devnet-1",
+            "geth": "ethpandaops/geth:bal-devnet-1",
+            "erigon": "ethpandaops/erigon:bal-devnet-1",
+            "nethermind": "ethpandaops/nethermind:bal-devnet-1",
+            "reth": "ethpandaops/reth:bal-devnet-1",
+            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-1"
           }
         type: string
       cl-image:
@@ -70,7 +70,7 @@ on:
             "teku": "consensys/teku:latest",
             "prysm": "offchainlabs/prysm-beacon-chain:stable",
             "nimbus": "statusim/nimbus-eth2:amd64-latest",
-            "lodestar": "chainsafe/lodestar:latest",
+            "lodestar": "ethpandaops/lodestar:bal-devnet-1",
             "grandine": "sifrai/grandine:stable"
           }
         type: string
@@ -133,12 +133,12 @@ jobs:
       run: |
         cat > /tmp/default-el-images.json <<'EOF'
         {
-          "besu": "hyperledger/besu:latest",
-          "geth": "ethereum/client-go:stable",
-          "erigon": "erigontech/erigon:latest",
-          "nethermind": "nethermind/nethermind:latest",
-          "reth": "ghcr.io/paradigmxyz/reth",
-          "nimbusel": "ethpandaops/nimbus-eth1:master"
+          "besu": "ethpandaops/besu:bal-devnet-1",
+          "geth": "ethpandaops/geth:bal-devnet-1",
+          "erigon": "ethpandaops/erigon:bal-devnet-1",
+          "nethermind": "ethpandaops/nethermind:bal-devnet-1",
+          "reth": "ethpandaops/reth:bal-devnet-1",
+          "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-1"
         }
         EOF
         echo "el-images=$(cat /tmp/default-el-images.json | jq -c .)" >> $GITHUB_OUTPUT
