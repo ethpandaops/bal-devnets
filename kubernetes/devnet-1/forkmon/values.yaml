@@ -9,12 +9,6 @@ forkmon:
   ingress:
     enabled: true
     className: ingress-nginx-public
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-        sub_filter_types text/html;
-        sub_filter_once off;
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
     hosts:
       - host: forkmon.bal-devnet-1.ethpandaops.io
         paths:
@@ -29,6 +23,8 @@ forkmon:
     name: hc-bootnode-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
     name: hc-lodestar-besu-super-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
+    name: hc-lodestar-erigon-super-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
     name: hc-lodestar-geth-super-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io

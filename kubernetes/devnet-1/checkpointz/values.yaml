@@ -6,7 +6,7 @@ checkpointz:
 
   image:
     repository: ethpandaops/checkpointz
-    tag: 0.0.8-gloas-debian
+    tag: gloas-debian-latest
     pullPolicy: Always
   resources:
     requests:
@@ -17,11 +17,6 @@ checkpointz:
     className: ingress-nginx-public
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-production
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-        sub_filter_types text/html;
-        sub_filter_once off;
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
     hosts:
       - host: checkpoint-sync.bal-devnet-1.ethpandaops.io
         paths:
@@ -29,9 +24,9 @@ checkpointz:
             pathType: Prefix
 
     tls:
-      - hosts:
-          - checkpoint-sync.bal-devnet-1.ethpandaops.io
-        secretName: bal-devnet-1-checkpoint-sync-tls
+    - hosts:
+      - checkpoint-sync.bal-devnet-1.ethpandaops.io
+      secretName: bal-devnet-1-checkpoint-sync-tls
 
   config:
     global:
@@ -50,9 +45,24 @@ checkpointz:
 
     beacon:
       upstreams:
+        - name: rpc-lodestar-geth-001
+          address: http://lodestar-geth-001:5052
+          dataProvider: true
         - name: hc-lodestar-besu-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
           dataProvider: true
+        - name: hc-lodestar-erigon-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
+          dataProvider: true
+        - name: hc-lodestar-geth-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
+          dataProvider: true
+        - name: hc-lodestar-nethermind-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
+          dataProvider: true
         - name: hc-lodestar-nimbusel-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io
+          dataProvider: true
+        - name: hc-lodestar-reth-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io
           dataProvider: true

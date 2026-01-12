@@ -135,6 +135,7 @@ erpc:
         upstreams:
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+          - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io

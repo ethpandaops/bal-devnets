@@ -17,12 +17,6 @@ forky:
   ingress:
     enabled: true
     className: ingress-nginx-public
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-        sub_filter_types text/html;
-        sub_filter_once off;
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
     hosts:
       - host: forky.bal-devnet-1.ethpandaops.io
         paths:
@@ -86,6 +80,11 @@ forky:
           type: "beacon_node"
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+            polling_interval: "12s"
+        - name: hc-lodestar-erigon-super-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
             polling_interval: "12s"
         - name: hc-lodestar-geth-super-1
           type: "beacon_node"

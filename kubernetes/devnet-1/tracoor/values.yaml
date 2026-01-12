@@ -16,12 +16,6 @@ tracoor-single:
     http:
       enabled: true
       className: ingress-nginx-public
-      annotations:
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-          sub_filter_types text/html;
-          sub_filter_once off;
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
       hosts:
         - host: tracoor.bal-devnet-1.ethpandaops.io
           paths:
@@ -112,6 +106,16 @@ tracoor-single:
             nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
           execution:
             nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lodestar-erigon-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-1
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
             traceDisableMemory: true
             traceDisableStack: true
             traceDisableStorage: true

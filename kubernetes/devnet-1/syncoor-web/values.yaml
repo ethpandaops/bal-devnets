@@ -58,12 +58,6 @@ syncoor-web:
     main:
       className: ingress-nginx-public
       enabled: true
-      annotations:
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-          sub_filter_types text/html;
-          sub_filter_once off;
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
       hosts:
         - host: syncoor.bal-devnet-1.ethpandaops.io
           paths:

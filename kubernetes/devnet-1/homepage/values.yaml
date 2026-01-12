@@ -17,12 +17,6 @@ testnet-homepage:
     enabled: true
 
     className: ingress-nginx-public
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-        sub_filter_types text/html;
-        sub_filter_once off;
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
 
     hosts:
       - host: bal-devnet-1.ethpandaops.io

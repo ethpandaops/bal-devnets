@@ -14,6 +14,10 @@
   name: hc-lodestar-besu-super-1
   authGroup: pandaops
   priority: -1
+- url: https://bn-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-erigon-super-1
+  authGroup: pandaops
+  priority: -1
 - url: https://bn-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
   name: hc-lodestar-geth-super-1
   authGroup: pandaops

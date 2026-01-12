@@ -16,12 +16,6 @@ spamoor:
   ingress:
     enabled: true
     className: ingress-nginx-public
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-        sub_filter_types text/html;
-        sub_filter_once off;
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
     hosts:
       - host: spamoor.bal-devnet-1.ethpandaops.io
         paths:
@@ -40,6 +34,7 @@ spamoor:
   - "http://geth-lodestar-001:8545"
   - "group(hc-bootnode-1)name(hc-bootnode-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io"
   - "group(hc,lodestar,besu,super,hc-lodestar-besu-super-1)name(hc-lodestar-besu-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io"
+  - "group(hc,lodestar,erigon,super,hc-lodestar-erigon-super-1)name(hc-lodestar-erigon-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io"
   - "group(hc,lodestar,geth,super,hc-lodestar-geth-super-1)name(hc-lodestar-geth-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io"
   - "group(hc,lodestar,nethermind,super,hc-lodestar-nethermind-super-1)name(hc-lodestar-nethermind-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io"
   - "group(hc,lodestar,nimbusel,super,hc-lodestar-nimbusel-super-1)name(hc-lodestar-nimbusel-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io"

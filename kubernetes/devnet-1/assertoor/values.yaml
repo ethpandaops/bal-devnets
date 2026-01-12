@@ -20,11 +20,6 @@ assertoor:
     className: ingress-nginx-public
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-production
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-        sub_filter_types text/html;
-        sub_filter_once off;
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
     hosts:
       - host: assertoor.bal-devnet-1.ethpandaops.io
         paths:
@@ -52,6 +47,9 @@ assertoor:
     - name:  hc-lodestar-besu-super-1
       executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
       consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+    - name:  hc-lodestar-erigon-super-1
+      executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
+      consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
     - name:  hc-lodestar-geth-super-1
       executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
       consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
@@ -71,6 +69,7 @@ assertoor:
     clientPairNames:
       - hc-bootnode-1
       - hc-lodestar-besu-super-1
+      - hc-lodestar-erigon-super-1
       - hc-lodestar-geth-super-1
       - hc-lodestar-nethermind-super-1
       - hc-lodestar-nimbusel-super-1

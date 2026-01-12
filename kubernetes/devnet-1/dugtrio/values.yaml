@@ -16,12 +16,6 @@ dugtrio:
   ingress:
     enabled: true
     className: ingress-nginx-public
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu.js" crossorigin="anonymous"></script></head>';
-        sub_filter_types text/html;
-        sub_filter_once off;
-      nginx.ingress.kubernetes.io/proxy-body-size: "0"
     hosts:
       - host: beacon.bal-devnet-1.ethpandaops.io
         paths:
@@ -41,6 +35,8 @@ dugtrio:
     name: hc-bootnode-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
     name: hc-lodestar-besu-super-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
+    name: hc-lodestar-erigon-super-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
     name: hc-lodestar-geth-super-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
