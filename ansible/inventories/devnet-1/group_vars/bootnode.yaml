@@ -27,9 +27,11 @@ bootnodoor_container_volumes_extra:
 
 bootnodoor_container_command_extra_args: []
 bootnodoor_container_env:
-  VIRTUAL_HOST: "bootnodoor-{{ server_fqdn }}"
+  VIRTUAL_HOST: >-
+    {{ ('bootnodoor.' ~ network_server_subdomain ~ ',') if inventory_hostname == primary_bootnode else '' }}bootnodoor-{{ server_fqdn }}
   VIRTUAL_PORT: "{{ bootnodoor_ui_port | string }}"
-  LETSENCRYPT_HOST: "bootnodoor-{{ server_fqdn }}"
+  LETSENCRYPT_HOST: >-
+    {{ ('bootnodoor.' ~ network_server_subdomain ~ ',') if inventory_hostname == primary_bootnode else '' }}bootnodoor-{{ server_fqdn }}
 
 # role: ethereum_inventory_web
 ethereum_inventory_web_container_networks: "{{ docker_networks_shared }}"
