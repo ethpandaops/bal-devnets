@@ -23,7 +23,7 @@ Status   | Network (spec)    | Links   | Ansible                                
 
 We're using [asdf](https://github.com/asdf-vm/asdf) to make sure that we all use the same versions across tools. Our repositories should contain versions defined in .tools-versions.
 
-You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
+You can then use [`./setup.sh`](./setup.sh) to install all dependencies.
 
 ## Terraform
 From [`./terraform/devnet-0/`](./terraform/devnet-0/)
