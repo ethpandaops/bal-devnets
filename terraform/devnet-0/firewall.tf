@@ -105,6 +105,19 @@ resource "digitalocean_firewall" "bootnode" {
     port_range       = "53"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
+
+  // Bootnodoor P2P
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "9010"
+    source_addresses = ["0.0.0.0/0", "::/0"]
+  }
+  inbound_rule {
+    protocol         = "udp"
+    port_range       = "9010"
+    source_addresses = ["0.0.0.0/0", "::/0"]
+  }
+
   depends_on = [digitalocean_project_resources.droplets]
 }
 

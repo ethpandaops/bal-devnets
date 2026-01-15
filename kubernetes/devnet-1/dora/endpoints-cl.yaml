@@ -1,0 +1,37 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-cl.yaml.j2
+# Consensus layer endpoints
+
+- url: http://lodestar-geth-001:5052
+  name: rpc-lodestar-geth-001
+  authGroup: pandaops
+  archive: true
+  priority: 1
+- url: https://bn-hc-bootnode-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-bootnode-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-besu-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-besu-super-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-erigon-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-erigon-super-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-geth-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-geth-super-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-nethermind-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-nethermind-super-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-nimbusel-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-nimbusel-super-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-reth-super-1.srv.bal-devnet-1.ethpandaops.io
+  name: hc-lodestar-reth-super-1
+  authGroup: pandaops
+  priority: -1
+

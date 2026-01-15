@@ -3,25 +3,27 @@
 <h1 align="center">Infrastructure code for Dev/Testnets</h1>
 
 <p align="center">
-<a href="https://github.com/ethpandaops/template-testnet/actions/workflows/ansible_lint.yaml"><img src="https://github.com/ethpandaops/template-testnet/actions/workflows/ansible_lint.yaml/badge.svg"></a>
-<a href="https://github.com/ethpandaops/template-testnet/actions/workflows/terraform_lint.yaml"><img src="https://github.com/ethpandaops/template-testnet/actions/workflows/terraform_lint.yaml/badge.svg"></a>
-<a href="https://github.com/ethpandaops/template-testnet/actions/workflows/helm_lint.yaml"><img src="https://github.com/ethpandaops/template-testnet/actions/workflows/helm_lint.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-ansible.yaml"><img src="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-ansible.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-terraform.yaml"><img src="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-terraform.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-helm.yaml"><img src="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-helm.yaml/badge.svg"></a>
 </p>
 
 This repository contains the infrastructure code used to setup ~all~ dev/testnets. A lot of the code uses reusable components either provided by our [ansible collection](https://github.com/ethpandaops/ansible-collection-general) or our [helm charts for kubernetes](https://github.com/ethpandaops/ethereum-helm-charts/).
 
 # Networks
 
-Status   | Network    | Links   | Ansible                                                      | Terraform | Kubernetes
+Status   | Network (spec)    | Links   | Ansible                                                      | Terraform | Kubernetes
 ------   | --------   | ----     |  -----                                                       | -------   | ------
- 🟢Template🔴 | [devnet-0](https://template.devnet.io/)   | [Network config](network-configs/devnet-0) / [Inventory](https://bootnode-1.devnet-0.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-1.devnet-0.ethpandaops.io/meta/api/v1/validator-ranges.json)    | [🔗](ansible/inventories/devnet-0) | [🔗](terraform/devnet-0) | [🔗](kubernetes/devnet-0)
+ Offline | [devnet-0](https://bal-devnet-0.ethpandaops.io) ([spec](https://notes.ethereum.org/@ethpandaops/bal-devnet-0))   | [Network config](network-configs/devnet-0) / [Inventory](https://bootnode-1.devnet-0.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-1.devnet-0.ethpandaops.io/meta/api/v1/validator-ranges.json)    | [🔗](ansible/inventories/devnet-0) | [🔗](terraform/devnet-0) | [🔗](kubernetes/devnet-0)
+ 🟢 Online | [devnet-1](https://bal-devnet-1.ethpandaops.io)  ([spec](https://notes.ethereum.org/@ethpandaops/bal-devnet-1)) | [Network config](network-configs/devnet-1) / [Inventory](https://bootnode-1.devnet-1.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-1.devnet-1.ethpandaops.io/meta/api/v1/validator-ranges.json)    | [🔗](ansible/inventories/devnet-1) | [🔗](terraform/devnet-1) | [🔗](kubernetes/devnet-1)
+ In preparation | [devnet-2](https://bal-devnet-2.ethpandaops.io)  ([spec](https://notes.ethereum.org/@ethpandaops/bal-devnet-2)) | [Network config](network-configs/devnet-2) / [Inventory](https://bootnode-2.devnet-2.ethpandaops.io/meta/api/v1/inventory.json) / [Validator ranges](https://bootnode-2.devnet-2.ethpandaops.io/meta/api/v1/validator-ranges.json)    | [🔗](ansible/inventories/devnet-2) | [🔗](terraform/devnet-2) | [🔗](kubernetes/devnet-2)
 
 # Development
 ## Version management for tools
 
 We're using [asdf](https://github.com/asdf-vm/asdf) to make sure that we all use the same versions across tools. Our repositories should contain versions defined in .tools-versions.
 
-You can then use [`./setup.sh`](./asdf-setup.sh) to install all dependencies.
+You can then use [`./setup.sh`](./setup.sh) to install all dependencies.
 
 ## Terraform
 From [`./terraform/devnet-0/`](./terraform/devnet-0/)
