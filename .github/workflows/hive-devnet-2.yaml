@@ -7,8 +7,8 @@ on:
     inputs:
       client:
         type: string
-        # TODO: add back besu, reth, ethrex (no bal-devnet-2 branch yet)
-        default: '"go-ethereum","nethermind","nimbus-el","erigon"'
+        # TODO: add back ethrex (no bal-devnet-2 branch yet)
+        default: '"go-ethereum","nethermind","nimbus-el","erigon", "besu", "reth"'
         description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
       simulator:
         type: string
