@@ -7,13 +7,14 @@ on:
     inputs:
       client:
         type: string
-        default: '"go-ethereum","reth","nethermind","besu","nimbus-el","erigon"'
+        # TODO: add back besu, reth, ethrex (no bal-devnet-2 branch yet)
+        default: '"go-ethereum","nethermind","nimbus-el","erigon"'
         description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
       simulator:
         type: string
+        # TODO: add back "ethereum/eels/consume-rlp"
         default: >-
-          "ethereum/eels/consume-engine",
-          "ethereum/eels/consume-rlp",
+          "ethereum/eels/consume-engine"
         description: >-
           Comma-separated list of simulators to test
           .e.g ethereum/rpc-compat, ethereum/eels/consume-engine, ethereum/eels/consume-rlp, ethereum/eels/execute-blobs
@@ -34,7 +35,7 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-        default: 'bal-devnet-1'
+        default: 'bal-devnet-2'
       client_repos:
         type: string
         default: |
@@ -128,7 +129,7 @@ jobs:
         name: 'Client config: schedule'
         id: client_config_schedule
         with:
-          common_client_tag: 'bal-devnet-1'
+          common_client_tag: 'bal-devnet-2'
           client_source: 'git'
           hive_version: 'ethereum/hive@master'
           goproxy: ${{ env.GOPROXY }}
@@ -164,19 +165,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        # TODO: add back besu, reth, ethrex (no bal-devnet-2 branch yet)
         client: >-
           ${{ fromJSON(format('[{0}]', inputs.client || '
-            "besu",
             "go-ethereum",
             "nethermind",
-            "reth",
             "nimbus-el",
             "erigon"
           '))}}
+        # TODO: add back "ethereum/eels/consume-rlp"
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
-            "ethereum/eels/consume-engine",
-            "ethereum/eels/consume-rlp"
+            "ethereum/eels/consume-engine"
           '))}}
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
