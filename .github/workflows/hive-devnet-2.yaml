@@ -1,4 +1,4 @@
-name: Hive - BAL
+name: Hive - BAL Devnet 2
 on:
   schedule:
     - cron: '45 12 * * *'
@@ -7,7 +7,7 @@ on:
     inputs:
       client:
         type: string
-        default: '"go-ethereum","reth","nethermind","besu"'
+        default: '"go-ethereum","reth","nethermind","besu","nimbus-el","erigon"'
         description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
       simulator:
         type: string
@@ -34,7 +34,7 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-        default: 'bal-devnet-0'
+        default: 'bal-devnet-1'
       client_repos:
         type: string
         default: |
@@ -67,8 +67,8 @@ env:
   S3_PATH: bal
   S3_PUBLIC_URL: https://hive.ethpandaops.io/#/test/bal/
   INSTALL_RCLONE_VERSION: v1.68.2
-  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v1.4.1/fixtures_bal.tar.gz
-  EELS_BUILD_ARG_BRANCH: forks/osaka
+  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v3.0.1/fixtures_bal.tar.gz
+  EELS_BUILD_ARG_BRANCH: forks/amsterdam
   # Flags used for all simulators
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
@@ -128,7 +128,7 @@ jobs:
         name: 'Client config: schedule'
         id: client_config_schedule
         with:
-          common_client_tag: 'bal-devnet-0'
+          common_client_tag: 'bal-devnet-1'
           client_source: 'git'
           hive_version: 'ethereum/hive@master'
           goproxy: ${{ env.GOPROXY }}
@@ -170,6 +170,8 @@ jobs:
             "go-ethereum",
             "nethermind",
             "reth",
+            "nimbus-el",
+            "erigon"
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
