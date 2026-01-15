@@ -3,9 +3,9 @@
 <h1 align="center">Infrastructure code for Dev/Testnets</h1>
 
 <p align="center">
-<a href="https://github.com/ethpandaops/template-testnet/actions/workflows/ansible_lint.yaml"><img src="https://github.com/ethpandaops/template-testnet/actions/workflows/ansible_lint.yaml/badge.svg"></a>
-<a href="https://github.com/ethpandaops/template-testnet/actions/workflows/terraform_lint.yaml"><img src="https://github.com/ethpandaops/template-testnet/actions/workflows/terraform_lint.yaml/badge.svg"></a>
-<a href="https://github.com/ethpandaops/template-testnet/actions/workflows/helm_lint.yaml"><img src="https://github.com/ethpandaops/template-testnet/actions/workflows/helm_lint.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-ansible.yaml"><img src="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-ansible.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-terraform.yaml"><img src="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-terraform.yaml/badge.svg"></a>
+<a href="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-helm.yaml"><img src="https://github.com/ethpandaops/bal-devnets/actions/workflows/lint-helm.yaml/badge.svg"></a>
 </p>
 
 This repository contains the infrastructure code used to setup ~all~ dev/testnets. A lot of the code uses reusable components either provided by our [ansible collection](https://github.com/ethpandaops/ansible-collection-general) or our [helm charts for kubernetes](https://github.com/ethpandaops/ethereum-helm-charts/).
