@@ -1,20 +1,12 @@
-<<<<<<< HEAD
 name: Hive - BAL Devnet 2
 on:
   schedule:
-    - cron: '45 12 * * *'
-=======
-name: Hive - BAL
-on:
-  schedule:
     - cron: "45 12 * * *"
->>>>>>> 05caabc (add hive-devnet-2 workflow)
   workflow_dispatch:
     # Note: We're limited to 10 inputs
     inputs:
       client:
         type: string
-<<<<<<< HEAD
         # TODO: add back ethrex (no bal-devnet-2 branch yet)
         default: '"go-ethereum","nethermind","nimbus-el","erigon", "besu", "reth"'
         description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
@@ -23,15 +15,6 @@ on:
         # TODO: add back "ethereum/eels/consume-rlp"
         default: >-
           "ethereum/eels/consume-engine"
-=======
-        default: '"go-ethereum","reth","nethermind","besu","nimbus-el","erigon"'
-        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
-      simulator:
-        type: string
-        default: >-
-          "ethereum/eels/consume-engine",
-          "ethereum/eels/consume-rlp",
->>>>>>> 05caabc (add hive-devnet-2 workflow)
         description: >-
           Comma-separated list of simulators to test
           .e.g ethereum/rpc-compat, ethereum/eels/consume-engine, ethereum/eels/consume-rlp, ethereum/eels/execute-blobs
@@ -52,57 +35,30 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-<<<<<<< HEAD
-        default: 'bal-devnet-2'
-=======
         default: "bal-devnet-2"
->>>>>>> 05caabc (add hive-devnet-2 workflow)
       client_repos:
         type: string
         default: |
           {
-<<<<<<< HEAD
             "geth": "ethereum/go-ethereum@master",
             "besu": "hyperledger/besu@main",
             "reth": "paradigmxyz/reth@main",
-            "nethermind": "NethermindEth/nethermind@master",  
-          }
-        description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
-      client_images:
-          type: string
-          default: |
-            { 
-              "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
-              "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
-              "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
-              "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master",
-              "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:main",
-              "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:master",
-              "ethrex": "ghcr.io/lambdaclass/ethrex:main"
-            }
-          description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
-=======
-            "geth": "ethereum/go-ethereum@bal-devnet-2",
-            "besu": "hyperledger/besu@bal-devnet-2",
-            "reth": "paradigmxyz/reth@bal-devnet-2",
-            "nethermind": "NethermindEth/nethermind@bal-devnet-2",
-            "nimbus-el": "status-im/nimbus-eth1@bal-devnet-2"
-            "erigon": "erigontech/erigon@bal-devnet-2"
+            "nethermind": "NethermindEth/nethermind@master",
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
         type: string
         default: |
           {
-            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:bal-devnet-2",
-            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:bal-devnet-2",
-            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-2",
-            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-2",
-            "nimbus-el": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:bal-devnet-2",
-            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:bal-devnet-2"
+            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
+            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
+            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
+            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master",
+            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:main",
+            "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:master",
+            "ethrex": "ghcr.io/lambdaclass/ethrex:main"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
->>>>>>> 05caabc (add hive-devnet-2 workflow)
 
 env:
   # Proxy
@@ -112,13 +68,8 @@ env:
   S3_PATH: bal
   S3_PUBLIC_URL: https://hive.ethpandaops.io/#/test/bal/
   INSTALL_RCLONE_VERSION: v1.68.2
-<<<<<<< HEAD
   EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v3.0.1/fixtures_bal.tar.gz
   EELS_BUILD_ARG_BRANCH: forks/amsterdam
-=======
-  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v2.0.0/fixtures_bal.tar.gz
-  EELS_BUILD_ARG_BRANCH: tests-bal@v2.0.0
->>>>>>> 05caabc (add hive-devnet-2 workflow)
   # Flags used for all simulators
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
@@ -173,21 +124,6 @@ jobs:
           inputs.client_source
         }}
     steps:
-<<<<<<< HEAD
-      - uses: ethpandaops/hive-github-action/helpers/client-config@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
-        if: github.event_name == 'schedule'
-        name: 'Client config: schedule'
-        id: client_config_schedule
-        with:
-          common_client_tag: 'bal-devnet-2'
-          client_source: 'git'
-          hive_version: 'ethereum/hive@master'
-          goproxy: ${{ env.GOPROXY }}
-
-      - uses: ethpandaops/hive-github-action/helpers/client-config@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
-        if: github.event_name == 'workflow_dispatch'
-        name: 'Client config: workflow_dispatch'
-=======
       - uses: ethpandaops/hive-github-action/helpers/client-config@ef42b1df92b6984a473db62f5a76c32136eda6ce # v0.6.0
         if: github.event_name == 'schedule'
         name: "Client config: schedule"
@@ -201,7 +137,6 @@ jobs:
       - uses: ethpandaops/hive-github-action/helpers/client-config@ef42b1df92b6984a473db62f5a76c32136eda6ce # v0.6.0
         if: github.event_name == 'workflow_dispatch'
         name: "Client config: workflow_dispatch"
->>>>>>> 05caabc (add hive-devnet-2 workflow)
         id: client_config_dispatch
         with:
           client_repos: ${{ inputs.client_repos }}
@@ -212,11 +147,7 @@ jobs:
           goproxy: ${{ env.GOPROXY }}
 
   test:
-<<<<<<< HEAD
-    timeout-minutes: 2160
-=======
     timeout-minutes: 720
->>>>>>> 05caabc (add hive-devnet-2 workflow)
     needs: prepare
     env:
       # BAL-specific environment variables
@@ -234,24 +165,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-<<<<<<< HEAD
-        # TODO: add back besu, reth, ethrex (no bal-devnet-2 branch yet)
-        client: >-
-          ${{ fromJSON(format('[{0}]', inputs.client || '
-            "go-ethereum",
-            "nethermind",
-            "nimbus-el",
-            "erigon"
-          '))}}
-        # TODO: add back "ethereum/eels/consume-rlp"
-        simulator: >-
-          ${{ fromJSON(format('[{0}]', inputs.simulator || '
-            "ethereum/eels/consume-engine"
-          '))}}
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - uses: ethpandaops/hive-github-action/helpers/self-hosted-runner-dependencies@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
-=======
         client: >-
           ${{ fromJSON(format('[{0}]', inputs.client || '
             "besu",
@@ -269,17 +182,12 @@ jobs:
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - uses: ethpandaops/hive-github-action/helpers/self-hosted-runner-dependencies@ef42b1df92b6984a473db62f5a76c32136eda6ce # v0.6.0
->>>>>>> 05caabc (add hive-devnet-2 workflow)
         if: runner.environment != 'github-hosted'
       - uses: ethpandaops/actions/docker-login@a91b7a8dd6a264f5e845ac2aa52d2d6f24e6d01d
         with:
           username: ethpandaops
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-<<<<<<< HEAD
-      - uses: ethpandaops/hive-github-action@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
-=======
       - uses: ethpandaops/hive-github-action@ef42b1df92b6984a473db62f5a76c32136eda6ce # v0.6.0
->>>>>>> 05caabc (add hive-devnet-2 workflow)
         with:
           hive_repository: ${{ needs.prepare.outputs.hive_repo }}
           hive_version: ${{ needs.prepare.outputs.hive_tag }}
