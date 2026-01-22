@@ -147,7 +147,7 @@ jobs:
           goproxy: ${{ env.GOPROXY }}
 
   test:
-    timeout-minutes: 720
+    timeout-minutes: 1440
     needs: prepare
     env:
       # BAL-specific environment variables
