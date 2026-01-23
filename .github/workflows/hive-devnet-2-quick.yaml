@@ -1,5 +1,7 @@
 name: Hive - BAL Devnet 2 Quick
 on:
+  schedule:
+    - cron: "45 12 * * *"
   workflow_dispatch:
     inputs:
       client:
@@ -31,7 +33,7 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-        default: 'bal-devnet-2'
+        default: "bal-devnet-2"
       client_repos:
         type: string
         default: |
@@ -43,18 +45,18 @@ on:
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
-          type: string
-          default: |
-            {
-              "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
-              "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
-              "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
-              "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master",
-              "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:main",
-              "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:master",
-              "ethrex": "ghcr.io/lambdaclass/ethrex:main"
-            }
-          description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
+        type: string
+        default: |
+          {
+            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
+            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
+            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
+            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master",
+            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:main",
+            "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:master",
+            "ethrex": "ghcr.io/lambdaclass/ethrex:main"
+          }
+        description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
 env:
   # Proxy
@@ -98,7 +100,7 @@ jobs:
       client_source: ${{ inputs.client_source }}
     steps:
       - uses: ethpandaops/hive-github-action/helpers/client-config@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
-        name: 'Client config'
+        name: "Client config"
         id: client_config
         with:
           client_repos: ${{ inputs.client_repos }}
