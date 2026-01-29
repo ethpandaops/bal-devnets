@@ -22,6 +22,7 @@ on:
         description: GitHub repository and tag for hive (repo@tag)
       client_source:
         type: choice
+        default: git
         description: >-
           How client images should be sourced.
           'git' will use the github repo and tag (See client_repos).
