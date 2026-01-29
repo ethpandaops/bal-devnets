@@ -22,7 +22,7 @@ on:
         description: GitHub repository and tag for hive (repo@tag)
       client_source:
         type: choice
-        default: git
+        default: docker
         description: >-
           How client images should be sourced.
           'git' will use the github repo and tag (See client_repos).
@@ -98,7 +98,7 @@ jobs:
       hive_repo: ${{ steps.client_config.outputs.hive_repo }}
       hive_tag: ${{ steps.client_config.outputs.hive_tag }}
       client_config: ${{ steps.client_config.outputs.client_config }}
-      client_source: ${{ inputs.client_source }}
+      client_source: ${{ inputs.client_source || 'git' }}
     steps:
       - uses: ethpandaops/hive-github-action/helpers/client-config@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
         name: "Client config"
@@ -106,9 +106,9 @@ jobs:
         with:
           client_repos: ${{ inputs.client_repos }}
           client_images: ${{ inputs.client_images }}
-          common_client_tag: ${{ inputs.common_client_tag }}
-          client_source: ${{ inputs.client_source }}
-          hive_version: ${{ inputs.hive_version }}
+          common_client_tag: ${{ inputs.common_client_tag || 'bal-devnet-2' }}
+          client_source: ${{ inputs.client_source || 'git' }}
+          hive_version: ${{ inputs.hive_version || 'ethereum/hive@master' }}
           goproxy: ${{ env.GOPROXY }}
 
   test:
