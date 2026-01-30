@@ -41,7 +41,7 @@ on:
             "geth": "ethereum/go-ethereum@master",
             "besu": "hyperledger/besu@main",
             "reth": "paradigmxyz/reth@main",
-            "nethermind": "NethermindEth/nethermind@master",
+            "nethermind": "NethermindEth/nethermind@master"
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
