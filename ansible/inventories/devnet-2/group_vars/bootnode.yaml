@@ -90,9 +90,9 @@ lodestar_container_command_extra_args:
   - --logLevel=info
   - --disablePeerScoring
   - --serveHistoricalState
-  - --checkpointSyncUrl=https://checkpoint-sync.bal-devnet-1.ethpandaops.io/
   - --network.connectToDiscv5Bootnodes
-  - --forceCheckpointSync
+  #- --forceCheckpointSync
+  #- --checkpointSyncUrl=https://checkpoint-sync.bal-devnet-2.ethpandaops.io/
   - --network.connectToDiscv5Bootnodes
   - >-
     --bootnodes={{
