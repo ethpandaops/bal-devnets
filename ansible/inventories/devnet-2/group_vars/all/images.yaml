@@ -1,6 +1,6 @@
 default_ethereum_client_images:
   ### Consensus layer clients
-  lighthouse: sigp/lighthouse:latest
+  lighthouse: sigp/lighthouse:bal-devnet-2
   lodestar: ethpandaops/lodestar:bal-devnet-2
   nimbus: statusim/nimbus-eth2:multiarch-latest
   prysm: ethpandaops/prysm-beacon-chain:bal-devnet-2
