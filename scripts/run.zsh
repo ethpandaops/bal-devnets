@@ -1,14 +1,16 @@
 #!/bin/zsh
-node="bootnode-1"
-network="devnet-0"
+node="hc-bootnode-1"
+network="devnet-2"
 prefix="testing"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
 sops_password=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.password')
 sops_mnemonic=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_genesis_mnemonic')
-network_subdomain=$(yq -r '.network_subdomain' ../ansible/inventories/$network/group_vars/all/all.yaml)
-network_server_subdomain=$(yq -r '.network_server_subdomain' ../ansible/inventories/$network/group_vars/all/all.yaml)
+domain=$(yq -r '.domain' ../ansible/inventories/$network/group_vars/all/all.yaml)
+ethereum_network_name=$(grep 'ethereum_network_name=' ../ansible/inventories/$network/hetzner_inventory.ini | head -1 | cut -d= -f2)
+network_subdomain="${ethereum_network_name}.${domain}"
+network_server_subdomain="srv.${network_subdomain}"
 rpc_prefix=$(yq -r '.ethereum_node_rpc_prefix' ../ansible/inventories/$network/group_vars/all/all.yaml)
-beacon_prefix=$(yq -r '.ethereum_node_rpc_prefix' ../ansible/inventories/$network/group_vars/all/all.yaml)
+beacon_prefix=$(yq -r '.ethereum_node_beacon_prefix' ../ansible/inventories/$network/group_vars/all/all.yaml)
 bn_endpoint="${BEACON_ENDPOINT:-https://$sops_name:$sops_password@$beacon_prefix$node.$network_server_subdomain}"
 rpc_endpoint="${RPC_ENDPOINT:-https://$sops_name:$sops_password@$rpc_prefix$node.$network_server_subdomain}"
 bootnode_endpoint="${BOOTNODE_ENDPOINT:-https://bootnode-1.$network_server_subdomain}"
