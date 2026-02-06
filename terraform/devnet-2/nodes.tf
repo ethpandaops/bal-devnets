@@ -8,43 +8,32 @@ variable "bootnode" {
   }
 }
 
-variable "mev_relay" {
-  default = {
-    name            = "mev-relay"
-    count           = 0
-    validator_start = 0
-    validator_end   = 0
-    size            = "cpx22"
-    supernode       = true
-  }
-}
-
 # Supernodes
 # Lighthouse
 variable "lighthouse_geth_super" {
   default = {
     name            = "lighthouse-geth-super"
-    count           = 1
+    count           = 0
     validator_start = 0
-    validator_end   = 200
+    validator_end   = 0
   }
 }
 
 variable "lighthouse_besu_super" {
   default = {
     name            = "lighthouse-besu-super"
-    count           = 1
-    validator_start = 200
-    validator_end   = 400
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
 variable "lighthouse_nethermind_super" {
   default = {
     name            = "lighthouse-nethermind-super"
-    count           = 1
-    validator_start = 400
-    validator_end   = 600
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -60,18 +49,18 @@ variable "lighthouse_erigon_super" {
 variable "lighthouse_reth_super" {
   default = {
     name            = "lighthouse-reth-super"
-    count           = 1
-    validator_start = 600
-    validator_end   = 800
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
 variable "lighthouse_nimbusel_super" {
   default = {
     name            = "lighthouse-nimbusel-super"
-    count           = 1
-    validator_start = 800
-    validator_end   = 1000
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -134,27 +123,27 @@ variable "prysm_nimbusel_super" {
 variable "lodestar_geth_super" {
   default = {
     name            = "lodestar-geth-super"
-    count           = 1
-    validator_start = 1000
-    validator_end   = 1200
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
 variable "lodestar_nethermind_super" {
   default = {
     name            = "lodestar-nethermind-super"
-    count           = 1
-    validator_start = 1200
-    validator_end   = 1400
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
 variable "lodestar_besu_super" {
   default = {
     name            = "lodestar-besu-super"
-    count           = 1
-    validator_start = 1400
-    validator_end   = 1600
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
@@ -170,18 +159,18 @@ variable "lodestar_erigon_super" {
 variable "lodestar_reth_super" {
   default = {
     name            = "lodestar-reth-super"
-    count           = 1
-    validator_start = 1600
-    validator_end   = 1800
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 
 variable "lodestar_nimbusel_super" {
   default = {
     name            = "lodestar-nimbusel-super"
-    count           = 1
-    validator_start = 1800
-    validator_end   = 2000
+    count           = 0
+    validator_start = 0
+    validator_end   = 0
   }
 }
 

@@ -1,0 +1,214 @@
+ethereum_cl_bootnode: "{{ hostvars[primary_bootnode]['bootnodoor_fact_enr'] }}"
+ethereum_el_bootnode: "{{ hostvars[primary_bootnode]['bootnodoor_fact_enode'] }}"
+
+# role: ethpandaops.general.bootnodoor
+bootnodoor_privkey: >-
+  {{
+    (secret_bootnodoor_seed ~ ':' ~ ethereum_genesis_chain_id|string)
+    | hash('sha256')
+  }}
+bootnodoor_set_facts: true
+bootnodoor_el_enabled: true
+bootnodoor_cl_enabled: true
+
+bootnodoor_container_name: "bootnodoor"
+bootnodoor_container_image: "ethpandaops/bootnodoor:master"
+bootnodoor_container_networks: "{{ docker_networks_shared }}"
+bootnodoor_p2p_port: 9010
+bootnodoor_ui_port: 8004
+bootnodoor_enr_ip: "{{ ansible_host }}"
+
+bootnodoor_el_config: /network-config/genesis.json
+bootnodoor_el_genesis_hash: /network-config/deposit_contract_block_hash.txt
+bootnodoor_cl_config: /network-config/config.yaml
+bootnodoor_cl_gvr: /network-config/genesis_validators_root.txt
+bootnodoor_container_volumes_extra:
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+
+bootnodoor_container_command_extra_args: []
+bootnodoor_container_env:
+  VIRTUAL_HOST: >-
+    {{ ('bootnodoor.' ~ network_server_subdomain ~ ',') if inventory_hostname == primary_bootnode else '' }}bootnodoor-{{ server_fqdn }}
+  VIRTUAL_PORT: "{{ bootnodoor_ui_port | string }}"
+  LETSENCRYPT_HOST: >-
+    {{ ('bootnodoor.' ~ network_server_subdomain ~ ',') if inventory_hostname == primary_bootnode else '' }}bootnodoor-{{ server_fqdn }}
+
+# role: ethereum_inventory_web
+ethereum_inventory_web_container_networks: "{{ docker_networks_shared }}"
+ethereum_inventory_web_container_env:
+  VIRTUAL_HOST: "{{ server_fqdn }}"
+  VIRTUAL_PORT: "80"
+  VIRTUAL_PATH: "/meta/api"
+  VIRTUAL_DEST: "/"
+  LETSENCRYPT_HOST: "{{ server_fqdn }}"
+
+# role: ethpandaops.general.ethereum_node
+ethereum_node_el: besu
+ethereum_node_cl: lodestar
+ethereum_node_cl_validator_enabled: false
+
+# besu
+besu_container_name: execution
+besu_container_image: "{{ default_ethereum_client_images.besu }}"
+besu_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+besu_container_volumes:
+  - "{{ besu_datadir }}:/data"
+  - "{{ besu_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+besu_container_command_extra_args:
+  - --genesis-file=/network-config/besu.json
+  - --rpc-http-api=ADMIN,DEBUG,ETH,MINER,NET,TRACE,TXPOOL,WEB3
+  - --sync-mode=FULL
+  - --data-storage-format=BONSAI
+  - --bonsai-limit-trie-logs-enabled=false
+  - --bonsai-historical-block-limit=100000000
+  - --bootnodes=enode://b6ea0654360d2f380c3a138e7a0b2a773bdac6c7f591e34ca2ed0c092cbe9a1eb5b49662c75c45bb43047db6eef8c34d02805c3562106c8c8722cdf48ee9c1a8@167.235.68.172:30303,enr:-PC4QGQ8SfUObY9phUZQBMn4B0JxzEZsy6cErdBjBpZul5rjOvXn3p__YyyNy3soVH_yumd3sr70rQUrIrW-MG-JB0USh2F0dG5ldHOIDAAAAAAAAACDY2djgYCEZXRoMpCopcJfgCVVkP__________gmlkgnY0gmlwhHTL4IaDaXA2kCoBBPgcGjAwAAAAAAAAAAGDbmZkhAAAAACJc2VjcDI1NmsxoQK7dJgHcZtwC1D5-mZV0G89uFQWmpykiCv77On2F0sY-IhzeW5jbmV0cw-DdGNwgiMohHRjcDaCIyqDdWRwgiMohHVkcDaCIyo
+  - --logging=INFO
+besu_container_pull: true
+
+# role: ethpandaops.general.lodestar
+lodestar_container_name: beacon
+lodestar_container_image: "{{ default_ethereum_client_images.lodestar }}"
+lodestar_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_beacon_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_cl_ports_http_beacon | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_beacon_hostname }}"
+
+lodestar_container_volumes:
+  - "{{ lodestar_datadir }}:/data"
+  - "{{ lodestar_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+
+lodestar_container_command_extra_args:
+  - --paramsFile=/network-config/config.yaml
+  - --genesisStateFile=/network-config/genesis.ssz
+  - --rest.namespace="*"
+  - --nat=true
+  - --logLevel=info
+  - --disablePeerScoring
+  - --serveHistoricalState
+  - --checkpointSyncUrl=https://checkpoint-sync.bal-devnet-1.ethpandaops.io/
+  - --network.connectToDiscv5Bootnodes
+  - --forceCheckpointSync
+  - --network.connectToDiscv5Bootnodes
+  - >-
+    --bootnodes={{
+      (
+        (
+          groups['bootnode']
+          | map('extract', hostvars, ['ethereum_node_fact_cl_enr'])
+          | select('defined')
+          | list
+        )
+        +
+        (
+          groups['bootnode']
+          | map('extract', hostvars, ['bootnodoor_fact_enr'])
+          | select('defined')
+          | list
+        )
+      )
+      | join(',')
+    }}
+
+# role: ethpandaops.general.geth
+geth_container_name: execution
+geth_container_image: "{{ default_ethereum_client_images.geth }}"
+geth_container_env:
+  VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
+  VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
+  LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
+geth_container_command_extra_args:
+  - --http.api=eth,net,web3,debug,admin
+  - --http.vhosts=*
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --gcmode=archive
+  - --state.scheme=hash
+  - --bootnodes=enode://a760c0682cf57e139ae9041ecb6c561089a60a4bd4cc878e9e926234e54740918fdc1399bbc29c6d4998f84ec8527657e11b96d7b9bb6c7762629d1eea277b17@116.203.224.134:30303,enode://b6ea0654360d2f380c3a138e7a0b2a773bdac6c7f591e34ca2ed0c092cbe9a1eb5b49662c75c45bb43047db6eef8c34d02805c3562106c8c8722cdf48ee9c1a8@167.235.68.172:30303
+  - >-
+    --bootnodes={{
+      (
+        (
+          groups['bootnode']
+          | map('extract', hostvars, ['ethereum_node_fact_el_enode'])
+          | select('defined')
+          | list
+        )
+        +
+        (
+          groups['bootnode']
+          | map('extract', hostvars, ['bootnodoor_fact_enode'])
+          | select('defined')
+          | list
+        )
+      )
+      | join(',')
+    }}
+geth_init_custom_network: true
+geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
+geth_container_pull: true
+
+geth_init_custom_network_container_command:
+  - --datadir=/data
+  - init
+  - --state.scheme=hash
+  - /genesis.json
+
+# role: ethpandaops.general.prometheus
+prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write
+prometheus_remote_write_username: "{{ secret_prometheus_remote_write.username }}"
+prometheus_remote_write_password: "{{ secret_prometheus_remote_write.password }}"
+prometheus_config: |
+  global:
+    scrape_interval: 30s
+    evaluation_interval: 30s
+    scrape_timeout: 10s
+    external_labels:
+      instance: "{{ inventory_hostname }}"
+      ip_address: "{{ ansible_host }}"
+      network: "{{ ethereum_network_name }}"
+      testnet: "{{ ethereum_network_name }}"
+      execution_client: "{{ ethereum_node_el }}"
+      consensus_client: "{{ ethereum_node_cl }}"
+      supernode: "{{ ethereum_node_cl_supernode_enabled | bool | default(false) }}"
+  remote_write:
+    - queue_config:
+        batch_send_deadline: 5s
+        max_backoff: 500ms
+        max_samples_per_send: 500
+        min_backoff: 50ms
+        max_shards: 100
+      url: {{ prometheus_remote_push_url }}
+      remote_timeout: 10s
+      basic_auth:
+        username: {{ prometheus_remote_write_username }}
+        password: {{ prometheus_remote_write_password }}
+  scrape_configs:
+    - job_name: "prometheus"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["localhost:9090"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["172.17.0.1:9100"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "exporter"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["ethereum-metrics-exporter:9090"]
+          labels:
+            instance: "{{ inventory_hostname }}"
+    - job_name: "consensus_node"
+      metrics_path: "/metrics"
+      static_configs:
+        - targets: ["{{ vars[ethereum_node_cl + '_container_name'] }}:{{ ethereum_node_cl_ports_metrics }}"]
+          labels:
+            instance: "{{ inventory_hostname }}"
