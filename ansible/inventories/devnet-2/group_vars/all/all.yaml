@@ -47,7 +47,7 @@ ethereum_genesis_network_seed: "bal-devnet-2"
 ethereum_genesis_chain_id: "70{{ 99999999 | random(start=10000000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_fork_version_suffix: "{{ 999999 | random(start=100000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_generator_output_dir: "../network-configs/{{ network_iteration }}"
-ethereum_genesis_timestamp: 1766062800
+ethereum_genesis_timestamp: 1770388190
 ethereum_genesis_timedelay: 30
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
