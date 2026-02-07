@@ -1,7 +1,7 @@
 default_ethereum_client_images:
   ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:bal-devnet-2
-  lodestar: ethpandaops/lodestar:bal-devnet-2
+  lighthouse: ethpandaops/lighthouse:bal-devnet-2-65bb283
+  lodestar: ethpandaops/lodestar:bal-devnet-2-327fa80
   nimbus: statusim/nimbus-eth2:multiarch-latest
   prysm: ethpandaops/prysm-beacon-chain:bal-devnet-2
   prysm_validator: ethpandaops/prysm-validator:bal-devnet-2
