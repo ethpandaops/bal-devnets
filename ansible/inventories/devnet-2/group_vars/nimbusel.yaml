@@ -25,7 +25,7 @@ nimbusel_container_command_extra_args:
   - --bootstrap-node={{ ethereum_el_bootnodes | join(',') }}
   - --rpc-api=admin,eth,debug
   - --ws-api=admin,eth,debug
-  - --gas-limit=150000000
+  - --gas-limit=80000000
 
 prometheus_config: |
   global:
