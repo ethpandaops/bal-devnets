@@ -1,0 +1,34 @@
+# Fork Monitor configuration — managed by Ansible
+dora_url = "https://dora.{{ ethereum_network_name }}.{{ domain }}"
+
+# Local beacon node (running on this host)
+[[nodes]]
+name = "{{ inventory_hostname }}"
+url = "http://localhost:{{ ethereum_node_cl_ports_http_beacon }}"
+
+# Remote beacon nodes
+{% for host in groups['ethereum_node'] + groups['bootnode'] %}
+{% if host != inventory_hostname %}
+[[nodes]]
+name = "{{ host }}"
+url = "https://{{ ethereum_node_beacon_prefix }}{{ host }}.{{ network_server_subdomain }}"
+[nodes.basic_auth]
+user = "{{ secret_nginx_shared_basic_auth.name }}"
+password = "{{ secret_nginx_shared_basic_auth.password }}"
+
+{% endif %}
+{% endfor %}
+
+[smtp]
+host = "{{ secret_fork_monitor_smtp.host }}"
+port = {{ secret_fork_monitor_smtp.port | default(587) }}
+user = "{{ secret_fork_monitor_smtp.user }}"
+password = "{{ secret_fork_monitor_smtp.password }}"
+from = "{{ secret_fork_monitor_smtp.from }}"
+to = {{ secret_fork_monitor_smtp.to | to_json }}
+
+[thresholds]
+missed_block_lookback = 3
+attestation_drop_pct = 10.0
+cooldown_secs = 300
+max_alerts_per_hour = 20
