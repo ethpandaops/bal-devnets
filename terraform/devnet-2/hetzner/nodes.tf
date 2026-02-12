@@ -30,12 +30,78 @@ variable "lighthouse_geth_super" {
   }
 }
 
+variable "lighthouse_geth_optimized_super" {
+  default = {
+    name            = "lighthouse-geth-optimized-super"
+    count           = 1
+    validator_start = 0
+    validator_end   = 0
+    size            = "ccX33"
+    supernode       = true
+  }
+}
+
+variable "lighthouse_geth_sequential_super" {
+  default = {
+    name            = "lighthouse-geth-sequential-super"
+    count           = 1
+    validator_start = 0
+    validator_end   = 0
+    size            = "ccx33"
+    supernode       = true
+  }
+}
+
+variable "lighthouse_geth_noprefetch_super" {
+  default = {
+    name            = "lighthouse-geth-noprefetch-super"
+    count           = 1
+    validator_start = 0
+    validator_end   = 0
+    size            = "ccx33"
+    supernode       = true
+  }
+}
+
 variable "lighthouse_besu_super" {
   default = {
     name            = "lighthouse-besu-super"
     count           = 1
     validator_start = 200
     validator_end   = 400
+  }
+}
+
+variable "lighthouse_besu_optimized_super" {
+  default = {
+    name            = "lighthouse-besu-optimized-super"
+    count           = 1
+    validator_start = 0
+    validator_end   = 0
+    size            = "ccX33"
+    supernode       = true
+  }
+}
+
+variable "lighthouse_besu_sequential_super" {
+  default = {
+    name            = "lighthouse-besu-sequential-super"
+    count           = 1
+    validator_start = 0
+    validator_end   = 0
+    size            = "ccx33"
+    supernode       = true
+  }
+}
+
+variable "lighthouse_besu_noprefetch_super" {
+  default = {
+    name            = "lighthouse-besu-noprefetch-super"
+    count           = 1
+    validator_start = 0
+    validator_end   = 0
+    size            = "ccx33"
+    supernode       = true
   }
 }
 
