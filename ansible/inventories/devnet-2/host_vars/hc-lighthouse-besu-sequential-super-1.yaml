@@ -1,0 +1,13 @@
+# Benchmark: sequential (BAL optimization disabled)
+besu_container_image: ethpandaops/besu:bal-devnet-2-with-prefetch
+
+besu_container_command_extra_args:
+  - --genesis-file=/network-config/besu.json
+  - --rpc-http-api=ADMIN,DEBUG,ETH,MINER,NET,TRACE,TXPOOL,WEB3
+  - --sync-mode=FULL
+  - --data-storage-format=BONSAI
+  - --bonsai-limit-trie-logs-enabled=false
+  - --bonsai-historical-block-limit=100000000
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --target-gas-limit=80000000
+  - --Xbal-optimization-enabled=false
