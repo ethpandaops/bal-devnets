@@ -1,6 +1,6 @@
 dependencies:
 - name: spamoor
   repository: https://ethpandaops.github.io/ethereum-helm-charts
-  version: 0.0.1
-digest: sha256:72238abfb5d1b97fdb1e65135ab6ec57c07c41f900262ab412eb2fd4d7cd5fa1
-generated: "2026-02-06T14:20:03.559214989+01:00"
+  version: 1.0.0
+digest: sha256:b6a31e5504054012fbd2bcd83f97687588c3e5535c0b3488d695918dbc33c5d2
+generated: "2026-02-13T10:59:18.564686749+01:00"
