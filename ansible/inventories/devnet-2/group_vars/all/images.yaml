@@ -11,7 +11,7 @@ default_ethereum_client_images:
   besu: ethpandaops/besu:bal-devnet-2
   geth: ethpandaops/geth:bal-devnet-2
   erigon: ethpandaops/erigon:bal-devnet-2
-  nethermind: ethpandaops/nethermind:bal-devnet-2
+  nethermind: nethermindeth/nethermind:70af959
   reth: ethpandaops/reth:bal-devnet-2
   nimbusel: ethpandaops/nimbus-eth1:bal-devnet-2
 
