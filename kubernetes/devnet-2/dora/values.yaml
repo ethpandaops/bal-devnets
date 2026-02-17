@@ -45,7 +45,7 @@ dora:
   executionIndexerRetention: 336h
   executionIndexerDetailsEnabled: true
   executionIndexerTracesEnabled: True
-  executionIndexerDetailsMaxSize: "100MB"
+  executionIndexerDetailsMaxSize: "100GB"
   tracoorUrl: "https://tracoor.bal-devnet-2.ethpandaops.io"
   tracoorNetwork: "bal-devnet-2"
 
