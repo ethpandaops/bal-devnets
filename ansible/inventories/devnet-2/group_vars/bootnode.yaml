@@ -65,7 +65,7 @@ lodestar_container_command_extra_args:
   - --genesisStateFile=/network-config/genesis.ssz
   - --rest.namespace="*"
   - --nat=true
-  - --logLevel=info
+  - --logLevel=debug
   - --disablePeerScoring
   - --serveHistoricalState
   - --network.connectToDiscv5Bootnodes
