@@ -10,6 +10,8 @@ besu_container_command_extra_args:
   - --bonsai-historical-block-limit=100000000
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --target-gas-limit=80000000
+  - --rpc-http-max-active-connections=20
+  - --Xhttp-timeout-seconds=600
   - --Xbal-prefetch-reading-enabled=true
   - --Xbal-trust-state-root=true
   - --Xbal-perfect-parallelization-enabled=true
