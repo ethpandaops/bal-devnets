@@ -154,7 +154,9 @@ jobs:
             "go-ethereum",
             "nethermind",
             "nimbus-el",
-            "erigon"
+            "erigon",
+            "besu",
+            "reth"
           '))}}
         # TODO: add back "ethereum/eels/consume-rlp" when clients have bal-devnet-2 branch
         simulator: >-
