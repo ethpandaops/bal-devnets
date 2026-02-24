@@ -19,10 +19,9 @@ ethrex_container_volumes:
   - "{{ ethrex_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 ethrex_container_command_extra_args:
-  - --chain=/network-config/genesis.json
-  - --http.api=eth,net,web3,debug,admin,txpool
+  - --network=/network-config/genesis.json
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --builder.gaslimit=80000000
+  - --builder.gas-limit=80000000
 
 prometheus_config: |
   global:

@@ -10,6 +10,11 @@
   authGroup: pandaops
   priority: -1
   archive: true
+- url: https://bn-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+  name: hc-lighthouse-ethrex-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
 - url: https://bn-hc-lighthouse-geth-super-1.srv.bal-devnet-2.ethpandaops.io
   name: hc-lighthouse-geth-super-1
   authGroup: pandaops
@@ -32,6 +37,10 @@
   archive: true
 - url: https://bn-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io
   name: hc-lodestar-besu-super-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+  name: hc-lodestar-ethrex-super-1
   authGroup: pandaops
   priority: -1
 - url: https://bn-hc-lodestar-geth-super-1.srv.bal-devnet-2.ethpandaops.io
