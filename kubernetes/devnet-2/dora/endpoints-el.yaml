@@ -13,6 +13,12 @@
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io:8961
+- url: https://rpc-hc-lighthouse-erigon-super-1.srv.bal-devnet-2.ethpandaops.io
+  name: hc-lighthouse-erigon-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-lighthouse-erigon-super-1.srv.bal-devnet-2.ethpandaops.io:8961
 - url: https://rpc-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
   name: hc-lighthouse-ethrex-super-1
   authGroup: pandaops
@@ -49,6 +55,12 @@
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io:8961
+- url: https://rpc-hc-lodestar-erigon-super-1.srv.bal-devnet-2.ethpandaops.io
+  name: hc-lodestar-erigon-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-hc-lodestar-erigon-super-1.srv.bal-devnet-2.ethpandaops.io:8961
 - url: https://rpc-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
   name: hc-lodestar-ethrex-super-1
   authGroup: pandaops

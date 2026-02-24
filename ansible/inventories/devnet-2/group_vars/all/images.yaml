@@ -62,3 +62,4 @@ default_tooling_images:
   blobber: ethpandaops/blobber:latest
   syncoor_web: docker.ethquokkaops.io/gh/ethpandaops/syncoor-web:master
   syncoor_server: docker.ethquokkaops.io/gh/ethpandaops/syncoor:master
+  docker_watchtower: docker.ethquokkaops.io/gh/nicholas-fedor/watchtower:latest
