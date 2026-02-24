@@ -8,6 +8,7 @@ bootstrap_default_user_authorized_keys_github_team_cl:
   - nflaig
   - matthewkeil
   - ensi321
+  - lodekeeper
 
 # role: validator_keys
 validator_keys_sync_files:
@@ -45,6 +46,7 @@ lodestar_container_command_extra_args:
   - --nat=true
   - --serveHistoricalState
   - --bootnodes={{ ethereum_cl_bootnodes | join(',') }}
+  - --logLevel=debug
   #- --checkpointSyncUrl=https://checkpoint-sync.bal-devnet-2.ethpandaops.io/
   #- --network.connectToDiscv5Bootnodes
   #- --forceCheckpointSync

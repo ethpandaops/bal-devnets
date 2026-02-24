@@ -87,6 +87,11 @@ forky:
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io
             polling_interval: "12s"
+        - name: hc-lighthouse-ethrex-super-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+            polling_interval: "12s"
         - name: hc-lighthouse-geth-super-1
           type: "beacon_node"
           config:
@@ -111,6 +116,11 @@ forky:
           type: "beacon_node"
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io
+            polling_interval: "12s"
+        - name: hc-lodestar-ethrex-super-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
             polling_interval: "12s"
         - name: hc-lodestar-geth-super-1
           type: "beacon_node"

@@ -67,8 +67,6 @@ env:
   S3_PATH: bal-quick
   S3_PUBLIC_URL: https://hive.ethpandaops.io/#/test/bal-quick/
   INSTALL_RCLONE_VERSION: v1.68.2
-  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v5.1.0/fixtures_bal.tar.gz
-  EELS_BUILD_ARG_BRANCH: devnets/bal/2
   # Flags used for all simulators
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
@@ -99,8 +97,26 @@ jobs:
       hive_tag: ${{ steps.client_config.outputs.hive_tag }}
       client_config: ${{ steps.client_config.outputs.client_config }}
       client_source: ${{ inputs.client_source || 'git' }}
+      fixtures_url: ${{ steps.latest.outputs.fixtures_url }}
+      eels_branch: ${{ steps.latest.outputs.eels_branch }}
     steps:
-      - uses: ethpandaops/hive-github-action/helpers/client-config@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
+      - name: Get latest bal fixtures and branch
+        id: latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Get latest bal fixtures release from EEST
+          TAG=$(gh release list --repo ethereum/execution-spec-tests --json tagName --limit 100 | jq -r '[.[] | select(.tagName | startswith("bal"))][0].tagName')
+          FIXTURES_URL="https://github.com/ethereum/execution-spec-tests/releases/download/${TAG}/fixtures_bal.tar.gz"
+          echo "fixtures_url=$FIXTURES_URL" >> "$GITHUB_OUTPUT"
+          echo "Using fixtures from: $FIXTURES_URL"
+
+          # Get latest devnets/bal/N branch from EELS (highest number)
+          BRANCH=$(gh api repos/ethereum/execution-specs/branches --paginate -q '.[].name' | grep -E '^devnets/bal/[0-9]+$' | sort -t/ -k3 -n | tail -1)
+          echo "eels_branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "Using EELS branch: $BRANCH"
+
+      - uses: ethpandaops/hive-github-action/helpers/client-config@09050fc75bae8a10b1876a0826ca4114ea9ed6e8 # v0.6.3
         name: "Client config"
         id: client_config
         with:
@@ -118,6 +134,9 @@ jobs:
       # BAL-specific environment variables
       HIVE_PARALLEL_TX_PROCESSING_DISABLED: "true"
       HIVE_AMSTERDAM_TIMESTAMP: "1759250952"
+      # Dynamic EELS build args from prepare job
+      EELS_BUILD_ARG_FIXTURES: ${{ needs.prepare.outputs.fixtures_url }}
+      EELS_BUILD_ARG_BRANCH: ${{ needs.prepare.outputs.eels_branch }}
     runs-on: >-
       ${{
         matrix.simulator == 'ethereum/rpc-compat' && 'ubuntu-latest' ||
@@ -135,7 +154,9 @@ jobs:
             "go-ethereum",
             "nethermind",
             "nimbus-el",
-            "erigon"
+            "erigon",
+            "besu",
+            "reth"
           '))}}
         # TODO: add back "ethereum/eels/consume-rlp" when clients have bal-devnet-2 branch
         simulator: >-
@@ -144,13 +165,13 @@ jobs:
           '))}}
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-      - uses: ethpandaops/hive-github-action/helpers/self-hosted-runner-dependencies@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
+      - uses: ethpandaops/hive-github-action/helpers/self-hosted-runner-dependencies@09050fc75bae8a10b1876a0826ca4114ea9ed6e8 # v0.6.3
         if: runner.environment != 'github-hosted'
       - uses: ethpandaops/actions/docker-login@a91b7a8dd6a264f5e845ac2aa52d2d6f24e6d01d
         with:
           username: ethpandaops
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: ethpandaops/hive-github-action@1aa8d73dad34de13afbb3113ab16c1a462d2fbc3 # v0.5.0
+      - uses: ethpandaops/hive-github-action@09050fc75bae8a10b1876a0826ca4114ea9ed6e8 # v0.6.3
         with:
           hive_repository: ${{ needs.prepare.outputs.hive_repo }}
           hive_version: ${{ needs.prepare.outputs.hive_tag }}
