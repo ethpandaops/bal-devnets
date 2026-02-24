@@ -465,22 +465,35 @@ for arg in "${command[@]}"; do
         echo "Continue? (y/n)"
         read -r response
         if [[ $response == "y" ]]; then
+          nonce_hex=$(curl -s --header 'Content-Type: application/json' --data-raw '{"jsonrpc":"2.0","method":"eth_getTransactionCount","params":["'$publickey'","pending"],"id":0}' $rpc_endpoint | jq -r '.result')
+          nonce=$(( ${nonce_hex} ))
+          deposit_eth=$((deposit_amount / 1000000000))
+
+          echo "Starting nonce: $nonce | Deposit per validator: ${deposit_eth} ETH"
+
+          i=0
           while read x; do
-            account_name="$(echo "$x" | jq '.account')"
-            pubkey="$(echo "$x" | jq '.pubkey')"
-            echo "Sending deposit for validator $account_name $pubkey"
-            ethereal beacon deposit \
-              --allow-unknown-contract=true \
-              --address="$deposit_contract_address" \
-              --connection=$rpc_endpoint \
-              --data="$x" \
-              --value="$deposit_amount" \
-              --from="$publickey" \
-              --privatekey="$privatekey" \
-              --allow-excessive-deposit
-            echo "Sent deposit for validator $account_name $pubkey"
-            sleep 5
+            account_name="$(echo "$x" | jq -r '.account')"
+            pubkey_val="0x$(echo "$x" | jq -r '.pubkey')"
+            withdrawal_creds="0x$(echo "$x" | jq -r '.withdrawal_credentials')"
+            signature_val="0x$(echo "$x" | jq -r '.signature')"
+            data_root="0x$(echo "$x" | jq -r '.deposit_data_root')"
+            echo "Sending deposit for validator $account_name (nonce: $((nonce + i)))"
+            cast send \
+              --private-key "$privatekey" \
+              --rpc-url "$rpc_endpoint" \
+              --nonce $((nonce + i)) \
+              --value "${deposit_eth}ether" \
+              --gas-limit 200000 \
+              "$deposit_contract_address" \
+              "deposit(bytes,bytes,bytes,bytes32)" \
+              "$pubkey_val" "$withdrawal_creds" "$signature_val" "$data_root" > /dev/null 2>&1 &
+            i=$((i + 1))
           done < deposits_$prefix-$network-${command[2]}_${command[3]}.txt
+
+          echo "Submitted $i deposits in parallel, waiting for confirmations..."
+          wait
+          echo "All $i deposits confirmed"
           exit;
         else
           echo "Exiting without depositing to the network"
