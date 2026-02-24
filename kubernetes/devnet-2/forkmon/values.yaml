@@ -29,6 +29,8 @@ forkmon:
     name: hc-bootnode-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lighthouse-besu-super-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+    name: hc-lighthouse-ethrex-super-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-geth-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lighthouse-geth-super-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-nethermind-super-1.srv.bal-devnet-2.ethpandaops.io
@@ -39,6 +41,8 @@ forkmon:
     name: hc-lighthouse-reth-super-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lodestar-besu-super-1
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+    name: hc-lodestar-ethrex-super-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lodestar-geth-super-1
   - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-nethermind-super-1.srv.bal-devnet-2.ethpandaops.io

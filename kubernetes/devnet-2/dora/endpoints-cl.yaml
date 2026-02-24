@@ -1,17 +1,17 @@
 # Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-cl.yaml.j2
 # Consensus layer endpoints
 
-- url: http://lodestar-geth-001:5052
-  name: rpc-lodestar-geth-001
-  authGroup: pandaops
-  archive: true
-  priority: 1
 - url: https://bn-hc-bootnode-1.srv.bal-devnet-2.ethpandaops.io
   name: hc-bootnode-1
   authGroup: pandaops
   priority: -1
 - url: https://bn-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io
   name: hc-lighthouse-besu-super-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+  name: hc-lighthouse-ethrex-super-1
   authGroup: pandaops
   priority: -1
   archive: true
@@ -37,6 +37,10 @@
   archive: true
 - url: https://bn-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io
   name: hc-lodestar-besu-super-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+  name: hc-lodestar-ethrex-super-1
   authGroup: pandaops
   priority: -1
 - url: https://bn-hc-lodestar-geth-super-1.srv.bal-devnet-2.ethpandaops.io

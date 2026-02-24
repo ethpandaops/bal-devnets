@@ -52,6 +52,9 @@ assertoor:
     - name:  hc-lighthouse-besu-super-1
       executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io
       consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io
+    - name:  hc-lighthouse-ethrex-super-1
+      executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+      consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
     - name:  hc-lighthouse-geth-super-1
       executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-geth-super-1.srv.bal-devnet-2.ethpandaops.io
       consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-super-1.srv.bal-devnet-2.ethpandaops.io
@@ -67,6 +70,9 @@ assertoor:
     - name:  hc-lodestar-besu-super-1
       executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io
       consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io
+    - name:  hc-lodestar-ethrex-super-1
+      executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+      consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
     - name:  hc-lodestar-geth-super-1
       executionUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lodestar-geth-super-1.srv.bal-devnet-2.ethpandaops.io
       consensusUrl: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-geth-super-1.srv.bal-devnet-2.ethpandaops.io
@@ -86,21 +92,25 @@ assertoor:
     clientPairNames:
       - hc-bootnode-1
       - hc-lighthouse-besu-super-1
+      - hc-lighthouse-ethrex-super-1
       - hc-lighthouse-geth-super-1
       - hc-lighthouse-nethermind-super-1
       - hc-lighthouse-nimbusel-super-1
       - hc-lighthouse-reth-super-1
       - hc-lodestar-besu-super-1
+      - hc-lodestar-ethrex-super-1
       - hc-lodestar-geth-super-1
       - hc-lodestar-nethermind-super-1
       - hc-lodestar-nimbusel-super-1
       - hc-lodestar-reth-super-1
     validatorPairNames:
       - hc-lighthouse-besu-super-1
+      - hc-lighthouse-ethrex-super-1
       - hc-lighthouse-nethermind-super-1
       - hc-lighthouse-nimbusel-super-1
       - hc-lighthouse-reth-super-1
       - hc-lodestar-besu-super-1
+      - hc-lodestar-ethrex-super-1
       - hc-lodestar-geth-super-1
       - hc-lodestar-nethermind-super-1
       - hc-lodestar-nimbusel-super-1
