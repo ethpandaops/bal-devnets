@@ -5,9 +5,8 @@ on:
     inputs:
       client:
         type: string
-        # TODO: add back ethrex (no bal-devnet-2 branch yet)
-        default: '"go-ethereum","nethermind","nimbus-el","erigon", "besu", "reth"'
-        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
+        default: '"go-ethereum","nethermind","nimbus-el","erigon","besu","reth","ethrex"'
+        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el, ethrex
       simulator:
         type: string
         # TODO: add back "ethereum/eels/consume-rlp"
@@ -190,7 +189,8 @@ jobs:
             "nethermind",
             "reth",
             "nimbus-el",
-            "erigon"
+            "erigon",
+            "ethrex"
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
