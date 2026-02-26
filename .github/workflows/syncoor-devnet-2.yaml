@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       el-client:
-        description: "Comma-separated list of execution layer clients (geth,besu,nethermind,erigon,reth)"
+        description: "Comma-separated list of execution layer clients (geth,besu,nethermind,erigon,reth,ethrex)"
         required: false
-        default: '"geth","reth","nethermind","besu","nimbusel"'
+        default: '"geth","reth","nethermind","besu","nimbusel","ethrex"'
         type: string
       cl-client:
         description: "Comma-separated list of consensus layer clients (lighthouse,teku,prysm,nimbus,lodestar,grandine)"
@@ -58,7 +58,8 @@ on:
             "erigon": "ethpandaops/erigon:bal-devnet-2",
             "nethermind": "ethpandaops/nethermind:bal-devnet-2",
             "reth": "ethpandaops/reth:bal-devnet-2",
-            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-2"
+            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-2",
+            "ethrex": "ethpandaops/ethrex:bal-devnet-2"
           }
         type: string
       cl-image:
@@ -103,6 +104,7 @@ jobs:
             fromJSON(format('[{0}]', inputs.el-client || '
               "besu",
               "erigon",
+              "ethrex",
               "geth",
               "nethermind",
               "reth"
@@ -138,7 +140,8 @@ jobs:
             "erigon": "ethpandaops/erigon:bal-devnet-2",
             "nethermind": "ethpandaops/nethermind:bal-devnet-2",
             "reth": "ethpandaops/reth:bal-devnet-2",
-            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-2"
+            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-2",
+            "ethrex": "ethpandaops/ethrex:bal-devnet-2"
           }
           EOF
           echo "el-images=$(cat /tmp/default-el-images.json | jq -c .)" >> $GITHUB_OUTPUT
