@@ -1,17 +1,17 @@
-name: Hive - BAL
+name: Hive - BAL Devnet 3
 on:
   workflow_dispatch:
     # Note: We're limited to 10 inputs
     inputs:
       client:
         type: string
-        default: '"go-ethereum","reth","nethermind","besu","nimbus-el","erigon"'
-        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
+        default: '"go-ethereum","nethermind","nimbus-el","erigon","besu","reth","ethrex"'
+        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el, ethrex
       simulator:
         type: string
+        # TODO: add back "ethereum/eels/consume-rlp"
         default: >-
-          "ethereum/eels/consume-engine",
-          "ethereum/eels/consume-rlp",
+          "ethereum/eels/consume-engine"
         description: >-
           Comma-separated list of simulators to test
           .e.g ethereum/rpc-compat, ethereum/eels/consume-engine, ethereum/eels/consume-rlp, ethereum/eels/execute-blobs
@@ -32,29 +32,28 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-        default: "bal-devnet-1"
+        default: "bal-devnet-3"
       client_repos:
         type: string
         default: |
           {
-            "geth": "ethereum/go-ethereum@bal-devnet-1",
-            "besu": "hyperledger/besu@bal-devnet-1",
-            "reth": "paradigmxyz/reth@bal-devnet-1",
-            "nethermind": "NethermindEth/nethermind@bal-devnet-1",
-            "nimbus-el": "status-im/nimbus-eth1@bal-devnet-1"
-            "erigon": "erigontech/erigon@bal-devnet-1"
+            "geth": "ethereum/go-ethereum@master",
+            "besu": "hyperledger/besu@main",
+            "reth": "paradigmxyz/reth@main",
+            "nethermind": "NethermindEth/nethermind@master"
           }
         description: 'JSON object containing client versions in format {"client": "repo@tag", ...}'
       client_images:
         type: string
         default: |
           {
-            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:bal-devnet-1",
-            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:bal-devnet-1",
-            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:bal-devnet-1",
-            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:bal-devnet-1",
-            "nimbus-el": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:bal-devnet-1",
-            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:bal-devnet-1"
+            "geth": "docker.ethquokkaops.io/dh/ethpandaops/geth:master",
+            "besu": "docker.ethquokkaops.io/dh/ethpandaops/besu:main",
+            "reth": "docker.ethquokkaops.io/dh/ethpandaops/reth:main",
+            "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master",
+            "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:main",
+            "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:master",
+            "ethrex": "docker.ethquokkaops.io/dh/ethpandaops/ethrex:main"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
@@ -66,8 +65,6 @@ env:
   S3_PATH: bal
   S3_PUBLIC_URL: https://hive.ethpandaops.io/#/test/bal/
   INSTALL_RCLONE_VERSION: v1.68.2
-  EELS_BUILD_ARG_FIXTURES: https://github.com/ethereum/execution-spec-tests/releases/download/bal%40v2.0.0/fixtures_bal.tar.gz
-  EELS_BUILD_ARG_BRANCH: tests-bal@v2.0.0
   # Flags used for all simulators
   GLOBAL_EXTRA_FLAGS: >-
     --client.checktimelimit=300s
@@ -121,13 +118,32 @@ jobs:
           github.event_name == 'schedule' && 'git' ||
           inputs.client_source
         }}
+      # Latest fixtures URL and branch
+      fixtures_url: ${{ steps.latest.outputs.fixtures_url }}
+      eels_branch: ${{ steps.latest.outputs.eels_branch }}
     steps:
+      - name: Get latest bal fixtures and branch
+        id: latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Get latest bal fixtures release from EEST
+          TAG=$(gh release list --repo ethereum/execution-spec-tests --json tagName --limit 100 | jq -r '[.[] | select(.tagName | startswith("bal"))][0].tagName')
+          FIXTURES_URL="https://github.com/ethereum/execution-spec-tests/releases/download/${TAG}/fixtures_bal.tar.gz"
+          echo "fixtures_url=$FIXTURES_URL" >> "$GITHUB_OUTPUT"
+          echo "Using fixtures from: $FIXTURES_URL"
+
+          # Get latest devnets/bal/N branch from EELS (highest number)
+          BRANCH=$(gh api repos/ethereum/execution-specs/branches --paginate -q '.[].name' | grep -E '^devnets/bal/[0-9]+$' | sort -t/ -k3 -n | tail -1)
+          echo "eels_branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "Using EELS branch: $BRANCH"
+
       - uses: ethpandaops/hive-github-action/helpers/client-config@09050fc75bae8a10b1876a0826ca4114ea9ed6e8 # v0.6.3
         if: github.event_name == 'schedule'
         name: "Client config: schedule"
         id: client_config_schedule
         with:
-          common_client_tag: "bal-devnet-1"
+          common_client_tag: "bal-devnet-3"
           client_source: "git"
           hive_version: "ethereum/hive@master"
           goproxy: ${{ env.GOPROXY }}
@@ -145,12 +161,15 @@ jobs:
           goproxy: ${{ env.GOPROXY }}
 
   test:
-    timeout-minutes: 720
+    timeout-minutes: 4320
     needs: prepare
     env:
       # BAL-specific environment variables
       HIVE_PARALLEL_TX_PROCESSING_DISABLED: "true"
       HIVE_AMSTERDAM_TIMESTAMP: "1759250952"
+      # Dynamic EELS build args from prepare job
+      EELS_BUILD_ARG_FIXTURES: ${{ needs.prepare.outputs.fixtures_url }}
+      EELS_BUILD_ARG_BRANCH: ${{ needs.prepare.outputs.eels_branch }}
     runs-on: >-
       ${{
         matrix.simulator == 'ethereum/rpc-compat' && 'ubuntu-latest' ||
@@ -159,7 +178,7 @@ jobs:
       }}
     concurrency:
       group: >-
-        ${{ github.head_ref || inputs }}-${{ matrix.client }}-${{ matrix.simulator }}
+        ${{ github.head_ref || inputs || github.workflow }}-${{ matrix.client }}-${{ matrix.simulator }}
     strategy:
       fail-fast: false
       matrix:
@@ -170,7 +189,8 @@ jobs:
             "nethermind",
             "reth",
             "nimbus-el",
-            "erigon"
+            "erigon",
+            "ethrex"
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
