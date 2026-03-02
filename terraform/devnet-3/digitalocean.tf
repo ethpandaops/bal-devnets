@@ -58,7 +58,7 @@ locals {
         vms = {
           "${i + 1}" = {
             val_start = node.validator_start + (i * (node.validator_end - node.validator_start) / node.count)
-            val_end   = min(
+            val_end = min(
               node.validator_start + ((i + 1) * (node.validator_end - node.validator_start) / node.count),
               node.validator_end
             )
@@ -113,9 +113,9 @@ locals {
           "val_end:${vm.val_end}",
           "supernode:${vm.supernode ? "True" : "False"}",
           "arch:${vm.arch}",
-        ], compact([
-          can(regex("bootnode", group.group_name)) ? "bootnode:${var.ethereum_network}" : null,
-          can(regex("mev-relay", group.group_name)) ? "mev-relay:${var.ethereum_network}" : null
+          ], compact([
+            can(regex("bootnode", group.group_name)) ? "bootnode:${var.ethereum_network}" : null,
+            can(regex("mev-relay", group.group_name)) ? "mev-relay:${var.ethereum_network}" : null
         ]))
       }
     ]
