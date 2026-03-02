@@ -1,8 +1,9 @@
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_github_team_el:
-  - edg-l
-  - JereSalo
+  - arkenan
   - ilitteri
+  - edg-l
+  - iovoid
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: ethrex
