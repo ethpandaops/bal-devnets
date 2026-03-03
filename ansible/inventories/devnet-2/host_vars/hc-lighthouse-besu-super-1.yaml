@@ -1,5 +1,5 @@
 # Override besu image with prefetch branch (commit f5bfe89)
-besu_container_image: ethpandaops/besu:bal-devnet-2
+besu_container_image: ethpandaops/besu:bal-devnet-2-with-prefetch
 
 besu_container_command_extra_args:
   - --genesis-file=/network-config/besu.json
