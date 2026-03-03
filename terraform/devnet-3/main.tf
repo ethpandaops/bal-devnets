@@ -86,7 +86,7 @@ locals {
       ipv6            = try(node.ipv6, true)
       ipv4_enabled    = try(node.ipv4_enabled, true)
       ipv6_enabled    = try(node.ipv6_enabled, true)
-      start_index     = sum([for i, n in var.nodes : n.count if i < idx && n.name == node.name])
+      start_index     = sum(concat([for i, n in var.nodes : n.count if i < idx && n.name == node.name], [0]))
     }
   ]
 

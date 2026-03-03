@@ -7,6 +7,8 @@ bootstrap_default_user_authorized_keys_github_team_el:
   - rkrasiuk
   - mattsse
   - jenpaff
+  - emmajam
+  - rjected
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: reth
