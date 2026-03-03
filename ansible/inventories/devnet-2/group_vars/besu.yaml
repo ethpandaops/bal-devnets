@@ -38,6 +38,8 @@ besu_container_command_extra_args:
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --target-gas-limit=80000000
 besu_container_pull: true
+besu_container_security_opts:
+  - "seccomp=unconfined"
 
 prometheus_config: |
   global:
