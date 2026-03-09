@@ -53,6 +53,15 @@ checkpointz:
         - name: rpc-lodestar-geth-001
           address: http://lodestar-geth-001:5052
           dataProvider: true
+        - name: hc-lighthouse-besu-noprefetch-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-noprefetch-super-1.srv.bal-devnet-2.ethpandaops.io
+          dataProvider: true
+        - name: hc-lighthouse-besu-optimized-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-optimized-super-1.srv.bal-devnet-2.ethpandaops.io
+          dataProvider: true
+        - name: hc-lighthouse-besu-sequential-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-sequential-super-1.srv.bal-devnet-2.ethpandaops.io
+          dataProvider: true
         - name: hc-lighthouse-besu-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io
           dataProvider: true
@@ -61,6 +70,15 @@ checkpointz:
           dataProvider: true
         - name: hc-lighthouse-ethrex-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+          dataProvider: true
+        - name: hc-lighthouse-geth-noprefetch-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-noprefetch-super-1.srv.bal-devnet-2.ethpandaops.io
+          dataProvider: true
+        - name: hc-lighthouse-geth-optimized-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-optimized-super-1.srv.bal-devnet-2.ethpandaops.io
+          dataProvider: true
+        - name: hc-lighthouse-geth-sequential-super-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-sequential-super-1.srv.bal-devnet-2.ethpandaops.io
           dataProvider: true
         - name: hc-lighthouse-geth-super-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-super-1.srv.bal-devnet-2.ethpandaops.io
