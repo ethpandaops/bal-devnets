@@ -36,7 +36,7 @@ variable "lighthouse_geth_optimized_super" {
     count           = 1
     validator_start = 0
     validator_end   = 0
-    size            = "ccX33"
+    size            = "ccx33"
     supernode       = true
   }
 }
@@ -78,7 +78,7 @@ variable "lighthouse_besu_optimized_super" {
     count           = 1
     validator_start = 0
     validator_end   = 0
-    size            = "ccX33"
+    size            = "ccx33"
     supernode       = true
   }
 }
