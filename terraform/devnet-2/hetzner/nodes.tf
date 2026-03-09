@@ -117,9 +117,9 @@ variable "lighthouse_nethermind_super" {
 variable "lighthouse_erigon_super" {
   default = {
     name            = "lighthouse-erigon-super"
-    count           = 0
-    validator_start = 0
-    validator_end   = 0
+    count           = 1
+    validator_start = 2400
+    validator_end   = 2600
   }
 }
 
@@ -236,9 +236,9 @@ variable "lodestar_besu_super" {
 variable "lodestar_erigon_super" {
   default = {
     name            = "lodestar-erigon-super"
-    count           = 0
-    validator_start = 0
-    validator_end   = 0
+    count           = 1
+    validator_start = 2600
+    validator_end   = 2800
   }
 }
 

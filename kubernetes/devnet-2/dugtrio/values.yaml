@@ -41,6 +41,8 @@ dugtrio:
     name: hc-bootnode-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lighthouse-besu-super-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-erigon-super-1.srv.bal-devnet-2.ethpandaops.io
+    name: hc-lighthouse-erigon-super-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lighthouse-ethrex-super-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-super-1.srv.bal-devnet-2.ethpandaops.io
@@ -53,6 +55,8 @@ dugtrio:
     name: hc-lighthouse-reth-super-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-besu-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lodestar-besu-super-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-erigon-super-1.srv.bal-devnet-2.ethpandaops.io
+    name: hc-lodestar-erigon-super-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
     name: hc-lodestar-ethrex-super-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lodestar-geth-super-1.srv.bal-devnet-2.ethpandaops.io

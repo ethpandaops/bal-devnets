@@ -1,13 +1,12 @@
-name: Hive - BAL Devnet 2
+name: Hive - BAL Devnet 3
 on:
   workflow_dispatch:
     # Note: We're limited to 10 inputs
     inputs:
       client:
         type: string
-        # TODO: add back ethrex (no bal-devnet-2 branch yet)
-        default: '"go-ethereum","nethermind","nimbus-el","erigon", "besu", "reth"'
-        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el
+        default: '"go-ethereum","nethermind","nimbus-el","erigon","besu","reth","ethrex"'
+        description: Comma-separated list of clients to test .e.g go-ethereum, besu, reth, nethermind, erigon, nimbus-el, ethrex
       simulator:
         type: string
         # TODO: add back "ethereum/eels/consume-rlp"
@@ -33,7 +32,7 @@ on:
         type: string
         description: >-
           If provided, this tag will be used for all clients, overriding individual tags/branches in client_repos and client_images
-        default: "bal-devnet-2"
+        default: "bal-devnet-3"
       client_repos:
         type: string
         default: |
@@ -54,7 +53,7 @@ on:
             "nethermind": "docker.ethquokkaops.io/dh/ethpandaops/nethermind:master",
             "erigon": "docker.ethquokkaops.io/dh/ethpandaops/erigon:main",
             "nimbusel": "docker.ethquokkaops.io/dh/ethpandaops/nimbus-eth1:master",
-            "ethrex": "ghcr.io/lambdaclass/ethrex:main"
+            "ethrex": "docker.ethquokkaops.io/dh/ethpandaops/ethrex:main"
           }
         description: 'JSON object containing client docker images in format {"client": "registry:tag", ...}'
 
@@ -144,7 +143,7 @@ jobs:
         name: "Client config: schedule"
         id: client_config_schedule
         with:
-          common_client_tag: "bal-devnet-2"
+          common_client_tag: "bal-devnet-3"
           client_source: "git"
           hive_version: "ethereum/hive@master"
           goproxy: ${{ env.GOPROXY }}
@@ -162,7 +161,7 @@ jobs:
           goproxy: ${{ env.GOPROXY }}
 
   test:
-    timeout-minutes: 2440
+    timeout-minutes: 4320
     needs: prepare
     env:
       # BAL-specific environment variables
@@ -190,7 +189,8 @@ jobs:
             "nethermind",
             "reth",
             "nimbus-el",
-            "erigon"
+            "erigon",
+            "ethrex"
           '))}}
         simulator: >-
           ${{ fromJSON(format('[{0}]', inputs.simulator || '
@@ -198,7 +198,7 @@ jobs:
             "ethereum/eels/consume-rlp"
           '))}}
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ethpandaops/hive-github-action/helpers/self-hosted-runner-dependencies@09050fc75bae8a10b1876a0826ca4114ea9ed6e8 # v0.6.3
         if: runner.environment != 'github-hosted'
       - uses: ethpandaops/actions/docker-login@a91b7a8dd6a264f5e845ac2aa52d2d6f24e6d01d
