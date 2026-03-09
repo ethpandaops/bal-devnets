@@ -145,5 +145,12 @@ locals {
     var.grandine_besu_super,
     var.grandine_reth_super,
     var.grandine_nimbusel_super,
+    # Benchmark Nodes
+    var.lighthouse_besu_sequential_super,
+    var.lighthouse_besu_optimized_super,
+    var.lighthouse_besu_noprefetch_super,
+    var.lighthouse_geth_sequential_super,
+    var.lighthouse_geth_optimized_super,
+    var.lighthouse_geth_noprefetch_super
   ]
 }

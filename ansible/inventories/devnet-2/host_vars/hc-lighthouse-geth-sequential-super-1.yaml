@@ -1,0 +1,16 @@
+# Benchmark: sequential (no BAL acceleration)
+default_ethereum_client_images:
+  lighthouse: ethpandaops/lighthouse:bal-devnet-2
+  geth: ethpandaops/geth:bal-devnet-2
+
+geth_container_command_extra_args:
+  - --http.api=eth,net,web3,debug,admin,txpool,trace
+  - --http.vhosts=*
+  - --networkid={{ ethereum_network_id }}
+  - --syncmode=full
+  - --history.state=0
+  - --gcmode=archive
+  - --syncmode=full
+  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
+  - --miner.gaslimit=80000000
+  - --bal.executionmode=sequential

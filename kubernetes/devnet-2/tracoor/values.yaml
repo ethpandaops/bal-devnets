@@ -105,6 +105,36 @@ tracoor-single:
             traceDisableMemory: true
             traceDisableStack: true
             traceDisableStorage: true
+      - name: hc-lighthouse-besu-noprefetch-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-2
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-noprefetch-super-1.srv.bal-devnet-2.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-besu-noprefetch-super-1.srv.bal-devnet-2.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lighthouse-besu-optimized-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-2
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-optimized-super-1.srv.bal-devnet-2.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-besu-optimized-super-1.srv.bal-devnet-2.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lighthouse-besu-sequential-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-2
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-besu-sequential-super-1.srv.bal-devnet-2.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-besu-sequential-super-1.srv.bal-devnet-2.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
       - name: hc-lighthouse-besu-super-1
         ethereum:
           overrideNetworkName: bal-devnet-2
@@ -132,6 +162,36 @@ tracoor-single:
             nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
           execution:
             nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-ethrex-super-1.srv.bal-devnet-2.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lighthouse-geth-noprefetch-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-2
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-noprefetch-super-1.srv.bal-devnet-2.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-geth-noprefetch-super-1.srv.bal-devnet-2.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lighthouse-geth-optimized-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-2
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-optimized-super-1.srv.bal-devnet-2.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-geth-optimized-super-1.srv.bal-devnet-2.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: hc-lighthouse-geth-sequential-super-1
+        ethereum:
+          overrideNetworkName: bal-devnet-2
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-hc-lighthouse-geth-sequential-super-1.srv.bal-devnet-2.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-hc-lighthouse-geth-sequential-super-1.srv.bal-devnet-2.ethpandaops.io
             traceDisableMemory: true
             traceDisableStack: true
             traceDisableStorage: true
