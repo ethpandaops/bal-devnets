@@ -49,7 +49,7 @@ on:
         default: ''
         type: string
       el-image:
-        description: 'Execution layer client images as JSON (e.g., {"geth": "ethereum/client-go:latest", "besu": "hyperledger/besu:latest"})'
+        description: 'Execution layer client images as JSON (e.g., {"geth": "ethereum/client-go:latest", "besu": "besu-eth/besu:latest"})'
         required: false
         default: >-
           {

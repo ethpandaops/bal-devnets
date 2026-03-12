@@ -40,7 +40,7 @@ on:
         default: |
           {
             "geth": "ethereum/go-ethereum@master",
-            "besu": "hyperledger/besu@main",
+            "besu": "besu-eth/besu@main",
             "reth": "paradigmxyz/reth@main",
             "nethermind": "NethermindEth/nethermind@master",
           }
