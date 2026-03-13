@@ -46,6 +46,7 @@ print_usage() {
   echo "  get_beacon                        Get the beacon of the network"
   echo "  get_inventory                     Get the inventory of the network"
   echo "  fork_choice                       Get the fork choice of the network"
+  echo "  send_funds address amount          Send ETH to an address - amount in ETH"
   echo "  send_blob n                       Send "n" number of blob(s) to the network [default 1]"
   echo "  deposit s e [type]                Deposit to the network from validator index start to end - optional withdrawal type (0x00, 0x01, 0x02)"
   echo "  topup validator_index[,index2,...] eth_amount  Top-up one or more validators with additional ETH (Pectra upgrade feature)"
@@ -328,6 +329,47 @@ for arg in "${command[@]}"; do
     "fork_choice")
       # Get the fork choice of the network
       curl -s $bn_endpoint/eth/v1/debug/fork_choice | jq '.fork_choice_nodes | .[-1]'
+      ;;
+    "send_funds")
+      # Send ETH to an address
+      if [[ $# -ne 3 ]]; then
+        echo "Usage: ${0} send_funds <address> <amount_in_eth>"
+        echo "  Example: ${0} send_funds 0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18 10"
+        exit 1
+      fi
+      to_address=${command[2]}
+      eth_amount=${command[3]}
+      if [[ ! $to_address =~ ^0x[a-fA-F0-9]{40}$ ]]; then
+        echo "Invalid address format. Must be a valid Ethereum address (0x + 40 hex chars)."
+        exit 1
+      fi
+      if ! [[ "$eth_amount" =~ ^[0-9]+(\.[0-9]+)?$ ]] || (( $(echo "$eth_amount <= 0" | bc -l) )); then
+        echo "Invalid amount. Must be a positive number."
+        exit 1
+      fi
+      deposit_path="m/44'/60'/0'/0/7"
+      privatekey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Private key/{print $NF}')
+      publickey=$(ethereal hd keys --path="$deposit_path" --seed="$sops_mnemonic" | awk '/Ethereum address/{print $NF}')
+      balance=$(curl -s --header 'Content-Type: application/json' --data-raw '{"jsonrpc":"2.0","method":"eth_getBalance","params":["'$publickey'","latest"],"id":0}' $rpc_endpoint | jq -r '.result' | python -c "import sys; print(int(sys.stdin.read(), 16) / 1e18)")
+      echo "Sending $eth_amount ETH to $to_address"
+      echo "  From: $publickey (balance: $balance ETH)"
+      echo "  To: $to_address"
+      echo "  Amount: $eth_amount ETH"
+      echo ""
+      echo "Continue? (y/n)"
+      read -r response
+      if [[ $response == "y" ]]; then
+        cast send \
+          --private-key "$privatekey" \
+          --rpc-url "$rpc_endpoint" \
+          --value "${eth_amount}ether" \
+          --gas-limit 21000 \
+          "$to_address"
+        echo "Transaction sent!"
+      else
+        echo "Cancelled."
+      fi
+      exit
       ;;
     "send_blob")
       # Get a private key from a mnemonic
