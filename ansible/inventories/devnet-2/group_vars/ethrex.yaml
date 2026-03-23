@@ -24,6 +24,8 @@ ethrex_container_command_extra_args:
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --builder.gas-limit=80000000
   - --syncmode=full
+  - --p2p.lookup-interval=1000
+  - --p2p.discv5=false
 
 prometheus_config: |
   global:
