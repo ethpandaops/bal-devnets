@@ -1,0 +1,55 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/spamoor.yaml.j2
+
+spamoor:
+  fullnameOverride: spamoor
+  image:
+    repository: ethpandaops/spamoor
+    tag: master-latest
+    pullPolicy: Always
+  resources:
+    requests:
+      cpu: 250m
+      memory: 500Mi
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+  ingress:
+    enabled: true
+    className: ingress-nginx-public
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu-1.0.0.js" integrity="sha384-j6D+DanVUQs7XYmJaMXGwg2VdBq07F/ekc+bP5CNPsLOYCv4TKf8r3JBWqxwakKL" crossorigin="anonymous"></script></head>';
+        sub_filter_types text/html;
+        sub_filter_once off;
+    hosts:
+      - host: spamoor.bal-devnet-3.ethpandaops.io
+        paths:
+          - path: /
+            pathType: Prefix
+
+  customArgs:
+    - --fulu-activation=1775658630
+
+  persistence:
+    enabled: true
+
+  privateKey: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.spamoor_private_key}>"
+  enableAuth: true
+  authTokenKey: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.spamoor_private_key}>-spamoor-jwt"
+  rpcEndpoints:
+  - "group(bootnode-1)name(bootnode-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lighthouse,besu,super,1,lighthouse-besu-super-1)name(lighthouse-besu-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-besu-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lighthouse,erigon,super,1,lighthouse-erigon-super-1)name(lighthouse-erigon-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-erigon-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lighthouse,ethrex,super,1,lighthouse-ethrex-super-1)name(lighthouse-ethrex-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-ethrex-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lighthouse,geth,super,1,lighthouse-geth-super-1)name(lighthouse-geth-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-geth-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lighthouse,nethermind,super,1,lighthouse-nethermind-super-1)name(lighthouse-nethermind-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lighthouse,nimbusel,super,1,lighthouse-nimbusel-super-1)name(lighthouse-nimbusel-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-nimbusel-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lighthouse,reth,super,1,lighthouse-reth-super-1)name(lighthouse-reth-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-reth-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lodestar,besu,super,1,lodestar-besu-super-1)name(lodestar-besu-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-besu-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lodestar,erigon,super,1,lodestar-erigon-super-1)name(lodestar-erigon-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-erigon-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lodestar,ethrex,super,1,lodestar-ethrex-super-1)name(lodestar-ethrex-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-ethrex-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lodestar,geth,super,1,lodestar-geth-super-1)name(lodestar-geth-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-geth-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lodestar,nethermind,super,1,lodestar-nethermind-super-1)name(lodestar-nethermind-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-nethermind-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lodestar,nimbusel,super,1,lodestar-nimbusel-super-1)name(lodestar-nimbusel-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-nimbusel-super-1.srv.bal-devnet-3.ethpandaops.io"
+  - "group(lodestar,reth,super,1,lodestar-reth-super-1)name(lodestar-reth-super-1)https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-reth-super-1.srv.bal-devnet-3.ethpandaops.io"
