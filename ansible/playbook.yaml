@@ -97,6 +97,49 @@
             rate_upload: 1000mbit
       tags: [traffic_control]
 
+- hosts: ethrex
+  become: true
+  tags: [ethrex_connlimit]
+  tasks:
+    - name: Rate limit outbound p2p connection attempts (TCP)
+      ansible.builtin.iptables:
+        chain: OUTPUT
+        protocol: tcp
+        destination_port: "30303"
+        ctstate: NEW
+        limit: 5/second
+        limit_burst: 10
+        jump: ACCEPT
+        comment: "ethrex p2p TCP conn rate limit"
+    - name: Drop excess outbound p2p connections (TCP)
+      ansible.builtin.iptables:
+        chain: OUTPUT
+        protocol: tcp
+        destination_port: "30303"
+        ctstate: NEW
+        jump: DROP
+        comment: "ethrex p2p TCP conn drop excess"
+    - name: Rate limit outbound p2p packets (UDP)
+      ansible.builtin.iptables:
+        chain: OUTPUT
+        protocol: udp
+        destination_port: "30303"
+        limit: 20/second
+        limit_burst: 40
+        jump: ACCEPT
+        comment: "ethrex p2p UDP rate limit"
+    - name: Drop excess outbound p2p packets (UDP)
+      ansible.builtin.iptables:
+        chain: OUTPUT
+        protocol: udp
+        destination_port: "30303"
+        jump: DROP
+        comment: "ethrex p2p UDP drop excess"
+    - name: Persist iptables rules
+      ansible.builtin.shell: iptables-save > /etc/iptables/rules.v4
+      args:
+        creates: /etc/iptables/rules.v4
+
 - hosts: bootnode
   become: true
   tasks:
