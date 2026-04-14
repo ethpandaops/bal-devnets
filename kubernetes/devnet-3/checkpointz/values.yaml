@@ -6,7 +6,7 @@ checkpointz:
 
   image:
     repository: ethpandaops/checkpointz
-    tag: gloas-debian-latest
+    tag: bals-debian-latest
     pullPolicy: Always
   resources:
     requests:
