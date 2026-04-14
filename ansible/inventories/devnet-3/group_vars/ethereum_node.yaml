@@ -1,15 +1,22 @@
-ethereum_cl_bootnodes:
-  - "{{ hostvars[primary_bootnode]['bootnodoor_fact_enr'] }}"
-  - "{{ hostvars[primary_bootnode]['ethereum_node_fact_cl_enr'] }}"
-  - "{{ hostvars['lighthouse-geth-super-1']['ethereum_node_fact_cl_enr'] }}"
-  - "{{ hostvars['lighthouse-nethermind-super-1']['ethereum_node_fact_cl_enr'] }}"
+ethereum_cl_bootnodes: >-
+  {{
+    (
+      [hostvars[primary_bootnode]['bootnodoor_fact_enr'] | default(None)]
+      + [hostvars[primary_bootnode]['ethereum_node_fact_cl_enr'] | default(None)]
+      + [hostvars['lighthouse-geth-super-1']['ethereum_node_fact_cl_enr'] | default(None)]
+      + [hostvars['lighthouse-nethermind-super-1']['ethereum_node_fact_cl_enr'] | default(None)]
+    ) | select('string') | list
+  }}
 
-
-ethereum_el_bootnodes:
-  - "{{ hostvars[primary_bootnode]['bootnodoor_fact_enode'] }}"
-  - "{{ hostvars[primary_bootnode]['ethereum_node_fact_el_enode'] }}"
-  - "{{ hostvars['lighthouse-geth-super-1']['ethereum_node_fact_el_enode'] }}"
-  - "{{ hostvars['lighthouse-nethermind-super-1']['ethereum_node_fact_el_enode'] }}"
+ethereum_el_bootnodes: >-
+  {{
+    (
+      [hostvars[primary_bootnode]['bootnodoor_fact_enode'] | default(None)]
+      + [hostvars[primary_bootnode]['ethereum_node_fact_el_enode'] | default(None)]
+      + [hostvars['lighthouse-geth-super-1']['ethereum_node_fact_el_enode'] | default(None)]
+      + [hostvars['lighthouse-nethermind-super-1']['ethereum_node_fact_el_enode'] | default(None)]
+    ) | select('string') | list
+  }}
 
 ethereum_node_xatu_sentry_enabled: true
 

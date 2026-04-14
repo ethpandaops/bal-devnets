@@ -135,6 +135,11 @@
         destination_port: "30303"
         jump: DROP
         comment: "ethrex p2p UDP drop excess"
+    - name: Ensure iptables directory exists
+      ansible.builtin.file:
+        path: /etc/iptables
+        state: directory
+        mode: "0755"
     - name: Persist iptables rules
       ansible.builtin.shell: iptables-save > /etc/iptables/rules.v4
       args:

@@ -1,6 +1,7 @@
 ethereum_cl_bootnode: "{{ hostvars[primary_bootnode]['bootnodoor_fact_enr'] }}"
 ethereum_el_bootnode: "{{ hostvars[primary_bootnode]['bootnodoor_fact_enode'] }}"
 
+
 # role: ethpandaops.general.bootnodoor
 bootnodoor_privkey: >-
   {{
@@ -63,12 +64,11 @@ lodestar_container_volumes:
 lodestar_container_command_extra_args:
   - --paramsFile=/network-config/config.yaml
   - --genesisStateFile=/network-config/genesis.ssz
+  - --persistNetworkIdentity
   - --rest.namespace="*"
   - --nat=true
   - --logLevel=debug
-  - --disablePeerScoring
   - --serveHistoricalState
-  - --network.connectToDiscv5Bootnodes
   - --network.connectToDiscv5Bootnodes
   - >-
     --bootnodes={{
@@ -98,12 +98,13 @@ geth_container_env:
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
 geth_container_command_extra_args:
-  - --http.api=eth,net,web3,debug,admin
+  - --http.api=eth,net,web3,debug,admin,txpool,trace
   - --http.vhosts=*
   - --networkid={{ ethereum_network_id }}
   - --syncmode=full
   - --gcmode=archive
-  - --state.scheme=hash
+  - --history.state=0
+  - --miner.gaslimit=80000000
   - >-
     --bootnodes={{
       (
@@ -130,7 +131,6 @@ geth_container_pull: true
 geth_init_custom_network_container_command:
   - --datadir=/data
   - init
-  - --state.scheme=hash
   - /genesis.json
 
 # role: ethpandaops.general.prometheus
