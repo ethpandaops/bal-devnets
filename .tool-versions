@@ -6,3 +6,4 @@ python 3.12.12
 awscli 2.22.26
 yq 4.44.6
 terraform 1.9.0
+rancher 2.6.7
