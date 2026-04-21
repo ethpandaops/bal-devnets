@@ -36,7 +36,7 @@ besu_container_command_extra_args:
   - --bonsai-limit-trie-logs-enabled=false
   - --bonsai-historical-block-limit=100000000
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --target-gas-limit=80000000
+  - --target-gas-limit=120000000
 besu_container_pull: true
 besu_container_security_opts:
   - "seccomp=unconfined"

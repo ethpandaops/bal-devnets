@@ -23,7 +23,7 @@ geth_container_command_extra_args:
   - --history.state=0
   - --gcmode=archive
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --miner.gaslimit=80000000
+  - --miner.gaslimit=120000000
 geth_init_custom_network: true
 geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
 geth_init_custom_network_container_command:
