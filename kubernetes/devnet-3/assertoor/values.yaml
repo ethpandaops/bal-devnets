@@ -5,8 +5,8 @@ assertoor:
 
   image:
     repository: ethpandaops/assertoor
-    tag: master-latest
-    pullPolicy: Always
+    tag: qu0b-gloas-bals-v2
+    pullPolicy: IfNotPresent
   resources:
     requests:
       cpu: 500m
