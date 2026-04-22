@@ -28,6 +28,11 @@ terraform.rc
 # Sops
 **/.decrypted*
 
+# fork-monitor (lives in its own repo)
+/fork-monitor/
+**/fork-monitor*.j2
+**/fork-monitor.sops.yaml
+
 # Validator keys
 **/files/validator_keys/*
 network-configs/**/mnemonics.yaml
