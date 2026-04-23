@@ -30,7 +30,7 @@ reth_container_command_extra_args:
   - --chain=/network-config/genesis.json
   - --http.api=trace,rpc,eth,net,debug,web3,admin,txpool
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --builder.gaslimit=120000000
+  - --builder.gaslimit=100000000
 prometheus_config: |
   global:
     scrape_interval: 30s
