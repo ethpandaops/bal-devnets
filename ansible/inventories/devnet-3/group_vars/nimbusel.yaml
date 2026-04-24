@@ -27,6 +27,13 @@ nimbusel_container_command_extra_args:
   - --ws-api=admin,eth,debug
   - --gas-limit=100000000
 
+# Override role default --log-level=INFO with DEBUG (requested by nimbus-el team)
+nimbusel_container_command: >-
+  {{
+    (nimbusel_container_command_default | map('regex_replace', '^--log-level=INFO$', '--log-level=DEBUG') | list)
+    + (nimbusel_container_command_v6 if nimbusel_ipv6_enabled and ansible_default_ipv6.address is defined else [])
+  }}
+
 prometheus_config: |
   global:
     scrape_interval: 30s
