@@ -23,7 +23,11 @@ besu_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
-  BESU_OPTS: "-Xmx8g -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/heap-%p.hprof"
+  # HeapDumpPath collides on container restart (PID is always 1 inside the container),
+  # so HotSpot silently skips the dump after the first OOM. The OnOutOfMemoryError hook
+  # renames the just-written dump with a UTC timestamp before the JVM exits, ensuring
+  # subsequent OOMs don't lose dumps. See playbook task `besu_oom_rotate`.
+  BESU_OPTS: "-Xmx8g -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/heap-dumps/heap-%p.hprof -XX:OnOutOfMemoryError=/data/heap-dumps/oom-rotate.sh"
 besu_container_volumes:
   - "{{ besu_datadir }}:/data"
   - "{{ besu_auth_jwt_path }}:/execution-auth.jwt:ro"
