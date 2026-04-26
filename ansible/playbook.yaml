@@ -103,14 +103,14 @@
   tasks:
     - name: Ensure besu heap-dumps directory exists
       ansible.builtin.file:
-        path: "{{ besu_datadir }}/heap-dumps"
+        path: "{{ besu_datadir | default('/data/besu') }}/heap-dumps"
         state: directory
         owner: besu
         group: besu
         mode: "0755"
     - name: Deploy besu OOM heap-dump rotate script
       ansible.builtin.copy:
-        dest: "{{ besu_datadir }}/heap-dumps/oom-rotate.sh"
+        dest: "{{ besu_datadir | default('/data/besu') }}/heap-dumps/oom-rotate.sh"
         owner: besu
         group: besu
         mode: "0755"
@@ -139,11 +139,11 @@
       ansible.builtin.shell: |
         set -eu
         moved=0
-        for f in {{ besu_datadir }}/heap-*.hprof; do
+        for f in {{ besu_datadir | default('/data/besu') }}/heap-*.hprof; do
           [ -f "$f" ] || continue
           ts=$(stat -c '%Y' "$f")
           base=$(basename "$f" .hprof)
-          mv "$f" "{{ besu_datadir }}/heap-dumps/${base}-$(date -u -d @${ts} +%Y%m%dT%H%M%SZ)-archived.hprof"
+          mv "$f" "{{ besu_datadir | default('/data/besu') }}/heap-dumps/${base}-$(date -u -d @${ts} +%Y%m%dT%H%M%SZ)-archived.hprof"
           moved=$((moved+1))
         done
         echo "moved=${moved}"
