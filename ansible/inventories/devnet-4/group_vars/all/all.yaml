@@ -80,6 +80,7 @@ ethereum_genesis_generator_config_files:
     export GLOAS_FORK_EPOCH=2
     export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
     export GENESIS_DELAY={{ ethereum_genesis_timedelay }}
+    export GENESIS_GASLIMIT=100000000
     export WITHDRAWAL_TYPE=0x02
     export EL_PREMINE_ADDRS='{"0x9a97ee9d32a0d68406e32b34c92afb81ce2bc467": {"balance": "100000ETH"}, "0x107781Bc6FA8f66B843f4216fd6D5862D3aa4fcd": {"balance": "100000ETH"}}'
 
