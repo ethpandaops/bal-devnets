@@ -97,6 +97,59 @@
             rate_upload: 1000mbit
       tags: [traffic_control]
 
+- hosts: besu
+  become: true
+  tags: [ethereum, ethereum_node]
+  tasks:
+    - name: Ensure besu heap-dumps directory exists
+      ansible.builtin.file:
+        path: "{{ besu_datadir | default('/data/besu') }}/heap-dumps"
+        state: directory
+        owner: besu
+        group: besu
+        mode: "0755"
+    - name: Deploy besu OOM heap-dump rotate script
+      ansible.builtin.copy:
+        dest: "{{ besu_datadir | default('/data/besu') }}/heap-dumps/oom-rotate.sh"
+        owner: besu
+        group: besu
+        mode: "0755"
+        content: |
+          #!/bin/sh
+          # Invoked by the JVM via -XX:OnOutOfMemoryError after the heap dump is
+          # written but before -XX:+ExitOnOutOfMemoryError terminates the process.
+          # 1. Rename the just-written `heap-<pid>.hprof` with a UTC timestamp so
+          #    later OOMs (where PID always resolves to 1 inside the container)
+          #    don't collide and get silently skipped by HotSpot.
+          # 2. Cap retention to the {{ besu_heap_dump_retain | default(3) }}
+          #    most recent timestamped dumps. Each dump is ~heap-size large
+          #    (-Xmx8g => ~12 GB on disk), so unbounded retention would fill
+          #    the data volume after a handful of OOMs.
+          set -eu
+          TS=$(date -u +%Y%m%dT%H%M%SZ)
+          for SRC in /data/heap-dumps/heap-[0-9]*.hprof; do
+            [ -f "${SRC}" ] || continue
+            base=$(basename "${SRC}" .hprof)
+            mv "${SRC}" "/data/heap-dumps/${base}-${TS}.hprof"
+          done
+          ls -1t /data/heap-dumps/heap-*.hprof 2>/dev/null \
+            | tail -n +$(({{ besu_heap_dump_retain | default(3) }} + 1)) \
+            | xargs -r rm -f --
+    - name: Archive legacy root-level heap dumps into heap-dumps/
+      ansible.builtin.shell: |
+        set -eu
+        moved=0
+        for f in {{ besu_datadir | default('/data/besu') }}/heap-*.hprof; do
+          [ -f "$f" ] || continue
+          ts=$(stat -c '%Y' "$f")
+          base=$(basename "$f" .hprof)
+          mv "$f" "{{ besu_datadir | default('/data/besu') }}/heap-dumps/${base}-$(date -u -d @${ts} +%Y%m%dT%H%M%SZ)-archived.hprof"
+          moved=$((moved+1))
+        done
+        echo "moved=${moved}"
+      register: besu_heap_legacy_migration
+      changed_when: "'moved=0' not in besu_heap_legacy_migration.stdout"
+
 - hosts: ethrex
   become: true
   tags: [ethrex_connlimit]

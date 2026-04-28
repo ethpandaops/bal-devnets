@@ -1,53 +1,42 @@
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_github_team_el:
-  - garyschulte
-  - jflo
-  - fab-10
-  - matkt
-  - Gabriel-Trintinalia
-  - siladu
-  - pinges
-  - jframe
-  - ahamlat
-  - macfarla
-  - daniellehrner
-  - kkaur01
-  - joshuafernandes
+  - tersec
+  - jangko
+  - advaita-saha
+  - mjfh
+  - bhartnett
 
 # role: ethpandaops.general.ethereum_node
-ethereum_node_el: besu
-# role: ethpandaops.general.besu
-besu_container_name: execution
-besu_container_image: "{{ default_ethereum_client_images.besu }}"
-besu_container_env:
+ethereum_node_el: nimbusel
+# role: ethpandaops.general.nimbusel
+nimbusel_container_name: execution
+nimbusel_container_image: "{{ default_ethereum_client_images.nimbusel }}"
+nimbusel_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
-  # HeapDumpPath collides on container restart (PID is always 1 inside the container),
-  # so HotSpot silently skips the dump after the first OOM. The OnOutOfMemoryError hook
-  # renames the just-written dump with a UTC timestamp before the JVM exits, ensuring
-  # subsequent OOMs don't lose dumps. See playbook task `besu_oom_rotate`.
-  BESU_OPTS: "-Xmx8g -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/heap-dumps/heap-%p.hprof -XX:OnOutOfMemoryError=/data/heap-dumps/oom-rotate.sh"
-besu_container_volumes:
-  - "{{ besu_datadir }}:/data"
-  - "{{ besu_auth_jwt_path }}:/execution-auth.jwt:ro"
+
+nimbusel_container_volumes:
+  - "{{ nimbusel_datadir }}:/data"
+  - "{{ nimbusel_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
-besu_container_command_extra_args:
-  - --genesis-file=/network-config/besu.json
-  - --rpc-http-api=ADMIN,DEBUG,ETH,MINER,NET,TXPOOL,WEB3
-  - --sync-mode=FULL
-  - --data-storage-format=BONSAI
-  - --bonsai-limit-trie-logs-enabled=false
-  - --bonsai-historical-block-limit=100000000
-  - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --target-gas-limit=100000000
-besu_container_pull: true
-besu_container_security_opts:
-  - "seccomp=unconfined"
+nimbusel_container_command_extra_args:
+  - --network=/network-config/genesis.json
+  - --bootstrap-node={{ ethereum_el_bootnodes | join(',') }}
+  - --rpc-api=admin,eth,debug
+  - --ws-api=admin,eth,debug
+  - --gas-limit=100000000
+
+# Override role default --log-level=INFO with DEBUG (requested by nimbus-el team)
+nimbusel_container_command: >-
+  {{
+    (nimbusel_container_command_default | map('regex_replace', '^--log-level=INFO$', '--log-level=DEBUG') | list)
+    + (nimbusel_container_command_v6 if nimbusel_ipv6_enabled and ansible_default_ipv6.address is defined else [])
+  }}
 
 prometheus_config: |
   global:
-    scrape_interval: 12s
+    scrape_interval: 30s
     evaluation_interval: 30s
     scrape_timeout: 10s
     external_labels:

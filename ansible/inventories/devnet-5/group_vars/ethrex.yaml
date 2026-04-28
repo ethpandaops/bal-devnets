@@ -1,53 +1,40 @@
 # role: ethpandaops.general.bootstrap
 bootstrap_default_user_authorized_keys_github_team_el:
-  - garyschulte
-  - jflo
-  - fab-10
-  - matkt
-  - Gabriel-Trintinalia
-  - siladu
-  - pinges
-  - jframe
-  - ahamlat
-  - macfarla
-  - daniellehrner
-  - kkaur01
-  - joshuafernandes
+  - arkenan
+  - ilitteri
+  - edg-l
+  - iovoid
 
 # role: ethpandaops.general.ethereum_node
-ethereum_node_el: besu
-# role: ethpandaops.general.besu
-besu_container_name: execution
-besu_container_image: "{{ default_ethereum_client_images.besu }}"
-besu_container_env:
+ethereum_node_el: ethrex
+
+# role: ethpandaops.general.ethereum_node_fact_discovery
+# ethrex stores nodekey in chain-specific subdir: /data/chain-<chainid>/node.key
+ethereum_node_fact_discovery_el_key_cmd:
+  ethrex: xxd -p -c32 {{ ethrex_datadir | default('/data/ethrex') }}/chain-{{ ethereum_network_id | trim }}/node.key
+# role: ethpandaops.general.ethrex
+ethrex_container_name: execution
+ethrex_container_image: "{{ default_ethereum_client_images.ethrex }}"
+ethrex_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
-  # HeapDumpPath collides on container restart (PID is always 1 inside the container),
-  # so HotSpot silently skips the dump after the first OOM. The OnOutOfMemoryError hook
-  # renames the just-written dump with a UTC timestamp before the JVM exits, ensuring
-  # subsequent OOMs don't lose dumps. See playbook task `besu_oom_rotate`.
-  BESU_OPTS: "-Xmx8g -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/heap-dumps/heap-%p.hprof -XX:OnOutOfMemoryError=/data/heap-dumps/oom-rotate.sh"
-besu_container_volumes:
-  - "{{ besu_datadir }}:/data"
-  - "{{ besu_auth_jwt_path }}:/execution-auth.jwt:ro"
+  RUST_LOG: "info"
+ethrex_container_volumes:
+  - "{{ ethrex_datadir }}:/data"
+  - "{{ ethrex_auth_jwt_path }}:/execution-auth.jwt:ro"
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
-besu_container_command_extra_args:
-  - --genesis-file=/network-config/besu.json
-  - --rpc-http-api=ADMIN,DEBUG,ETH,MINER,NET,TXPOOL,WEB3
-  - --sync-mode=FULL
-  - --data-storage-format=BONSAI
-  - --bonsai-limit-trie-logs-enabled=false
-  - --bonsai-historical-block-limit=100000000
+ethrex_container_command_extra_args:
+  - --network=/network-config/genesis.json
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --target-gas-limit=100000000
-besu_container_pull: true
-besu_container_security_opts:
-  - "seccomp=unconfined"
+  - --builder.gas-limit=100000000
+  - --syncmode=full
+  - --p2p.lookup-interval=1000
+  - --p2p.discv5=false
 
 prometheus_config: |
   global:
-    scrape_interval: 12s
+    scrape_interval: 30s
     evaluation_interval: 30s
     scrape_timeout: 10s
     external_labels:
