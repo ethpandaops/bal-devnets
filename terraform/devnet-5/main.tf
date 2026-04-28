@@ -27,7 +27,7 @@ terraform {
     skip_s3_checksum            = true
     region                      = "us-east-1"
     bucket                      = "merge-testnets"
-    key                         = "infrastructure/bal-devnet-4/terraform.tfstate"
+    key                         = "infrastructure/bal-devnet-5/terraform.tfstate"
   }
 }
 
@@ -61,7 +61,7 @@ variable "bal_hcloud_token" {
 
 variable "ethereum_network" {
   type    = string
-  default = "bal-devnet-4"
+  default = "bal-devnet-5"
 }
 
 variable "base_cidr_block" {

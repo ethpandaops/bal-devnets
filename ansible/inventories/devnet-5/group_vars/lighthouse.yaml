@@ -43,7 +43,7 @@ lighthouse_container_command_extra_args:
   - --boot-nodes={{ ethereum_cl_bootnodes | join(',') }}
   - --reconstruct-historic-states
   - --debug-level=debug
-  - --checkpoint-sync-url=https://checkpoint-sync.bal-devnet-4.ethpandaops.io/
+  - --checkpoint-sync-url=https://checkpoint-sync.bal-devnet-5.ethpandaops.io/
 
 lighthouse_validator_container_volumes:
   - "{{ lighthouse_validator_datadir }}:/validator-data"

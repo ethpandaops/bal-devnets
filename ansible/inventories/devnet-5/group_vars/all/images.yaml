@@ -1,20 +1,20 @@
 default_ethereum_client_images:
   ### Consensus layer clients
-  lighthouse: ethpandaops/lighthouse:bal-devnet-4
-  lodestar: ethpandaops/lodestar:bal-devnet-4
+  lighthouse: ethpandaops/lighthouse:bal-devnet-5
+  lodestar: ethpandaops/lodestar:bal-devnet-5
   nimbus: statusim/nimbus-eth2:multiarch-latest
-  prysm: ethpandaops/prysm-beacon-chain:bal-devnet-4
-  prysm_validator: ethpandaops/prysm-validator:bal-devnet-4
+  prysm: ethpandaops/prysm-beacon-chain:bal-devnet-5
+  prysm_validator: ethpandaops/prysm-validator:bal-devnet-5
   teku: consensys/teku:latest
   grandine: ethpandaops/grandine:develop
   ### Execution layer clients
-  besu: ethpandaops/besu:bal-devnet-4
-  geth: ethpandaops/geth:bal-devnet-4
-  erigon: ethpandaops/erigon:bal-devnet-4
-  nethermind: ethpandaops/nethermind:bal-devnet-4
-  reth: ethpandaops/reth:bal-devnet-4
-  nimbusel: ethpandaops/nimbus-eth1:bal-devnet-4
-  ethrex: ethpandaops/ethrex:bal-devnet-4
+  besu: ethpandaops/besu:bal-devnet-5
+  geth: ethpandaops/geth:bal-devnet-5
+  erigon: ethpandaops/erigon:bal-devnet-5
+  nethermind: ethpandaops/nethermind:bal-devnet-5
+  reth: ethpandaops/reth:bal-devnet-5
+  nimbusel: ethpandaops/nimbus-eth1:bal-devnet-5
+  ethrex: ethpandaops/ethrex:bal-devnet-5
 
 default_tooling_images:
   mev_boost: ethpandaops/mev-boost:develop
