@@ -58,7 +58,7 @@ default_tooling_images:
   nginx_proxy_cert_loader: ethpandaops/debian-docker:latest
   nginx_proxy_cert_linker: nginxproxy/docker-gen
   vector: timberio/vector:0.46.1-alpine
-  spamoor: ethpandaops/spamoor:master-latest
+  spamoor: ethpandaops/spamoor:pk910/bump-deployment-gas-limits
   blobber: ethpandaops/blobber:latest
   syncoor_web: docker.ethquokkaops.io/gh/ethpandaops/syncoor-web:master
   syncoor_server: docker.ethquokkaops.io/gh/ethpandaops/syncoor:master
