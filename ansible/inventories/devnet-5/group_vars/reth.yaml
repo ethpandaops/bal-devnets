@@ -31,6 +31,7 @@ reth_container_command_extra_args:
   - --http.api=trace,rpc,eth,net,debug,web3,admin,txpool
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --builder.gaslimit=100000000
+  - --log.file.filter debug,engine::tree::payload_processor::prewarm=trace
 prometheus_config: |
   global:
     scrape_interval: 30s
