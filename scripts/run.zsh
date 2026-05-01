@@ -1,12 +1,12 @@
 #!/bin/zsh
-node="hc-bootnode-1"
-network="devnet-2"
-prefix="testing"
+node="bootnode-1"
+network="devnet-6"
+prefix="bal"
 sops_name=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.name')
 sops_password=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_nginx_shared_basic_auth.password')
 sops_mnemonic=$(sops --decrypt ../ansible/inventories/$network/group_vars/all/all.sops.yaml | yq -r '.secret_genesis_mnemonic')
 domain=$(yq -r '.domain' ../ansible/inventories/$network/group_vars/all/all.yaml)
-ethereum_network_name=$(grep 'ethereum_network_name=' ../ansible/inventories/$network/hetzner_inventory.ini | head -1 | cut -d= -f2)
+ethereum_network_name=$(grep 'ethereum_network_name=' ../ansible/inventories/$network/inventory.ini | head -1 | cut -d= -f2)
 network_subdomain="${ethereum_network_name}.${domain}"
 network_server_subdomain="srv.${network_subdomain}"
 rpc_prefix=$(yq -r '.ethereum_node_rpc_prefix' ../ansible/inventories/$network/group_vars/all/all.yaml)

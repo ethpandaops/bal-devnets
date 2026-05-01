@@ -25,6 +25,12 @@
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-lighthouse-geth-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lighthouse-nethermind-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-nethermind-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lighthouse-nethermind-1.srv.bal-devnet-6.ethpandaops.io:8961
 - url: https://rpc-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io
   name: lodestar-besu-1
   authGroup: pandaops
@@ -43,3 +49,9 @@
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-lodestar-geth-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lodestar-nethermind-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-nethermind-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lodestar-nethermind-1.srv.bal-devnet-6.ethpandaops.io:8961

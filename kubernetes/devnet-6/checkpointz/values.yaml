@@ -62,6 +62,9 @@ checkpointz:
         - name: lighthouse-geth-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-geth-1.srv.bal-devnet-6.ethpandaops.io
           dataProvider: true
+        - name: lighthouse-nethermind-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.bal-devnet-6.ethpandaops.io
+          dataProvider: true
         - name: lodestar-besu-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io
           dataProvider: true
@@ -70,4 +73,7 @@ checkpointz:
           dataProvider: true
         - name: lodestar-geth-1
           address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-geth-1.srv.bal-devnet-6.ethpandaops.io
+          dataProvider: true
+        - name: lodestar-nethermind-1
+          address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-nethermind-1.srv.bal-devnet-6.ethpandaops.io
           dataProvider: true

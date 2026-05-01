@@ -32,5 +32,7 @@ variable "nodes" {
     { name = "lodestar-geth", count = 1, cloud = "hetzner", validator_start = 600, validator_end = 800 },
     { name = "lodestar-besu", count = 1, cloud = "hetzner", validator_start = 800, validator_end = 1000 },
     { name = "lodestar-ethrex", count = 1, cloud = "hetzner", validator_start = 1000, validator_end = 1200 },
+    { name = "lighthouse-nethermind", count = 1, cloud = "hetzner", validator_start = 1200, validator_end = 1400 },
+    { name = "lodestar-nethermind", count = 1, cloud = "hetzner", validator_start = 1400, validator_end = 1600 },
   ]
 }
