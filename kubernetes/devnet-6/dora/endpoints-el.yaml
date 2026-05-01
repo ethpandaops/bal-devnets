@@ -13,6 +13,12 @@
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-lighthouse-besu-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lighthouse-erigon-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-erigon-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lighthouse-erigon-1.srv.bal-devnet-6.ethpandaops.io:8961
 - url: https://rpc-lighthouse-ethrex-1.srv.bal-devnet-6.ethpandaops.io
   name: lighthouse-ethrex-1
   authGroup: pandaops
@@ -31,12 +37,30 @@
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-lighthouse-nethermind-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lighthouse-nimbusel-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-nimbusel-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lighthouse-nimbusel-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lighthouse-reth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-reth-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lighthouse-reth-1.srv.bal-devnet-6.ethpandaops.io:8961
 - url: https://rpc-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io
   name: lodestar-besu-1
   authGroup: pandaops
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lodestar-erigon-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-erigon-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lodestar-erigon-1.srv.bal-devnet-6.ethpandaops.io:8961
 - url: https://rpc-lodestar-ethrex-1.srv.bal-devnet-6.ethpandaops.io
   name: lodestar-ethrex-1
   authGroup: pandaops
@@ -55,3 +79,15 @@
   priority: -1
   archive: false
   engineSnooperUrl: http://rpc-lodestar-nethermind-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lodestar-nimbusel-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-nimbusel-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lodestar-nimbusel-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lodestar-reth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-reth-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lodestar-reth-1.srv.bal-devnet-6.ethpandaops.io:8961

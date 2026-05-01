@@ -41,17 +41,29 @@ dugtrio:
     name: bootnode-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-besu-1.srv.bal-devnet-6.ethpandaops.io
     name: lighthouse-besu-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-erigon-1.srv.bal-devnet-6.ethpandaops.io
+    name: lighthouse-erigon-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-ethrex-1.srv.bal-devnet-6.ethpandaops.io
     name: lighthouse-ethrex-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-geth-1.srv.bal-devnet-6.ethpandaops.io
     name: lighthouse-geth-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.bal-devnet-6.ethpandaops.io
     name: lighthouse-nethermind-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-nimbusel-1.srv.bal-devnet-6.ethpandaops.io
+    name: lighthouse-nimbusel-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-reth-1.srv.bal-devnet-6.ethpandaops.io
+    name: lighthouse-reth-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io
     name: lodestar-besu-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-erigon-1.srv.bal-devnet-6.ethpandaops.io
+    name: lodestar-erigon-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-ethrex-1.srv.bal-devnet-6.ethpandaops.io
     name: lodestar-ethrex-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-geth-1.srv.bal-devnet-6.ethpandaops.io
     name: lodestar-geth-1
   - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-nethermind-1.srv.bal-devnet-6.ethpandaops.io
     name: lodestar-nethermind-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-nimbusel-1.srv.bal-devnet-6.ethpandaops.io
+    name: lodestar-nimbusel-1
+  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-reth-1.srv.bal-devnet-6.ethpandaops.io
+    name: lodestar-reth-1

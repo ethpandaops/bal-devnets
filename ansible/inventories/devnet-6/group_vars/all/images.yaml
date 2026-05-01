@@ -8,7 +8,7 @@ default_ethereum_client_images:
   teku: consensys/teku:latest
   grandine: ethpandaops/grandine:develop
   ### Execution layer clients
-  besu: ethpandaops/besu:qu0b-qu0b-fix-eip8037-selfdestruct-refund-cap-ca602f3
+  besu: ethpandaops/besu:bal-devnet-6
   geth: ethpandaops/geth:bal-devnet-6
   erigon: ethpandaops/erigon:bal-devnet-6
   nethermind: ethpandaops/nethermind:bal-devnet-6

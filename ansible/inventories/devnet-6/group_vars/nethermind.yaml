@@ -10,6 +10,7 @@ bootstrap_default_user_authorized_keys_github_team_el:
   - cbermudez97
   - flcl42
   - stdevMac
+  - benaadams
 
 # role: ethpandaops.general.ethereum_node
 ethereum_node_el: nethermind
@@ -37,7 +38,7 @@ nethermind_container_command_extra_args:
   - --Seq.ApiKey={{ nethermind_seq_api_key }}
   - --Metrics.PushGatewayUrl={{ nethermind_push_gateway }}
   - --Discovery.Bootnodes={{ ethereum_el_bootnodes | join(',') }}
-  - --Blocks.TargetBlockGasLimit=100000000
+  - --Blocks.TargetBlockGasLimit=200000000
 nethermind_container_pull: true
 
 prometheus_config: |

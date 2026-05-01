@@ -10,6 +10,11 @@
   authGroup: pandaops
   priority: -1
   archive: true
+- url: https://bn-lighthouse-erigon-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-erigon-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
 - url: https://bn-lighthouse-ethrex-1.srv.bal-devnet-6.ethpandaops.io
   name: lighthouse-ethrex-1
   authGroup: pandaops
@@ -25,8 +30,22 @@
   authGroup: pandaops
   priority: -1
   archive: true
+- url: https://bn-lighthouse-nimbusel-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-nimbusel-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-lighthouse-reth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-reth-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
 - url: https://bn-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io
   name: lodestar-besu-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-erigon-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-erigon-1
   authGroup: pandaops
   priority: -1
 - url: https://bn-lodestar-ethrex-1.srv.bal-devnet-6.ethpandaops.io
@@ -39,6 +58,14 @@
   priority: -1
 - url: https://bn-lodestar-nethermind-1.srv.bal-devnet-6.ethpandaops.io
   name: lodestar-nethermind-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-nimbusel-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-nimbusel-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-reth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-reth-1
   authGroup: pandaops
   priority: -1
 

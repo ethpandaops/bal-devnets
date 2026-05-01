@@ -104,7 +104,7 @@ geth_container_command_extra_args:
   - --syncmode=full
   - --gcmode=archive
   - --history.state=0
-  - --miner.gaslimit=100000000
+  - --miner.gaslimit=200000000
   - >-
     --bootnodes={{
       (
