@@ -1,0 +1,35 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-cl.yaml.j2
+# Consensus layer endpoints
+
+- url: https://bn-bootnode-1.srv.bal-devnet-6.ethpandaops.io
+  name: bootnode-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lighthouse-besu-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-besu-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-lighthouse-ethrex-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-ethrex-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-lighthouse-geth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-geth-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-besu-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-ethrex-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-ethrex-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lodestar-geth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-geth-1
+  authGroup: pandaops
+  priority: -1
+

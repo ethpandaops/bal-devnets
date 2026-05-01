@@ -1,0 +1,45 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-el.yaml.j2
+# Execution layer endpoints
+
+- url: https://rpc-bootnode-1.srv.bal-devnet-6.ethpandaops.io
+  name: bootnode-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-bootnode-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lighthouse-besu-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-besu-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lighthouse-besu-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lighthouse-ethrex-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-ethrex-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lighthouse-ethrex-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lighthouse-geth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lighthouse-geth-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lighthouse-geth-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-besu-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lodestar-besu-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lodestar-ethrex-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-ethrex-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lodestar-ethrex-1.srv.bal-devnet-6.ethpandaops.io:8961
+- url: https://rpc-lodestar-geth-1.srv.bal-devnet-6.ethpandaops.io
+  name: lodestar-geth-1
+  authGroup: pandaops
+  priority: -1
+  archive: false
+  engineSnooperUrl: http://rpc-lodestar-geth-1.srv.bal-devnet-6.ethpandaops.io:8961

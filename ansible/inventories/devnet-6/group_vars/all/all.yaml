@@ -47,7 +47,7 @@ ethereum_genesis_network_seed: "bal-devnet-6"
 ethereum_genesis_chain_id: "70{{ 99999999 | random(start=10000000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_fork_version_suffix: "{{ 999999 | random(start=100000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_generator_output_dir: "../network-configs/{{ network_iteration }}"
-ethereum_genesis_timestamp: 1777629600 # 2026-05-01 10:00:00 UTC (12:00 CEST)
+ethereum_genesis_timestamp: 1777615200 # 2026-05-01 06:00:00 UTC (08:00 Svalbard / CEST)
 ethereum_genesis_timedelay: 30
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
@@ -61,7 +61,7 @@ ethereum_genesis_generator_config_files:
   values.env: |-
     export CHAIN_ID="{{ ethereum_genesis_chain_id }}"
     export EL_AND_CL_MNEMONIC="{{ ethereum_genesis_mnemonic }}"
-    export NUMBER_OF_VALIDATORS=2400
+    export NUMBER_OF_VALIDATORS=1200
     export GENESIS_FORK_VERSION="0x10{{ ethereum_genesis_fork_version_suffix }}"
     export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
@@ -77,7 +77,7 @@ ethereum_genesis_generator_config_files:
     export BPO_2_MAX_BLOBS=21
     export BPO_2_TARGET_BLOBS=14
     export GLOAS_FORK_VERSION="0x80{{ ethereum_genesis_fork_version_suffix }}"
-    export GLOAS_FORK_EPOCH=5
+    export GLOAS_FORK_EPOCH=10
     export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
     export GENESIS_DELAY={{ ethereum_genesis_timedelay }}
     export GENESIS_GASLIMIT=100000000
