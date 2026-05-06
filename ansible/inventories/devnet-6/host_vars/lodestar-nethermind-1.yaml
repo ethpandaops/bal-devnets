@@ -1,34 +1,25 @@
-# role: ethpandaops.general.bootstrap
-bootstrap_default_user_authorized_keys_github_team_cl:
-  - AgeManning
-  - ethdreamer
-  - paulhauner
-  - pawanjay176
-  - michaelsproul
-  - antondlr
-  - realbigsean
-  - jimmygchen
-  - dapplion
-  - lodekeeper
-# role: validator_keys
+# Hotfix: lodestar fails to honor `latestValidHash` from nethermind after
+# block 5597 (ethrex producer header gas mismatch) was rejected. Lodestar
+# spam-resends the same INVALID payload every slot and never re-orgs.
+# Switch this host to lighthouse so it can drive nethermind back to head.
+# See devnet-6-debug/lodestar-nethermind-sync/SUMMARY.md.
+
+ethereum_node_cl: lighthouse
+
+# Mirrors group_vars/lighthouse.yaml so this host gets all lighthouse-
+# specific vars even though it remains in the [lodestar_nethermind] group.
 validator_keys_sync_files:
   - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/keys/"
     dest: "{{ lighthouse_validator_datadir }}/keys/"
-  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname
-      }}/secrets/"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/secrets/"
     dest: "{{ lighthouse_validator_datadir }}/secrets/"
 
 validator_bls_sync_files:
-  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname
-      }}/change_operations.json"
+  - src: "{{ inventory_dir }}/files/validator_keys/{{ inventory_hostname }}/change_operations.json"
     dest: "{{ lighthouse_validator_datadir }}/change_operations.json"
     owner: lighthouse
     group: lighthouse
 
-# role: ethpandaops.general.ethereum_node
-ethereum_node_cl: lighthouse
-
-# role: ethpandaops.general.lighthouse
 lighthouse_container_name: beacon
 lighthouse_validator_container_name: validator
 lighthouse_container_image: "{{ default_ethereum_client_images.lighthouse }}"
