@@ -26,19 +26,20 @@ variable "nodes" {
   description = "List of node definitions for the devnet"
   default = [
     { name = "bootnode", count = 1, cloud = "hetzner" },
-    { name = "lighthouse-geth", count = 1, cloud = "hetzner", validator_start = 0, validator_end = 200 },
-    { name = "lighthouse-besu", count = 1, cloud = "hetzner", validator_start = 200, validator_end = 400 },
-    { name = "lighthouse-ethrex", count = 1, cloud = "hetzner", validator_start = 400, validator_end = 600 },
-    { name = "lodestar-geth", count = 1, cloud = "hetzner", validator_start = 600, validator_end = 800 },
-    { name = "lodestar-besu", count = 1, cloud = "hetzner", validator_start = 800, validator_end = 1000 },
-    { name = "lodestar-ethrex", count = 1, cloud = "hetzner", validator_start = 1000, validator_end = 1200 },
-    { name = "lighthouse-nethermind", count = 1, cloud = "hetzner", validator_start = 1200, validator_end = 1400 },
-    { name = "lodestar-nethermind", count = 1, cloud = "hetzner", validator_start = 1400, validator_end = 1600 },
-    { name = "lighthouse-nimbusel", count = 1, cloud = "hetzner", validator_start = 1600, validator_end = 1800 },
+    # geth nodes provisioned later, once a bal-devnet-7 image branch exists.
+    # { name = "lighthouse-geth", count = 1, cloud = "hetzner" },
+    # { name = "lodestar-geth", count = 1, cloud = "hetzner" },
+    { name = "lighthouse-besu", count = 1, cloud = "hetzner", validator_start = 0, validator_end = 200 },
+    { name = "lighthouse-ethrex", count = 1, cloud = "hetzner", validator_start = 200, validator_end = 400 },
+    { name = "lighthouse-nethermind", count = 1, cloud = "hetzner", validator_start = 400, validator_end = 600 },
+    { name = "lighthouse-nimbusel", count = 1, cloud = "hetzner", validator_start = 600, validator_end = 800 },
+    { name = "lighthouse-reth", count = 1, cloud = "hetzner", validator_start = 800, validator_end = 1000 },
+    { name = "lighthouse-erigon", count = 1, cloud = "hetzner", validator_start = 1000, validator_end = 1200 },
+    { name = "lodestar-besu", count = 1, cloud = "hetzner", validator_start = 1200, validator_end = 1400 },
+    { name = "lodestar-ethrex", count = 1, cloud = "hetzner", validator_start = 1400, validator_end = 1600 },
+    { name = "lodestar-nethermind", count = 1, cloud = "hetzner", validator_start = 1600, validator_end = 1800 },
     { name = "lodestar-nimbusel", count = 1, cloud = "hetzner", validator_start = 1800, validator_end = 2000 },
-    { name = "lighthouse-reth", count = 1, cloud = "hetzner", validator_start = 2000, validator_end = 2200 },
-    { name = "lodestar-reth", count = 1, cloud = "hetzner", validator_start = 2200, validator_end = 2400 },
-    { name = "lighthouse-erigon", count = 1, cloud = "hetzner", validator_start = 2400, validator_end = 2600 },
-    { name = "lodestar-erigon", count = 1, cloud = "hetzner", validator_start = 2600, validator_end = 2800 },
+    { name = "lodestar-reth", count = 1, cloud = "hetzner", validator_start = 2000, validator_end = 2200 },
+    { name = "lodestar-erigon", count = 1, cloud = "hetzner", validator_start = 2200, validator_end = 2400 },
   ]
 }

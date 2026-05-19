@@ -44,7 +44,7 @@ eth_inventory_web_container_env:
   LETSENCRYPT_HOST: "{{ server_fqdn }}"
 
 # role: ethpandaops.general.ethereum_node
-ethereum_node_el: geth
+ethereum_node_el: reth
 ethereum_node_cl: lodestar
 ethereum_node_cl_validator_enabled: false
 
@@ -90,21 +90,22 @@ lodestar_container_command_extra_args:
       | join(',')
     }}
 
-# role: ethpandaops.general.geth
-geth_container_name: execution
-geth_container_image: "{{ default_ethereum_client_images.geth }}"
-geth_container_env:
+# role: ethpandaops.general.reth
+reth_container_name: execution
+reth_container_image: "{{ default_ethereum_client_images.reth }}"
+reth_container_env:
   VIRTUAL_HOST: "{{ ethereum_node_rcp_hostname }}"
   VIRTUAL_PORT: "{{ ethereum_node_el_ports_http_rpc | string }}"
   LETSENCRYPT_HOST: "{{ ethereum_node_rcp_hostname }}"
-geth_container_command_extra_args:
-  - --http.api=eth,net,web3,debug,admin,txpool,trace
-  - --http.vhosts=*
-  - --networkid={{ ethereum_network_id }}
-  - --syncmode=full
-  - --gcmode=archive
-  - --history.state=0
-  - --miner.gaslimit=200000000
+  RUST_BACKTRACE: "full"
+reth_container_volumes:
+  - "{{ reth_datadir }}:/data"
+  - "{{ reth_auth_jwt_path }}:/execution-auth.jwt:ro"
+  - "{{ eth_testnet_config_dir }}:/network-config:ro"
+reth_container_command_extra_args:
+  - --chain=/network-config/genesis.json
+  - --http.api=trace,rpc,eth,net,debug,web3,admin,txpool
+  - --builder.gaslimit=200000000
   - >-
     --bootnodes={{
       (
@@ -124,14 +125,7 @@ geth_container_command_extra_args:
       )
       | join(',')
     }}
-geth_init_custom_network: true
-geth_init_custom_network_genesis_file: "{{ eth_testnet_config_dir }}/genesis.json"
-geth_container_pull: true
-
-geth_init_custom_network_container_command:
-  - --datadir=/data
-  - init
-  - /genesis.json
+reth_container_pull: true
 
 # role: ethpandaops.general.prometheus
 prometheus_remote_push_url: https://victoriametrics.ethdevops.io/insert/0/prometheus/api/v1/write

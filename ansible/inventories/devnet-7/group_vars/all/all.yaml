@@ -47,7 +47,7 @@ ethereum_genesis_network_seed: "bal-devnet-7"
 ethereum_genesis_chain_id: "70{{ 99999999 | random(start=10000000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_fork_version_suffix: "{{ 999999 | random(start=100000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_generator_output_dir: "../network-configs/{{ network_iteration }}"
-ethereum_genesis_timestamp: 1779116400 # 2026-05-18 15:00:00 UTC (17:00 CEST)
+ethereum_genesis_timestamp: 1779195900 # 2026-05-19 13:05:00 UTC (15:05 CEST)
 ethereum_genesis_timedelay: 30
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
@@ -61,7 +61,7 @@ ethereum_genesis_generator_config_files:
   values.env: |-
     export CHAIN_ID="{{ ethereum_genesis_chain_id }}"
     export EL_AND_CL_MNEMONIC="{{ ethereum_genesis_mnemonic }}"
-    export NUMBER_OF_VALIDATORS=1200
+    export NUMBER_OF_VALIDATORS=2400
     export GENESIS_FORK_VERSION="0x10{{ ethereum_genesis_fork_version_suffix }}"
     export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
@@ -77,10 +77,10 @@ ethereum_genesis_generator_config_files:
     export BPO_2_MAX_BLOBS=21
     export BPO_2_TARGET_BLOBS=14
     export GLOAS_FORK_VERSION="0x80{{ ethereum_genesis_fork_version_suffix }}"
-    export GLOAS_FORK_EPOCH=10
+    export GLOAS_FORK_EPOCH=9 # ~57m36s after genesis (~3h from inventory edit)
     export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
     export GENESIS_DELAY={{ ethereum_genesis_timedelay }}
-    export GENESIS_GASLIMIT=100000000
+    export GENESIS_GASLIMIT=150000000
     export WITHDRAWAL_TYPE=0x02
     export EL_PREMINE_ADDRS='{"0x9a97ee9d32a0d68406e32b34c92afb81ce2bc467": {"balance": "100000ETH"}, "0x107781Bc6FA8f66B843f4216fd6D5862D3aa4fcd": {"balance": "100000ETH"}}'
 
@@ -163,8 +163,8 @@ ethereum_node_json_rpc_snooper_engine_container_env:
 
 # role: ethpandaops.general.generate_kubernetes_config
 gen_kubernetes_config_ethereum_node:
-  el: geth
-  cl: lodestar
+  el: reth
+  cl: lighthouse
   value: "001"
 
 gen_kubernetes_config_dora_execution_snooper_port: 8961
