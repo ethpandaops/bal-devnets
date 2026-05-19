@@ -47,6 +47,8 @@ default_tooling_images:
   lcli: ethpandaops/lighthouse:unstable
   zcli: electra
   assertoor: ethpandaops/assertoor:qu0b-gloas-bals-v2
+  authenticatoor: ethpandaops/service-authenticatoor:main
+  buildoor: ethpandaops/buildoor:main
   erpc: docker.ethquokkaops.io/gh/erpc/erpc:0.0.49
   prometheus: prom/prometheus:v2.40.7
   node_exporter: prom/node-exporter:v1.5.0
