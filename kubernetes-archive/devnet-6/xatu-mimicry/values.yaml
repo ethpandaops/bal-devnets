@@ -1,0 +1,41 @@
+xatu-mimicry:
+  enabled: true
+  fullnameOverride: xatu-mimicry
+  image:
+    repository: ethpandaops/xatu
+    tag: latest
+    pullPolicy: Always
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2000Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+  config:
+    logging: "info"
+    metricsAddr: ":9090"
+    name: "bal-devnet-6-xatu-mimicry"
+    captureDelay: 3m
+    ntpServer: time.google.com
+    ethereum:
+      overrideNetworkName: "bal-devnet-6"
+    coordinator:
+      type: static
+      config:
+        retryInterval: 60s
+        nodeRecords:
+          - enode://17b6167e7c54f3cca955db37ebdfa483e055ca413db9f5b148dc1d180d25fa680235fa3a20d1f79d67af967f8202b7426061c216affd2ae9eeef7c68c52c634e@178.104.149.197:30303?discport=30303
+    outputs:
+    - name: grpc
+      type: xatu
+      config:
+        address: server.xatu-experimental.ethpandaops.io:443
+        maxQueueSize: 51200
+        tls: true
+        headers:
+          authorization: "Basic <path:/secrets/services/services.enc.yaml#xatu | jsonPath {.experimental.event_ingester_auth}>"
+        batchTimeout: 5s
+        exportTimeout: 30s
+        maxExportBatchSize: 512
