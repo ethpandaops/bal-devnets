@@ -26,6 +26,7 @@ ethrex_container_volumes:
   - "{{ eth_testnet_config_dir }}:/network-config:ro"
 ethrex_container_command_extra_args:
   - --network=/network-config/genesis.json
+  - --http.api=eth,net,web3,admin,debug,txpool
   - --bootnodes={{ ethereum_el_bootnodes | join(',') }}
   - --builder.gas-limit=200000000
   - --syncmode=full
