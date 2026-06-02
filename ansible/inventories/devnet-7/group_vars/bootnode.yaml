@@ -106,6 +106,7 @@ reth_container_command_extra_args:
   - --chain=/network-config/genesis.json
   - --http.api=trace,rpc,eth,net,debug,web3,admin,txpool
   - --builder.gaslimit=200000000
+  - --txpool.max-account-slots=1024
   - >-
     --bootnodes={{
       (
