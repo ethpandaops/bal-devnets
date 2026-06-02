@@ -526,7 +526,9 @@ for arg in "${command[@]}"; do
               --rpc-url "$rpc_endpoint" \
               --nonce $((nonce + i)) \
               --value "${deposit_eth}ether" \
-              --gas-limit 200000 \
+              --gas-limit 500000 \
+              --gas-price 50gwei \
+              --priority-gas-price 10gwei \
               "$deposit_contract_address" \
               "deposit(bytes,bytes,bytes,bytes32)" \
               "$pubkey_val" "$withdrawal_creds" "$signature_val" "$data_root" > /dev/null 2>&1 &
