@@ -1,0 +1,18 @@
+# AI chat (panda-chat) — bal-devnet-7 pilot.
+# role: ethpandaops.general.generate_kubernetes_config
+#
+# Prereq: a `chat` section in services.enc.yaml with
+#   llm_api_key, panda_credentials_json, panda_credentials_file,
+#   langfuse_public_key, langfuse_secret_key
+# (panda bot identity = GitHub bot user + `panda auth login`).
+# Auth is on by default (trusted-header SSO) — also create a Cloudflare Access
+# application on chat.bal-devnet-7.ethpandaops.io scoped to the ethpandaops org.
+# (Set gen_kubernetes_config_chat_auth_enabled: false to ship public instead.)
+# Image defaults to ethpandaops/hermes-agent-panda:latest (docker.io, public).
+# Pin a specific build if needed:
+# gen_kubernetes_config_chat_image: "ethpandaops/hermes-agent-panda:<tag>"
+
+gen_kubernetes_config_chat_llm_provider: "anthropic"
+gen_kubernetes_config_chat_llm_model: "claude-sonnet-4-6"
+gen_kubernetes_config_chat_llm_api_key_env: "ANTHROPIC_API_KEY"
+gen_kubernetes_config_chat_panda_enabled: true
