@@ -1,4 +1,4 @@
-name: Syncoor - Devnet 3
+name: Syncoor - Devnet 7
 
 on:
   #schedule:
@@ -53,13 +53,13 @@ on:
         required: false
         default: >-
           {
-            "besu": "ethpandaops/besu:bal-devnet-3",
-            "geth": "ethpandaops/geth:bal-devnet-3",
-            "erigon": "ethpandaops/erigon:bal-devnet-3",
-            "nethermind": "ethpandaops/nethermind:bal-devnet-3",
-            "reth": "ethpandaops/reth:bal-devnet-3",
-            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-3",
-            "ethrex": "ethpandaops/ethrex:bal-devnet-3"
+            "besu": "ethpandaops/besu:bal-devnet-7",
+            "geth": "ethpandaops/geth:bal-devnet-7",
+            "erigon": "ethpandaops/erigon:bal-devnet-7",
+            "nethermind": "ethpandaops/nethermind:bal-devnet-7",
+            "reth": "ethpandaops/reth:bal-devnet-7",
+            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-7",
+            "ethrex": "ethpandaops/ethrex:bal-devnet-7"
           }
         type: string
       cl-image:
@@ -67,11 +67,11 @@ on:
         required: false
         default: >-
           {
-            "lighthouse": "ethpandaops/lighthouse:bal-devnet-3",
+            "lighthouse": "ethpandaops/lighthouse:bal-devnet-7",
             "teku": "consensys/teku:latest",
-            "prysm": "ethpandaops/prysm-beacon-chain:bal-devnet-3",
+            "prysm": "ethpandaops/prysm-beacon-chain:bal-devnet-7",
             "nimbus": "statusim/nimbus-eth2:multiarch-latest",
-            "lodestar": "ethpandaops/lodestar:bal-devnet-3",
+            "lodestar": "ethpandaops/lodestar:bal-devnet-7",
             "grandine": "ethpandaops/grandine:develop"
           }
         type: string
@@ -98,7 +98,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        network: ["bal-devnet-3"]
+        network: ["bal-devnet-7"]
         el-client: >-
           ${{
             fromJSON(format('[{0}]', inputs.el-client || '
@@ -135,24 +135,24 @@ jobs:
         run: |
           cat > /tmp/default-el-images.json <<'EOF'
           {
-            "besu": "ethpandaops/besu:bal-devnet-3",
-            "geth": "ethpandaops/geth:bal-devnet-3",
-            "erigon": "ethpandaops/erigon:bal-devnet-3",
-            "nethermind": "ethpandaops/nethermind:bal-devnet-3",
-            "reth": "ethpandaops/reth:bal-devnet-3",
-            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-3",
-            "ethrex": "ethpandaops/ethrex:bal-devnet-3"
+            "besu": "ethpandaops/besu:bal-devnet-7",
+            "geth": "ethpandaops/geth:bal-devnet-7",
+            "erigon": "ethpandaops/erigon:bal-devnet-7",
+            "nethermind": "ethpandaops/nethermind:bal-devnet-7",
+            "reth": "ethpandaops/reth:bal-devnet-7",
+            "nimbusel": "ethpandaops/nimbus-eth1:bal-devnet-7",
+            "ethrex": "ethpandaops/ethrex:bal-devnet-7"
           }
           EOF
           echo "el-images=$(cat /tmp/default-el-images.json | jq -c .)" >> $GITHUB_OUTPUT
 
           cat > /tmp/default-cl-images.json <<'EOF'
           {
-            "lighthouse": "ethpandaops/lighthouse:bal-devnet-3",
+            "lighthouse": "ethpandaops/lighthouse:bal-devnet-7",
             "teku": "consensys/teku:latest",
-            "prysm": "ethpandaops/prysm-beacon-chain:bal-devnet-3",
+            "prysm": "ethpandaops/prysm-beacon-chain:bal-devnet-7",
             "nimbus": "statusim/nimbus-eth2:multiarch-latest",
-            "lodestar": "ethpandaops/lodestar:bal-devnet-3",
+            "lodestar": "ethpandaops/lodestar:bal-devnet-7",
             "grandine": "ethpandaops/grandine:develop"
           }
           EOF
