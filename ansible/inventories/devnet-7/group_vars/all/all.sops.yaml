@@ -40,9 +40,11 @@ chat:
     llm_api_key: ENC[AES256_GCM,data:/ipe5QF17n7loygix20z6/8Y3EBsuVo2b6cSwTzBCm3kVvgN9jaQaAvqHaKet5NxOxC4psb+WTdkwcLinXyHzFIIFrlbtKItDQ==,iv:Zd4Mth/nBJBcZZkWN0Duj0xGah8qhLPHVzXaPPl69xI=,tag:b52S+i2UYwvO/LfQ6rKLCQ==,type:str]
     botUsername: ENC[AES256_GCM,data:0KHmN6g4wSyKcNmKk4I=,iv:22ojpYUIkxaEb7dmbJnnFpFhDuisQiqoKkCfc6AonOI=,tag:icaw14pdTZ9UXAEbT//Drg==,type:str]
     botToken: ENC[AES256_GCM,data:gIEik0pUFAdEqM8mQGxMeyEuUGv64JumhzZDv93RcQjLAOj1tq4zjh6SaDukX1sEmeGHMrr6LyAjwS/24K7O5g==,iv:BAMFl2zGJCxrQ3LakRCvqRM+DHww6PPuIZ0Et9uGidE=,tag:AWLnD+Ks0KO6C6uRIMsGNg==,type:str]
+    langfuse_public_key: ENC[AES256_GCM,data:cXrxNP6ReWHyBMRnExXp9zFTzue0IaJp4WlsGYxCbtNfDATLZ6Q6qccK,iv:czEr0Aj1/KNRZFI38URxMfUkkijO/qWzt5M/cdGGwCI=,tag:/wDGjj/AkgzEgrh8pL4ozw==,type:str]
+    langfuse_secret_key: ENC[AES256_GCM,data:RsJWqkcg9Smhxk1NCK/ZhHwPUlzx2Cx1g6lNVhxm9o58TaqjtWzXkH/x,iv:UV/TOmYOaKwc/9IgIgn17uV/aMLd42e55AF76aa8VLY=,tag:m5fydsvpArDc8hVodBDzEQ==,type:str]
 sops:
-    lastmodified: "2026-06-10T16:39:56Z"
-    mac: ENC[AES256_GCM,data:2nRkdWT+pL3jFqwtUwjOBN2KWFRj1yY9qQtUPsORLfDlJ/r7LQQPlihTi9pXk+D4gaXJ7fofa2MKEp9degQS6s7WJ19SLauYp4eT+LQyR8bMpdGGzdhPBXJcQF1Y1XGFRCrUeszK2O4BX7cN8Ig1rpdM0Qe114RyeihJaukPPdw=,iv:5gb0OGNJrJ6fLleIh7z83OPGTJNZk71fkRXyYw6/cmA=,tag:5Y9z6vXu0qTIcFKI2TDupA==,type:str]
+    lastmodified: "2026-06-10T16:46:39Z"
+    mac: ENC[AES256_GCM,data:ErRriNfIwN2tibGf751b7HX7GAGAaz4kIRg6COqecABm74ra4iUShlp/jjst6guka20zVNnYUl7v70KWjn590EHtDrAia6GoH2OES1i8dPV/WweLQRHoxvdI78rY9EXz/lt/59uwfCRxTa2vV5HTa1dUp0mYs+M3d4HT78/K2PE=,iv:0zA+7HID1GTS9782rOF1+kdhLIXKsY18TfSqkkRfem0=,tag:gNk3NNvfkdTMTeNWzRLitg==,type:str]
     pgp:
         - created_at: "2025-10-27T13:19:37Z"
           enc: |-
