@@ -36,9 +36,13 @@ nethermind_seq_server: ENC[AES256_GCM,data:wEIM2pUqK+I3rf42maFTr05r8cOJWjnpPQ==,
 nethermind_push_gateway: ENC[AES256_GCM,data:ScReyCHKHx2/8Yo3epSAsb3MykmlIrGkUegaV5+21aboPCgU+VbUOBfvqaTWpcQN3OjXH+euQj1bHL1etGk1qvjzm2sp/P9oqbHRU827nbejkk5SKEeC4q79U7QyQTbUJ1Z9paX1sYZysMDUf2LUb9r/wHhB7bknQYKnHBAg0Li7qw5T5o1yatJoDqfahe4R1Q==,iv:WuQDvBvS2zjEB805HYkq5TQ/H8baF23vyMP9JbdqCao=,tag:jTOnfh2+ZmWIXQBzIpIVCQ==,type:str]
 tysm_secret_key: ENC[AES256_GCM,data:MuvclVLaNVZ+7vRumg==,iv:XGBLMISj2wL7MQznXnVggjudiaw6Ff4i3wGt37/EKqA=,tag:ib5t0B5qa1FD6Ff8xYIFwQ==,type:str]
 tempo_grpc_url: ENC[AES256_GCM,data:ltAVTGgrqhUBXdAZe7D1HvdXK72YIORL/x4DYHgX911s+X8IZM9/guRqE1I/ZYSzNrQX0qON3/TrNSjpG1BUpkK9M0SLzqE4EKhaOOQonJRLunnufZVrZIDhXSMaGQhZcjsHQCV8,iv:4mzqA4Ck1g91+tST5oTSnTepikjOCWKJrV04Rsp/8Ts=,tag:MgjQUb+lR1SIU2d8KpvOew==,type:str]
+chat:
+    llm_api_key: ENC[AES256_GCM,data:/ipe5QF17n7loygix20z6/8Y3EBsuVo2b6cSwTzBCm3kVvgN9jaQaAvqHaKet5NxOxC4psb+WTdkwcLinXyHzFIIFrlbtKItDQ==,iv:Zd4Mth/nBJBcZZkWN0Duj0xGah8qhLPHVzXaPPl69xI=,tag:b52S+i2UYwvO/LfQ6rKLCQ==,type:str]
+    botUsername: ENC[AES256_GCM,data:0KHmN6g4wSyKcNmKk4I=,iv:22ojpYUIkxaEb7dmbJnnFpFhDuisQiqoKkCfc6AonOI=,tag:icaw14pdTZ9UXAEbT//Drg==,type:str]
+    botToken: ENC[AES256_GCM,data:gIEik0pUFAdEqM8mQGxMeyEuUGv64JumhzZDv93RcQjLAOj1tq4zjh6SaDukX1sEmeGHMrr6LyAjwS/24K7O5g==,iv:BAMFl2zGJCxrQ3LakRCvqRM+DHww6PPuIZ0Et9uGidE=,tag:AWLnD+Ks0KO6C6uRIMsGNg==,type:str]
 sops:
-    lastmodified: "2026-02-06T12:18:46Z"
-    mac: ENC[AES256_GCM,data:AWD5pyXa3qUR84rW2xYec9taLrVAB11+zhKwZUTPeCywfpt68K8jWIuhQCmDKxZGFwbjiOQCupH66eNtO84wRwb7IO2WDcki5DWY8p4eZwXsYrvG4UQAK4UMorcimgmc1FPLd8cxPLhK15Q/sE/xqMV0ITXQ45WXSliUcL8uAOk=,iv:FfdIvgjECwQMldYZH2/21TMRRmINNb1kZhYGZ0OcnGU=,tag:KfRAGAQ9ApQaXCqmeZSyeQ==,type:str]
+    lastmodified: "2026-06-10T16:39:56Z"
+    mac: ENC[AES256_GCM,data:2nRkdWT+pL3jFqwtUwjOBN2KWFRj1yY9qQtUPsORLfDlJ/r7LQQPlihTi9pXk+D4gaXJ7fofa2MKEp9degQS6s7WJ19SLauYp4eT+LQyR8bMpdGGzdhPBXJcQF1Y1XGFRCrUeszK2O4BX7cN8Ig1rpdM0Qe114RyeihJaukPPdw=,iv:5gb0OGNJrJ6fLleIh7z83OPGTJNZk71fkRXyYw6/cmA=,tag:5Y9z6vXu0qTIcFKI2TDupA==,type:str]
     pgp:
         - created_at: "2025-10-27T13:19:37Z"
           enc: |-
