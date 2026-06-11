@@ -137,12 +137,14 @@ erpc:
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-besu-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-erigon-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-ethrex-1.srv.bal-devnet-7.ethpandaops.io
+          - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-geth-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-nimbusel-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-reth-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-besu-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-erigon-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-ethrex-1.srv.bal-devnet-7.ethpandaops.io
+          - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-geth-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-nethermind-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-nimbusel-1.srv.bal-devnet-7.ethpandaops.io
           - endpoint: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-reth-1.srv.bal-devnet-7.ethpandaops.io

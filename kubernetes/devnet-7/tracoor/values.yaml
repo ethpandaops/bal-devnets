@@ -135,6 +135,16 @@ tracoor-single:
             traceDisableMemory: true
             traceDisableStack: true
             traceDisableStorage: true
+      - name: lighthouse-geth-1
+        ethereum:
+          overrideNetworkName: bal-devnet-7
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-geth-1.srv.bal-devnet-7.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lighthouse-geth-1.srv.bal-devnet-7.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
       - name: lighthouse-nethermind-1
         ethereum:
           overrideNetworkName: bal-devnet-7
@@ -192,6 +202,16 @@ tracoor-single:
             nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-ethrex-1.srv.bal-devnet-7.ethpandaops.io
           execution:
             nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-ethrex-1.srv.bal-devnet-7.ethpandaops.io
+            traceDisableMemory: true
+            traceDisableStack: true
+            traceDisableStorage: true
+      - name: lodestar-geth-1
+        ethereum:
+          overrideNetworkName: bal-devnet-7
+          beacon:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-geth-1.srv.bal-devnet-7.ethpandaops.io
+          execution:
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@rpc-lodestar-geth-1.srv.bal-devnet-7.ethpandaops.io
             traceDisableMemory: true
             traceDisableStack: true
             traceDisableStorage: true

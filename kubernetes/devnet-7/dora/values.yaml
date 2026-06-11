@@ -31,7 +31,7 @@ dora:
   name: bal-devnet-7
   configPath: "https://config.bal-devnet-7.ethpandaops.io/cl/config.yaml"
   validatorNamesInventory: "https://config.bal-devnet-7.ethpandaops.io/api/v1/nodes/validator-ranges"
-  ethExplorerLink: "https://explorer.bal-devnet-7.ethpandaops.io"
+  buildoorOverviewUrl: "https://buildoor.bal-devnet-7.ethpandaops.io"
   publicRpcUrl: "https://rpc.bal-devnet-7.ethpandaops.io"
   rainbowkitProjectId: "15fe4ab4d5c0bcb6f0dc7c398301ff0e"
   executionGenesisConfig: "https://config.bal-devnet-7.ethpandaops.io/el/genesis.json"
@@ -66,10 +66,6 @@ dora:
       persistence:
         size: "80Gi"
 
-  mevRelays:
-    - index: 0
-      name: "Flashbots"
-      url: "http://mev-relay-1.bal-devnet-7.ethpandaops.io:9062/"
 
   authGroups:
     pandaops:

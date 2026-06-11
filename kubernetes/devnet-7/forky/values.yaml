@@ -64,8 +64,9 @@ forky:
         type: s3
         config:
           region: us-east-1
-          bucket_name: bal-devnet-7/forky
-          endpoint: https://<path:/secrets/services/services.enc.yaml#cloudflare | jsonPath {.account_ids.ethdevops}>.r2.cloudflarestorage.com/ethpandaops-devnet-dumpster
+          bucket_name: ethpandaops-devnet-dumpster
+          key_prefix: bal-devnet-7/forky
+          endpoint: https://<path:/secrets/services/services.enc.yaml#cloudflare | jsonPath {.account_ids.ethdevops}>.r2.cloudflarestorage.com
           access_key: <path:/secrets/services/services.enc.yaml#cloudflare | jsonPath {.r2.devnets.access_key_id}>
           access_secret: <path:/secrets/services/services.enc.yaml#cloudflare | jsonPath {.r2.devnets.secret_access_key}>
       indexer: {}
@@ -97,6 +98,11 @@ forky:
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-ethrex-1.srv.bal-devnet-7.ethpandaops.io
             polling_interval: "12s"
+        - name: lighthouse-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lighthouse-geth-1.srv.bal-devnet-7.ethpandaops.io
+            polling_interval: "12s"
         - name: lighthouse-nethermind-1
           type: "beacon_node"
           config:
@@ -126,6 +132,11 @@ forky:
           type: "beacon_node"
           config:
             address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-ethrex-1.srv.bal-devnet-7.ethpandaops.io
+            polling_interval: "12s"
+        - name: lodestar-geth-1
+          type: "beacon_node"
+          config:
+            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.bal-devnets.node_ingress.combined}>@bn-lodestar-geth-1.srv.bal-devnet-7.ethpandaops.io
             polling_interval: "12s"
         - name: lodestar-nethermind-1
           type: "beacon_node"

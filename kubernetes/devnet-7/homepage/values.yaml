@@ -99,7 +99,6 @@ testnet-homepage:
         faucetUrl: https://faucet.bal-devnet-7.ethpandaops.io
         rpcUrl: https://rpc.bal-devnet-7.ethpandaops.io
         beaconRpcUrl: https://beacon.bal-devnet-7.ethpandaops.io
-        explorerUrl: https://explorer.bal-devnet-7.ethpandaops.io
         forkmonUrl: https://forkmon.bal-devnet-7.ethpandaops.io
         assertoorUrl: https://assertoor.bal-devnet-7.ethpandaops.io
         beaconexplorerUrl: "https://bal-devnet-7.beaconcha.in"
@@ -131,8 +130,6 @@ testnet-homepage:
         dataLookup: rpcUrl
       - name: "Beacon RPC"
         dataLookup: beaconRpcUrl
-      - name: "Explorer"
-        dataLookup: explorerUrl
       - name: "Dora the Explorer"
         dataLookup: doraUrl
       - name: "Syncoor"
