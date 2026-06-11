@@ -1,0 +1,6 @@
+dependencies:
+- name: panda-chat
+  repository: https://ethpandaops.github.io/ethereum-helm-charts
+  version: 0.2.0
+digest: sha256:e22f8d4e9a59e18ee31379ead8b024445084195d5a519af40d4c6a54fb361928
+generated: "2026-06-11T17:16:01.248748594+02:00"

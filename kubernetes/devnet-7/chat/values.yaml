@@ -1,0 +1,69 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/chat.yaml.j2
+# Everything nests under the dependency chart's name — the generated wrapper
+# chart (Chart.yaml.j2) has no templates of its own, so top-level values
+# never reach the panda-chat subchart.
+panda-chat:
+  fullnameOverride: chat
+
+  network: bal-devnet-7
+  chainId: "7071885124"
+
+  image:
+    repository: ethpandaops/hermes-agent-panda
+    tag: 2026.6.5-f517fc7
+    pullPolicy: IfNotPresent
+
+  llm:
+    model: claude-sonnet-4-6
+
+  # Panda integration (panda-server sidecar + Authentik bot identity). Off =
+  # plain LLM chat; the bot credentials are only referenced when on, so the
+  # devnet can run chat before services.enc.yaml#chat has panda_bot_* keys.
+  panda:
+    enabled: false
+
+  # LLM-call tracing → EthPandaOps Langfuse (keys from services.enc.yaml#chat).
+  langfuse:
+    enabled: true
+    baseUrl: "https://langfuse.analytics.production.platform.ethpandaops.io"
+
+  devnetTools:
+    faucet:
+      enabled: true
+      url: "https://faucet.bal-devnet-7.ethpandaops.io"
+    join:
+      configUrl: "https://config.bal-devnet-7.ethpandaops.io"
+      rpcUrl: "https://rpc.bal-devnet-7.ethpandaops.io"
+      explorerUrl: "https://dora.bal-devnet-7.ethpandaops.io"
+
+  credentials:
+    llmApiKey: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.llm_api_key}>"
+    langfuse:
+      publicKey: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.langfuse_public_key}>"
+      secretKey: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.langfuse_secret_key}>"
+
+  open-webui:
+    sso:
+      enabled: true
+      trustedHeader:
+        enabled: true
+    openaiBaseApiUrls:
+      - "http://chat-hermes:8642/v1"
+    extraEnvVars:
+      - name: ENABLE_OLLAMA_API
+        value: "false"
+      - name: ENABLE_LOGIN_FORM
+        value: "false"
+      - name: OPENAI_API_KEYS
+        valueFrom:
+          secretKeyRef:
+            name: chat-hermes-secret
+            key: API_SERVER_KEY
+    ingress:
+      host: chat.bal-devnet-7.ethpandaops.io
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+          sub_filter '</head>' '<script src="https://pandamenu.ethpandaops.io/panda-menu-1.0.1.js" integrity="sha384-icGX6g6CzB0tqlhDc6Su4c6IPVbcbUvfM3xjbbFYsYBwuZR79WkmOxDhGEPfmyn2" crossorigin="anonymous"></script></head>';
+          sub_filter_types text/html;
+          sub_filter_once off;
