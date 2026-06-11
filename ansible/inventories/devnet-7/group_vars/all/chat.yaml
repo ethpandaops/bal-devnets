@@ -16,7 +16,7 @@ gen_kubernetes_config_chat_enabled: true
 # Pinned: chart 0.2.0's default tag (appVersion) predates the dispatch
 # entrypoint. CI publishes to GHCR (currently private); this tag is mirrored
 # to Docker Hub. <base>-<chat repo git sha>.
-gen_kubernetes_config_chat_image: "ethpandaops/hermes-agent-panda:2026.6.5-2375f5c"
+gen_kubernetes_config_chat_image: "ethpandaops/chat:hermes-agent-panda-2026.6.5-2375f5c"
 gen_kubernetes_config_chat_chart_version: "0.2.0"
 # services.enc.yaml#chat llm_api_key is an OpenRouter key (sk-or-v1-...).
 gen_kubernetes_config_chat_llm_provider: "openrouter"
