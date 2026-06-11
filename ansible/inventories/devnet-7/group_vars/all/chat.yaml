@@ -22,7 +22,8 @@ gen_kubernetes_config_chat_chart_version: "0.2.0"
 gen_kubernetes_config_chat_llm_provider: "openrouter"
 gen_kubernetes_config_chat_llm_api_key_env: "OPENROUTER_API_KEY"
 gen_kubernetes_config_chat_llm_model: "anthropic/claude-sonnet-4.6"
-# Plain LLM chat for now. Flip on after: production Authentik has the
-# panda-chat-svc blueprint (platform promote), services.enc.yaml#chat carries
-# panda_bot_username/panda_bot_token, and the image ships panda >= 0.32.0.
-gen_kubernetes_config_chat_panda_enabled: false
+# Panda on: renders the privileged panda-server sidecar and seeds the panda
+# CLI config (/opt/data/.config/panda/config.yaml -> local server). Requires
+# production Authentik panda-chat-svc (platform promote) + services.enc.yaml#chat
+# panda_bot_username/panda_bot_token; image already ships panda 0.32.0.
+gen_kubernetes_config_chat_panda_enabled: true
