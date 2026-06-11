@@ -10,11 +10,13 @@
 #     app in ethPandaOps/cloudflare/terraform/chat.tf (allow: Ethereum Github
 #     Organization). Trusted-header SSO is on by default (chat_auth_enabled).
 #   - hermes-agent-panda image with the dispatch entrypoint (panda-chat chart
-#     >= 0.2.0 runs the two-container pod). Do NOT roll with an image older
-#     than the ethpandaops/chat service-account PR; pin via:
-# gen_kubernetes_config_chat_image: "ethpandaops/hermes-agent-panda:<tag>"
+#     >= 0.2.0 runs the two-container pod) and panda >= 0.32.0.
 
 gen_kubernetes_config_chat_enabled: true
+# Pinned: chart 0.2.0's default tag (appVersion) predates the dispatch
+# entrypoint. CI publishes to GHCR (currently private); this tag is mirrored
+# to Docker Hub. <base>-<chat repo git sha>.
+gen_kubernetes_config_chat_image: "ethpandaops/hermes-agent-panda:2026.6.5-f517fc7"
 gen_kubernetes_config_chat_chart_version: "0.2.0"
 gen_kubernetes_config_chat_llm_model: "claude-sonnet-4-6"
 # Plain LLM chat for now. Flip on after: production Authentik has the
