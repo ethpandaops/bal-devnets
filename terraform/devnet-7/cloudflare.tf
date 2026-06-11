@@ -56,9 +56,3 @@ resource "cloudflare_record" "server_record_ns" {
   proxied  = false
   ttl      = 120
 }
-
-// NOTE: the Cloudflare Access guard for chat.<devnet>.ethpandaops.io is NOT
-// managed here — a single wildcard application (chat.*.ethpandaops.io) lives
-// in ethPandaOps/cloudflare/terraform/chat.tf alongside the other devnet
-// Access apps. To give this devnet a different policy, add a more specific
-// chat.<devnet> application there; Access picks the most specific hostname.
