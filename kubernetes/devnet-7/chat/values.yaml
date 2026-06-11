@@ -14,7 +14,9 @@ panda-chat:
     pullPolicy: IfNotPresent
 
   llm:
-    model: claude-sonnet-4-6
+    provider: openrouter
+    model: anthropic/claude-sonnet-4.6
+    apiKeyEnv: OPENROUTER_API_KEY
 
   # Panda integration (panda-server sidecar + Authentik bot identity). Off =
   # plain LLM chat; the bot credentials are only referenced when on, so the

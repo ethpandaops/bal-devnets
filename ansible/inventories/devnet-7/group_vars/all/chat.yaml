@@ -18,7 +18,10 @@ gen_kubernetes_config_chat_enabled: true
 # to Docker Hub. <base>-<chat repo git sha>.
 gen_kubernetes_config_chat_image: "ethpandaops/hermes-agent-panda:2026.6.5-2375f5c"
 gen_kubernetes_config_chat_chart_version: "0.2.0"
-gen_kubernetes_config_chat_llm_model: "claude-sonnet-4-6"
+# services.enc.yaml#chat llm_api_key is an OpenRouter key (sk-or-v1-...).
+gen_kubernetes_config_chat_llm_provider: "openrouter"
+gen_kubernetes_config_chat_llm_api_key_env: "OPENROUTER_API_KEY"
+gen_kubernetes_config_chat_llm_model: "anthropic/claude-sonnet-4.6"
 # Plain LLM chat for now. Flip on after: production Authentik has the
 # panda-chat-svc blueprint (platform promote), services.enc.yaml#chat carries
 # panda_bot_username/panda_bot_token, and the image ships panda >= 0.32.0.
