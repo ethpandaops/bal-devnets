@@ -6,9 +6,9 @@
 #     langfuse_public_key, langfuse_secret_key. (panda_bot_username /
 #     panda_bot_token only needed once chat_panda_enabled flips on —
 #     Authentik service account, see chat repo docs/panda-bot-setup.md.)
-#   - Cloudflare Access app on chat.bal-devnet-7.ethpandaops.io — managed in
-#     terraform/devnet-7/cloudflare.tf (allow: Ethereum Github Organization).
-#     Trusted-header SSO is on by default (chat_auth_enabled).
+#   - Cloudflare Access guard: covered by the wildcard chat.*.ethpandaops.io
+#     app in ethPandaOps/cloudflare/terraform/chat.tf (allow: Ethereum Github
+#     Organization). Trusted-header SSO is on by default (chat_auth_enabled).
 #   - hermes-agent-panda image with the dispatch entrypoint (panda-chat chart
 #     >= 0.2.0 runs the two-container pod). Do NOT roll with an image older
 #     than the ethpandaops/chat service-account PR; pin via:
