@@ -1,18 +1,23 @@
 # AI chat (panda-chat) — bal-devnet-7 pilot.
 # role: ethpandaops.general.generate_kubernetes_config
 #
-# Prereq: a `chat` section in services.enc.yaml with
-#   llm_api_key, panda_credentials_json, panda_credentials_file,
-#   langfuse_public_key, langfuse_secret_key
-# (panda bot identity = GitHub bot user + `panda auth login`).
-# Auth is on by default (trusted-header SSO) — also create a Cloudflare Access
-# application on chat.bal-devnet-7.ethpandaops.io scoped to the ethpandaops org.
-# (Set gen_kubernetes_config_chat_auth_enabled: false to ship public instead.)
-# Image defaults to ethpandaops/hermes-agent-panda:latest (docker.io, public).
-# Pin a specific build if needed:
+# Prereqs:
+#   - `chat` section in services.enc.yaml with llm_api_key,
+#     langfuse_public_key, langfuse_secret_key. (panda_bot_username /
+#     panda_bot_token only needed once chat_panda_enabled flips on —
+#     Authentik service account, see chat repo docs/panda-bot-setup.md.)
+#   - Cloudflare Access app on chat.bal-devnet-7.ethpandaops.io — managed in
+#     terraform/devnet-7/cloudflare.tf (allow: Ethereum Github Organization).
+#     Trusted-header SSO is on by default (chat_auth_enabled).
+#   - hermes-agent-panda image with the dispatch entrypoint (panda-chat chart
+#     >= 0.2.0 runs the two-container pod). Do NOT roll with an image older
+#     than the ethpandaops/chat service-account PR; pin via:
 # gen_kubernetes_config_chat_image: "ethpandaops/hermes-agent-panda:<tag>"
 
-gen_kubernetes_config_chat_llm_provider: "anthropic"
+gen_kubernetes_config_chat_enabled: true
+gen_kubernetes_config_chat_chart_version: "0.2.0"
 gen_kubernetes_config_chat_llm_model: "claude-sonnet-4-6"
-gen_kubernetes_config_chat_llm_api_key_env: "ANTHROPIC_API_KEY"
-gen_kubernetes_config_chat_panda_enabled: true
+# Plain LLM chat for now. Flip on after: production Authentik has the
+# panda-chat-svc blueprint (platform promote), services.enc.yaml#chat carries
+# panda_bot_username/panda_bot_token, and the image ships panda >= 0.32.0.
+gen_kubernetes_config_chat_panda_enabled: false

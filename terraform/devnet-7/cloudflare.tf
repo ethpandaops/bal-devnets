@@ -56,3 +56,31 @@ resource "cloudflare_record" "server_record_ns" {
   proxied  = false
   ttl      = 120
 }
+
+////////////////////////////////////////////////////////////////////////////////////////
+//                              CLOUDFLARE ACCESS (chat)
+////////////////////////////////////////////////////////////////////////////////////////
+
+// AI chat (panda-chat). Unlike the spamoor/authenticatoor apps (which only
+// guard /auth/*), the WHOLE host is gated: Open-WebUI consumes the verified
+// identity via trusted-header SSO (Cf-Access-Authenticated-User-Email) and
+// forwards Cf-Access-Jwt-Assertion for per-user attribution, so every request
+// must pass Access. Allow group mirrors the devnet's existing gate.
+resource "cloudflare_access_application" "chat" {
+  zone_id          = data.cloudflare_zone.default.id
+  name             = "chat-${var.ethereum_network}-application"
+  domain           = "chat.${var.ethereum_network}.${data.cloudflare_zone.default.name}"
+  type             = "self_hosted"
+  session_duration = "24h"
+}
+
+resource "cloudflare_access_policy" "chat" {
+  application_id = cloudflare_access_application.chat.id
+  zone_id        = data.cloudflare_zone.default.id
+  name           = "chat-${var.ethereum_network}-policy"
+  precedence     = 1
+  decision       = "allow"
+  include {
+    group = ["6999654c-cbde-46f7-8308-f0e61bd4f69a"] # "Ethereum Github Organization" Access group
+  }
+}

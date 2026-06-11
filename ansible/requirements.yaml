@@ -16,8 +16,10 @@ collections:
   - name: ansible.posix
   - name: community.sops
     version: 1.7.0
+  # Pinned to the chat service-account branch while PR #548 iterates —
+  # revert to ,master once it merges.
   - name: ethpandaops.general
-    source: https://github.com/ethpandaops/ansible-collection-general.git,master
+    source: https://github.com/ethpandaops/ansible-collection-general.git,qu0b/chat-panda-bot-token
     type: git
   - name: kubernetes.core
   - name: ansible.utils
