@@ -9,8 +9,8 @@ panda-chat:
   chainId: "7071885124"
 
   image:
-    repository: ethpandaops/hermes-agent-panda
-    tag: 2026.6.5-2375f5c
+    repository: ethpandaops/chat
+    tag: hermes-agent-panda-2026.6.5-2375f5c
     pullPolicy: IfNotPresent
 
   llm:
