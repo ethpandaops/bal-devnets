@@ -22,7 +22,7 @@ panda-chat:
   # plain LLM chat; the bot credentials are only referenced when on, so the
   # devnet can run chat before services.enc.yaml#chat has panda_bot_* keys.
   panda:
-    enabled: false
+    enabled: true
 
   # LLM-call tracing → EthPandaOps Langfuse (keys from services.enc.yaml#chat).
   langfuse:
@@ -39,7 +39,13 @@ panda-chat:
       explorerUrl: "https://dora.bal-devnet-7.ethpandaops.io"
 
   credentials:
+    # Stable OW<->Hermes bearer: the chart can't preserve a generated one under
+    # ArgoCD (client-side `helm template`), so it must be a fixed sops value.
+    apiServerKey: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.api_server_key}>"
     llmApiKey: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.llm_api_key}>"
+    panda:
+      botUsername: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.panda_bot_username}>"
+      botToken: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.panda_bot_token}>"
     langfuse:
       publicKey: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.langfuse_public_key}>"
       secretKey: "<path:/secrets/services/services.enc.yaml#chat | jsonPath {.langfuse_secret_key}>"
