@@ -4,7 +4,7 @@ dora:
   fullnameOverride: dora
   image:
     repository: ethpandaops/dora
-    tag: eip7928-support-latest
+    tag: eip7928-support-6d50229
     pullPolicy: Always
   resources:
     requests:
