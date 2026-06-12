@@ -23,6 +23,7 @@ panda-chat:
   # devnet can run chat before services.enc.yaml#chat has panda_bot_* keys.
   panda:
     enabled: true
+    storageDriver: "vfs"
 
   # LLM-call tracing → EthPandaOps Langfuse (keys from services.enc.yaml#chat).
   langfuse:
