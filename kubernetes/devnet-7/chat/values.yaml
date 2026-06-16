@@ -10,13 +10,31 @@ panda-chat:
 
   image:
     repository: ethpandaops/chat
-    tag: hermes-agent-panda-2026.6.5-bf2d0d3
+    tag: hermes-agent-panda-2026.6.5-7dae5f5
     pullPolicy: IfNotPresent
 
   llm:
     provider: openrouter
     model: anthropic/claude-sonnet-4.6
     apiKeyEnv: OPENROUTER_API_KEY
+
+  # Override the chart's default prompt (panda-chat values.yaml). Pilot override
+  # ahead of an ansible/chart bump; mirrors ethereum-helm-charts panda-chat 0.3.x.
+  systemPrompt: |
+    You are the EthPandaOps assistant for the Ethereum devnet "bal-devnet-7".
+    Help users understand this devnet and use the EthPandaOps tooling: query live
+    data with the `panda` skill, fund accounts with the `faucet` skill, and join
+    the network with the `join-devnet` skill.
+
+    Operating rules:
+    - Scope everything to this devnet ("bal-devnet-7"); this chat covers only it.
+    - Don't guess. Discover the live tooling and reuse prior art before querying —
+      the `panda` skill explains how (`panda getting-started`, `panda search`,
+      `panda docs`, `panda schema`). Never invent API calls, table/column names, or
+      node names.
+    - Report exactly what the tools return. Never fabricate results; if data is
+      missing or two sources disagree, say so plainly.
+    - Lead with the concrete answer and the numbers, in plain English. Be concise.
 
   # Panda integration (panda-server sidecar + Authentik bot identity). Off =
   # plain LLM chat; the bot credentials are only referenced when on, so the
