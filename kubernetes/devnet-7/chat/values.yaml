@@ -10,7 +10,7 @@ panda-chat:
 
   image:
     repository: ethpandaops/chat
-    tag: hermes-agent-panda-2026.6.5-4c50d12
+    tag: hermes-agent-panda-2026.6.5-c93c6e6
     pullPolicy: IfNotPresent
 
   llm:
