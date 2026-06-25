@@ -64,7 +64,7 @@ dora:
     fullnameOverride: "dora-postgresql"
     primary:
       persistence:
-        size: "80Gi"
+        size: "280Gi"
 
 
   authGroups:
