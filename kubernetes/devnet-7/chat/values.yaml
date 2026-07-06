@@ -10,7 +10,7 @@ panda-chat:
 
   image:
     repository: ethpandaops/chat
-    tag: hermes-agent-panda-2026.6.5-12400d1
+    tag: hermes-agent-panda-qu0b-panda-dind-docker-backend
     pullPolicy: IfNotPresent
 
   llm:
@@ -32,6 +32,7 @@ panda-chat:
   # devnet can run chat before services.enc.yaml#chat has panda_bot_* keys.
   panda:
     enabled: true
+    storageDriver: "overlay2"
 
   # LLM-call tracing → EthPandaOps Langfuse (keys from services.enc.yaml#chat).
   langfuse:
